@@ -12,9 +12,13 @@ require 'arcball'
 
 class ArcballBox < Propane::App
 
-  def setup
+  def settings
     size(600, 600, P3D)
     smooth(8)
+  end
+
+  def setup
+    sketch_title 'ArcBall Box'
     Processing::ArcBall.constrain(self, :xaxis)
     fill 180
   end
@@ -23,7 +27,6 @@ class ArcballBox < Propane::App
     background(50)
     box(300, 300, 300)
   end
-
 end
 
-ArcballBox.new title: 'ArcBall Box'
+ArcballBox.new

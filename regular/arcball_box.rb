@@ -11,18 +11,21 @@ require 'propane'
 
 class ArcballBox < Propane::App
 
-def setup
-  size(600, 600, P3D)
-  smooth(8)
-  Processing::ArcBall.init(self, 300, 300)
-  fill 180
+  def setup
+    size(600, 600, P3D)
+    smooth(8)
+  end
+
+  def setup
+    sketch_title 'ArcBall Box'
+    ArcBall.init(self, 300, 300)
+    fill 180
+  end
+
+  def draw
+    background(50)
+    box(300, 300, 300)
+  end
 end
 
-def draw
-  background(50)
-  box(300, 300, 300)
-end
-
-end
-
-ArcballBox.new title: 'ArcBall Box'
+ArcballBox.new

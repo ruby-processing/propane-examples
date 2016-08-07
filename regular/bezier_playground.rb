@@ -65,9 +65,13 @@ class BezierPlayground < Propane::App
 
   load_library :control_panel
   include Olap
+  
+  def settings
+    size 300, 300
+  end
 
   def setup
-    size 300, 300
+    sketch_title 'Bezier Playground'
     @curves = []
     @hide = false
     control_panel do |c|
@@ -203,4 +207,4 @@ class BezierPlayground < Propane::App
   end
 end
 
-BezierPlayground.new title: 'Bezier Playground'
+BezierPlayground.new

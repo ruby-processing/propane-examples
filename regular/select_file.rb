@@ -17,8 +17,12 @@ class SelectFile < Propane::App
   # select_input, and file_selected
   ###########
 
-  def setup
+  def settings
     size 200, 100
+  end
+
+  def setup
+    sketch_title 'Select File, native chooser'
     # java_signature 'void selectInput(String, String)'
     select_input('Select a File', 'file_selected')
   end

@@ -25,8 +25,13 @@ class Polyhedrons < Propane::App
   attr_reader :verts, :curr_id, :scayl, :ang, :spd, :name, :notes, :off_x, :off_y
   attr_reader :off_z, :len_edge
 
-  def setup
+  def settings
     size(1020, 576, P3D)
+    smooth 4
+  end
+
+  def setup
+    sketch_title 'Polyhedrons'
     smooth 4
     text_size(14)
     # some positional variables for translation
@@ -246,4 +251,4 @@ class Polyhedrons < Propane::App
   end
 end
 
-Polyhedrons.new title: 'Polyhedrons'
+Polyhedrons.new

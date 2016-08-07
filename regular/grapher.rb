@@ -11,8 +11,12 @@ class Grapher < Propane::App
   FUZZ = 0.04
   SZ = 5
 
-  def setup
+  def settings
     size 600, 600
+  end
+
+  def setup
+    sketch_title 'Grapher'
     no_stroke
     color_mode(HSB, 1.0)
     background(0)
@@ -37,4 +41,4 @@ class Grapher < Propane::App
   end
 end
 
-Grapher.new title: 'Grapher'
+Grapher.new

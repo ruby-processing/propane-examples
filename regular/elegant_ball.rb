@@ -9,9 +9,12 @@ require 'propane'
 class ElegantBall < Propane::App
 
   attr_reader :start_t
-
   def setup
     size(800, 800, P3D)
+  end
+
+  def setup
+    sketch_title 'Elegant Ball'
     color_mode(RGB, 1)
   end
 
@@ -156,4 +159,4 @@ class ElegantBall < Propane::App
   end
 end
 
-ElegantBall.new title: 'Elegant Ball'
+ElegantBall.new

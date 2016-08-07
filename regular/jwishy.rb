@@ -7,9 +7,13 @@ class JWishy < Propane::App
 
   attr_reader :alpha, :back_color, :bluish, :hide, :magnitude, :panel
   attr_reader :x_wiggle, :y_wiggle, :go_big, :shape
-
+  
+  def settings
+    size 600, 600  
+  end
+  
   def setup
-    size 600, 600
+    sketch_title 'Wishy Worm'
     control_panel do |c|
       c.title = 'Control Panel'
       c.look_feel 'Nimbus'
@@ -96,4 +100,4 @@ class JWishy < Propane::App
   end
 end
 
-JWishy.new title: 'Wishy Worm'
+JWishy.new

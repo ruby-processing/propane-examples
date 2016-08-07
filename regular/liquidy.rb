@@ -9,8 +9,12 @@ Vect = Struct.new(:x, :y)
 class Liquidy < Propane::App
   attr_reader :box2d, :boundaries, :systems
 
-  def setup
+  def settings
     size(400, 300)
+  end
+
+  def setup
+    sketch_title 'Liquidy'
     @box2d = WorldBuilder.build(app: self, gravity: [0, -20])
     @systems = []
     @boundaries = [
@@ -38,4 +42,4 @@ class Liquidy < Propane::App
   end
 end
 
-Liquidy.new title: 'Liquidy'
+Liquidy.new

@@ -11,8 +11,13 @@ class SelectImage < Propane::App
   ###########
   attr_reader :img
 
-  def setup
+  def settings
     size(400, 200)
+  end
+
+  def setup
+    sketch_title 'Native File Chooser'
+    resizable
     fill 0, 0, 200
     text('Click Window to Load Image', 10, 100)
   end
@@ -26,7 +31,7 @@ class SelectImage < Propane::App
       puts 'Nothing Chosen'
     else
       @img = load_image(selection.get_absolute_path)
-      img.resize(width, height)
+      surface.set_size(img.width, img.height)
     end
   end
 

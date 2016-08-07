@@ -1,14 +1,18 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
-
-require_relative 'propane'
+require 'propane'
 # Demo of Mouse Button
 class MouseButtonDemo < Propane::App
   # Click within the image and press
   # the left and right mouse buttons to
   # change the value of the rectangle
-  def setup
+
+  def settings
     size 300, 200
+  end
+
+  def setup
+    sketch_title 'Mouse Button Demo'
   end
 
   def draw
@@ -29,4 +33,4 @@ class MouseButtonDemo < Propane::App
   end
 end
 
-MouseButtonDemo.new title: 'Mouse Button Demo'
+MouseButtonDemo.new

@@ -15,9 +15,13 @@ LINE_LENGTH     = 37
 class Empathy < Propane::App
 
   attr_reader :cells
-
-  def setup
+  
+  def settings
     size(500, 500)
+  end
+  
+  def setup
+    sketch_title 'Empathy'
     stroke(0, 0, 0, 25)
     @cells = create_cells(CELL_COUNT)
     start_cell_updates
@@ -77,4 +81,4 @@ class Cell
   end
 end
 
-Empathy.new(title: 'Empathy')
+Empathy.new

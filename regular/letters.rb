@@ -9,8 +9,13 @@ LETTERS = ('A'..'Z').to_a + ('0'..'9').to_a  + ('a'..'z').to_a
 # Draws letters to the screen. This requires loading a font,
 # setting the font, and then drawing the letters.
 class Letters < Propane::App
+
   def setup
     size 640, 360
+  end
+
+  def setup
+    sketch_title 'Letters'
     @font = create_font 'Georgia', 24
     text_font @font
     text_align CENTER, CENTER
@@ -39,4 +44,4 @@ class Letters < Propane::App
   end
 end
 
-Letters.new title: 'Letters'
+Letters.new

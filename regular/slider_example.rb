@@ -7,9 +7,13 @@ class SliderExample < Propane::App
   load_library :slider
   attr_reader :color1, :color2, :color3, :r, :gs, :b, :back
 
-  def setup
+  def settings
     size(600, 400)
     smooth(4)
+  end
+
+  def setup
+    sketch_title 'Slider Example'
     @back = true
     @r, @gs, @b = 0, 0, 0
     @color1 = Slider.slider(
@@ -50,4 +54,4 @@ class SliderExample < Propane::App
   end
 end
 
-SliderExample.new(title: 'Slider Example')
+SliderExample.new

@@ -5,10 +5,14 @@ require 'propane'
 class SliderSimple < Propane::App
   load_library :slider
   attr_reader :color1, :color2, :color3, :r, :gs, :b, :back
-
+  
   def setup
     size(600, 400)
-    smooth(4)
+        smooth(4)
+  end
+
+  def setup
+    sketch_title 'Simple Slider'
     @back = true
     @r, @gs, @b = 0, 0, 0
     @color1 = Slider.slider(
@@ -44,4 +48,4 @@ class SliderSimple < Propane::App
   end
 end
 
-SliderSimple.new(title: 'Simple Slider')
+SliderSimple.new

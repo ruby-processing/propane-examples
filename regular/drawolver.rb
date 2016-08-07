@@ -12,8 +12,12 @@ require 'propane'
 class Drawolver < Propane::App
   attr_reader :drawing_mode, :points, :rot_x, :rot_y, :vertices
 
-  def setup
+  def settings
     size 1024, 768, P3D
+  end
+  
+  def setup
+    sketch_title 'Drawolver'
     frame_rate 30
     reset_scene
   end
@@ -90,4 +94,4 @@ class Drawolver < Propane::App
   end
 end
 
-Drawolver.new title: 'Drawolver'
+Drawolver.new

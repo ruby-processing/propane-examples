@@ -31,8 +31,12 @@ end
 class Doodle < Propane::App
   attr_reader :prev, :p, :q, :rotation, :faces, :pos, :weight
 
-  def setup
+  def settings
     size(600, 600, P3D)
+  end
+
+  def setup
+    sketch_title 'Ribbon Doodle'
     @weight = 0
     @prev = Vec3D.new
     @p = Vec3D.new
@@ -86,4 +90,4 @@ class Doodle < Propane::App
   end
 end
 
-Doodle.new title: 'Ribbon Doodle'
+Doodle.new

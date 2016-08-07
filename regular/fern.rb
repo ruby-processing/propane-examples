@@ -7,8 +7,12 @@ class Fern < Propane::App
 
 attr_reader :bnds
 
-def setup
+def settings
   size 500, 500
+end
+
+def setup
+  sketch_title 'Fern'
   @bnds = Boundary.new(0, width)
   no_loop
   puts 'Be patient. This takes about 10 seconds to render.'
@@ -54,4 +58,4 @@ Boundary = Struct.new(:lower, :upper) do
   end
 end
 
-Fern.new title: 'Fern'
+Fern.new

@@ -5,8 +5,12 @@ require 'propane'
 class Fractions < Propane::App
   attr_reader :f, :add, :subtract, :multiply
 
-  def setup
+  def settings
     size 640, 250
+  end
+
+  def setup
+    sketch_title 'Fraction Sums'
     @f = createFont('Arial', 24, true)
     third = 1 / 3r     # since ruby 2.1.0 (and jruby-9.0.0.0)
     quarter = 1 / 4r
@@ -29,4 +33,4 @@ class Fractions < Propane::App
   end
 end
 
-Fractions.new(title: 'Fraction Sums')
+Fractions.new

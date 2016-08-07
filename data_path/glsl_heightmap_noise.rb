@@ -29,8 +29,12 @@ class HeightMap < Propane::App
   attr_reader :images # array to hold 2 input images
   attr_reader :color_map # variable to keep track of the current colorMap
 
-  def setup
+  def settings
     size(1280, 720, P3D) # use the P3D OpenGL renderer
+  end
+
+  def setup
+    sketch_title 'Height Map'
     @blur_factor = 3
     @resize_factor = 0.25
     displace_strength = 0.25 # the displace strength of the GLSL shader displacement effect
@@ -122,4 +126,4 @@ class HeightMap < Propane::App
   end
 end
 
-HeightMap.new title: 'Height Map'
+HeightMap.new

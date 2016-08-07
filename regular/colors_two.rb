@@ -7,8 +7,12 @@ require 'propane'
 # in the program by their name, rather than a number.
 class CreatingColors < Propane::App
   attr_reader :redder, :yellower, :orangish
-  def setup
+  def settings
     size 640, 360
+  end
+  
+  def setup
+    sketch_title 'Homage to Albers'
     # palette = web_to_color_array(['#CC6600', '#CC9900', '#993300'].to_java(:string))
     palette = web_to_color_array(['#CC6600', '#CC9900', '#993300'])
     # @redder = color 204, 102, 0
@@ -57,4 +61,4 @@ class CreatingColors < Propane::App
   end
 end
 
-CreatingColors.new title: 'Homage to Albers'
+CreatingColors.new

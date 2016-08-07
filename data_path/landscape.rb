@@ -13,8 +13,12 @@ class Landscape < Propane::App
   attr_reader :landscape
   java_alias :background_int, :background, [Java::int]
 
-  def setup
+  def settings
     size(640, 360, P2D)
+  end
+
+  def setup
+    sketch_title 'Landscape'
     no_stroke
     # The code of this shader shows how to integrate shaders from shadertoy
     # into Processing with minimal changes.
@@ -31,4 +35,4 @@ class Landscape < Propane::App
   end
 end
 
-Landscape.new title: 'Landscape'
+Landscape.new

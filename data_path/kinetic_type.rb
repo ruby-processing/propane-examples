@@ -13,8 +13,12 @@ require 'propane' # temporary local
 # dispay them 'words'
 class KineticType < Propane::App
 
-  def setup
+  def settings
     size(200, 200, P3D)
+  end
+
+  def setup
+    sketch_title 'Kinetic Type'
     frame_rate 30
     # Load the font from the sketch's data directory.
     text_font loadFont(data_path('Univers45.vlw')), 1.0
@@ -76,4 +80,4 @@ class Letter
   end
 end
 
-KineticType.new title: 'Kinetic Type'
+KineticType.new

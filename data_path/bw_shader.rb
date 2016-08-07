@@ -7,8 +7,12 @@ class BwShader < Propane::App
 
   attr_reader :label, :can, :angle, :bw_shader
 
-  def setup
+  def settings
     size(640, 360, P3D)
+  end
+
+  def setup
+    sketch_title 'Black and White Shader'
     @label = load_image(data_path('lachoy.jpg'))
     @can = create_can(100, 200, 32, label)
     @bw_shader = load_shader(data_path('bwfrag.glsl'))
@@ -44,4 +48,4 @@ class BwShader < Propane::App
   end
 end
 
-BwShader.new title: 'Black & White Shader'
+BwShader.new

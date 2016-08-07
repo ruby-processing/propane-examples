@@ -4,9 +4,13 @@ require 'propane'
 # Based on http://processing.org/learning/topics/circlecollision.html
 class CircleCollision < Propane::App
   attr_reader :balls
+  
+  def settings
+    size 640, 360
+  end
 
   def setup
-    size 640, 360
+    sketch_title 'Circle Collision'
     @balls = [Ball.new(100, 40, 20), Ball.new(200, 100, 80)]
   end
 
@@ -113,6 +117,4 @@ class Ball
   end
 end
 
-
-
-CircleCollision.new title: 'Circle Collision'
+CircleCollision.new
