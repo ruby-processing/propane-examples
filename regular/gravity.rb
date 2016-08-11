@@ -6,12 +6,16 @@ require 'propane'
 class Gravity < Propane::App
   attr_reader :particles, :grabbed
 
-  def setup
+  def settings
     size 600, 500
+    smooth 4
+  end
+
+  def setup
+    sketch_title 'Gravity'
     @particles  = []
     @grabbed    = nil
     background 0
-    smooth 4
     stroke_weight 4
     ellipse_mode CENTER
     color_mode RGB, 255
@@ -117,4 +121,4 @@ class Particle
   end
 end
 
-Gravity.new title: 'Gravity'
+Gravity.new

@@ -12,8 +12,12 @@ require 'propane'
 class LinearImage < Propane::App
   attr_reader :signal, :img, :direction
 
-  def setup
+  def settings
     size(640, 360)
+  end
+
+  def setup
+    sketch_title 'Linear Image'
     stroke(255)
     @img = load_image(data_path('sea.jpg'))
     @direction = 1
@@ -48,4 +52,4 @@ class LinearImage < Propane::App
   end
 end
 
-LinearImage.new title: 'Linear Image'
+LinearImage.new

@@ -13,9 +13,13 @@ class Monjori < Propane::App
   # (Look for Monjori under the Plane Deformations Presets)
 
   attr_reader :monjori
-
-  def setup
+  
+  def settings
     size(640, 360, P2D)
+  end
+  
+  def setup
+    sketch_title 'Monjori'
     no_stroke
     @monjori = load_shader(data_path('monjori.glsl'))
     monjori.set('resolution', width.to_f, height.to_f)
@@ -32,4 +36,4 @@ class Monjori < Propane::App
   end
 end
 
-Monjori.new title: 'Monjori'
+Monjori.new

@@ -8,9 +8,13 @@
 require 'propane'
 
 class VectorMath < Propane::App  
-  attr_reader :center  
-  def setup
+  attr_reader :center
+  def settings
     size(640, 360)
+  end
+  
+  def setup
+    sketch_title 'Vector Math'
     stroke(255)
     stroke_weight(4)
     # A vector that points to the center of the window
@@ -34,4 +38,4 @@ class VectorMath < Propane::App
   end
 end
 
-VectorMath.new title: 'Vector Math'
+VectorMath.new

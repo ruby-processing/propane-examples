@@ -11,13 +11,18 @@ class Landscape < Propane::App
   # Processing port by Raphaël de Courville.
   #
   attr_reader :landscape
-  java_alias :background_int, :background, [Java::int]
+  java_alias :background_int, :background, [Java::int]  
+  TITLE_FORMAT = 'frame: %d - fps: %0.2f'.freeze
+
+  def settings
+    size(640, 360, P2D)
+  end
 
   def setup
-    size(640, 360, P2D)
+    sketch_title 'Landscape'
     no_stroke
     # The code of this shader shows how to integrate shaders from shadertoy
-    # into Processing with minimal changes.
+    # into Processing/JRubyArt/propane with minimal changes.
     @landscape = load_shader(data_path('landscape.glsl'))
     landscape.set('resolution', width.to_f, height.to_f)
   end
@@ -27,8 +32,8 @@ class Landscape < Propane::App
     landscape.set('time', (millis/1000.0).to_f)
     shader(landscape)
     rect(0, 0, width, height)
-    frame.set_title("frame: #{frame_count} - fps: #{format('%0.2f', frame_rate)}")
+    sketch_title(format(TITLE_FORMAT, frame_count, frame_rate))
   end
 end
 
-Landscape.new title: 'Landscape'
+Landscape.new

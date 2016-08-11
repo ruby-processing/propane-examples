@@ -18,9 +18,13 @@ class Raining < Propane::App
   #
 
   attr_reader :drops, :weight, :drops_size, :paused
-
+  
   def setup
     size 640, 480
+  end
+
+  def setup
+    sketch_title 'Raining'
     frame_rate 30
     @drops_size = 20
     @weight = 20
@@ -57,4 +61,4 @@ class Raining < Propane::App
   end
 end
 
-Raining.new title: 'Raining'
+Raining.new

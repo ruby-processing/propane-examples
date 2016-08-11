@@ -10,8 +10,12 @@ class EdgeDetection < Propane::App
   KERNEL = [[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]].freeze
   attr_reader :img
 
-  def setup
+  def settings
     size(640, 360)
+  end
+
+  def setup
+    sketch_title 'Edge Detection'
     @img = load_image(data_path('moon.jpg')) # Load the original image
     no_loop
   end
@@ -46,4 +50,4 @@ class EdgeDetection < Propane::App
   end
 end
 
-EdgeDetection.new title: 'Edge Detection'
+EdgeDetection.new

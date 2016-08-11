@@ -12,8 +12,12 @@ class FlightPatterns < Propane::App
 
   attr_reader :flee, :radius
 
-  def setup
+  def settings
     size 1024, 768, P3D
+  end
+
+  def setup
+    sketch_title 'Flight Patterns'    
     sphere_detail 8
     color_mode RGB, 1.0
     no_stroke
@@ -61,4 +65,4 @@ class FlightPatterns < Propane::App
   end
 end
 
-FlightPatterns.new title: 'Flight Patterns'
+FlightPatterns.new

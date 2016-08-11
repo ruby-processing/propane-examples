@@ -12,17 +12,17 @@ class FibonacciSphere < Propane::App
   # 2. click mouse to toggle add box to sphere surface
   # 3. press x, y, or z to constrain arcball rotation to that axis
   #
-
   PHI = (sqrt(5) + 1) / 2 - 1   # golden ratio
   GA = PHI * TAU           # golden angle
-
   KMAX_POINTS = 100_000
-
   attr_reader :pts, :rotation_x, :rotation_y, :nbr_points, :radius, :add_points
 
+  def settings
+    size(1024, 768, P3D)
+  end
 
   def setup
-    size(1024, 768, P3D)
+    sketch_title 'Fibonacci Sphere'
     Processing::ArcBall.init(self, width / 2.0, height / 2.0)
     @rotation_x = 0
     @rotation_y = 0
@@ -40,7 +40,6 @@ class FibonacciSphere < Propane::App
       @nbr_points = [nbr_points, KMAX_POINTS].min
       init_sphere(nbr_points)
     end
-
     background 0
     lights
     ambient(200, 10, 10)
@@ -88,4 +87,4 @@ class FibonacciSphere < Propane::App
   end
 end
 
-FibonacciSphere.new title: 'Fibonacci Sphere'
+FibonacciSphere.new

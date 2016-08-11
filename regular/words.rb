@@ -4,11 +4,14 @@ require 'propane'
 # Words.
 class Words < Propane::App
   # The text() function is used for writing words to the screen.
+  def settings
+    size 640, 360
+  end
 
   def setup
-    size 640, 360
+    sketch_title 'Words'
     @x = 30
-    Propane::PFont.list.each {|fnt| puts fnt}
+    Propane::PFont.list.each { |fnt| puts fnt }
     @font = create_font('Georgia', 24)
     text_font @font, 32
     no_loop
@@ -38,4 +41,4 @@ class Words < Propane::App
   end
 end
 
-Words.new title: 'Words'
+Words.new
