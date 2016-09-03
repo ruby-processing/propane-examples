@@ -11,7 +11,7 @@ require 'propane'
 
 class ArcballBox < Propane::App
 
-  def setup
+  def settings
     size(600, 600, P3D)
     smooth(8)
   end

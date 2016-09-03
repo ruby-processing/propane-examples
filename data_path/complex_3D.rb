@@ -12,7 +12,7 @@ class Complex3D < Propane::App
   attr_reader :num, :pt, :style, :dosave
   
   def setup
-    sketch_title 'Complex 3 D'
+    sketch_title 'Complex 3D'
     background(255)
     @dosave = false
     @num = 150

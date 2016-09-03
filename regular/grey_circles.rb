@@ -5,7 +5,7 @@ require 'propane'
 
 class GreyCircles < Propane::App
   
-  def setup
+  def settings
     size(323, 200)
     smooth
   end
