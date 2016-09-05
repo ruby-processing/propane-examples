@@ -5,6 +5,10 @@ Example Sketches for propane-2.0+ see also [Example-Sketches][examples] for ruby
 
 2. Other [sketches][regular]
 
+3. See how to instal [java libraries here][contributed]
+
+
 [path]:https://github.com/ruby-processing/propane-examples/tree/master/data_path
 [regular]:https://github.com/ruby-processing/propane-examples/tree/master/data_path
 [examples]:https://github.com/ruby-processing/Example-Sketches
+[contributed]:https://ruby-processing.github.io/propane/contributed
