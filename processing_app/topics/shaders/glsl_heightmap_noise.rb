@@ -1,5 +1,3 @@
-#!/usr/bin/env jruby -v -W2
-# frozen_string_literal: true
 # Noise-Based GLSL Heightmap by Amnon Owed (May 2013)
 # https://github.com/AmnonOwed
 # http://vimeo.com/amnon
@@ -8,14 +6,20 @@
 #
 # c = cycle through the color maps
 #
-# Tested with propane-0.8.0
+# Requires JRubyArt-1.2.5+
 #
-# Photographs by Folkert Gorter (@folkertgorter / http://superfamous.com/) made available under a CC Attribution 3.0 license.
+# Photographs by Folkert Gorter (@folkertgorter / http://superfamous.com/)
+# made available under a CC Attribution 3.0 license.
+#
 
 require 'propane'
 
+module Renderer
+  java_import 'monkstone.vecmath.ShapeRender'
+end
+
 class HeightMap < Propane::App
-  include Propane::Render
+  include Renderer
   SHADERS = %w(displaceFrag.glsl displaceVert.glsl).freeze
   SHADER_NAME = %i(frag vert).freeze
   DIM = 300 # the grid dimensions of the heightmap
