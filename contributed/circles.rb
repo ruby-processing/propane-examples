@@ -4,7 +4,7 @@ require 'propane'
 
 ## Circles by Bárbara Almeida
 ##  A fork of Circle through 3 points by Bárbara Almeida.
-## Draw circles from 3 points moving on smooth rand trajectories.
+## Draw circles from 3 points moving on smooth random trajectories.
 ## https://www.openprocessing.org/sketch/211167
 
 ## Propane version by Jérémy Laviole - @poqudrof
