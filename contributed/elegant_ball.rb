@@ -4,12 +4,10 @@ require 'propane'
 # Ben Notorianni aka lazydog
 #
 # elegant.rb
-module Renderer
-  java_import 'monkstone.vecmath.AppRender'
-end
+java_import 'monkstone.vecmath.AppRender'
 
 class ElegantBall < Propane::App
-  include Renderer
+
   def settings
     size(800, 800, P3D)
   end
