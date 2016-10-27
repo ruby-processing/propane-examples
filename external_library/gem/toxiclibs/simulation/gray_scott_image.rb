@@ -38,6 +38,8 @@ require 'toxiclibs'
 class GrayScottToneImage < Propane::App
   attr_reader :gs, :tone_map, :img
 
+  KEYS = %w(1 2 3 4 5 6 7 8 9).freeze
+
   def setup
     sketch_title 'Gray Scott Image'
     @gs = Simulation::GrayScott.new width, height, true
@@ -60,15 +62,14 @@ class GrayScottToneImage < Propane::App
     update_pixels
   end
 
-  def key_pressed
-    control_key = %w(1 2 3 4 5 6 7 8 9)
+  def key_pressed    
     case key
-    when *control_key
-      @gs.setF(0.02 + (key.ord - 48) * 0.001)
+    when *KEYS
+      @gs.setF(0.02 + key.to_i * 0.001)
     when 's'
       save_frame 'toxi.png'
     else
-      @gs.reset()
+      @gs.reset
     end
   end
 
