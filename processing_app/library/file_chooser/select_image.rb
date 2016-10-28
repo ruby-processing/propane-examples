@@ -1,14 +1,12 @@
 #!/usr/bin/env jruby -v -W2
 
 require 'propane'
-
+###########
+# Example Native File Chooser using vanilla processing
+# select_input, and file_selected
+###########
 class SelectImage < Propane::App
-
   load_library :file_chooser
-  ###########
-  # Example Native File Chooser using vanilla processing
-  # select_input, and file_selected
-  ###########
   attr_reader :img
 
   def settings
