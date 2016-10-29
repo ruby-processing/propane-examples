@@ -12,21 +12,21 @@ import java.util.ArrayList;
 public class Neuron {
 
     protected float output;
-    protected ArrayList connections; 
+    protected ArrayList<Connection> connections; 
     protected boolean bias = false;
 
     // A regular Neuron
     public Neuron() {
         output = 0;
         // Using an arraylist to store list of connections to other neurons
-        connections = new ArrayList();  
+        connections = new ArrayList<>();  
         bias = false;
     }
 
     // Constructor for a bias neuron
     public Neuron(int i) {
         output = i;
-        connections = new ArrayList();
+        connections = new ArrayList<>();
         bias = true;
     }
 
@@ -37,10 +37,10 @@ public class Neuron {
             // do nothing
         } else {
             float sum = 0;
-            float bias = 0;
+            float lbias = 0;
             //System.out.println("Looking through " + connections.size() + " connections");
             for (int i = 0; i < connections.size(); i++) {
-                Connection c = (Connection) connections.get(i);
+                Connection c = connections.get(i);
                 Neuron from = c.getFrom();
                 Neuron to = c.getTo();
                 // Is this connection moving forward to us
@@ -49,14 +49,14 @@ public class Neuron {
                     // This isn't really necessary
                     // But I am treating the bias individually in case I need to at some point
                     if (from.bias) {
-                        bias = from.getOutput()*c.getWeight();
+                        lbias = from.getOutput()*c.getWeight();
                     } else {
                         sum += from.getOutput()*c.getWeight();
                     }
                 }
             }
             // Output is result of sigmoid function
-            output = f(bias+sum);
+            output = f(lbias+sum);
         }
     }
 
@@ -73,7 +73,7 @@ public class Neuron {
         return 1.0f / (1.0f + (float) Math.exp(-x));
     }
 
-    public ArrayList getConnections() {
+    public ArrayList<Connection> getConnections() {
         return connections;
     }
 

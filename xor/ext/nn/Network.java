@@ -51,19 +51,19 @@ public class Network {
         output = new OutputNeuron();
 
         // Connect input layer to hidden layer
-        for (int i = 0; i < input.length; i++) {
+        for (InputNeuron input1 : input) {
             for (int j = 0; j < hidden.length-1; j++) {
                 // Create the connection object and put it in both neurons
-                Connection c = new Connection(input[i],hidden[j]);
-                input[i].addConnection(c);
+                Connection c = new Connection(input1, hidden[j]);
+                input1.addConnection(c);
                 hidden[j].addConnection(c);
             }
         }
         
         // Connect the hidden layer to the output neuron
-        for (int i = 0; i < hidden.length; i++) {
-            Connection c = new Connection(hidden[i],output);
-            hidden[i].addConnection(c);
+        for (HiddenNeuron hidden1 : hidden) {
+            Connection c = new Connection(hidden1, output);
+            hidden1.addConnection(c);
             output.addConnection(c);
         }
 
@@ -105,20 +105,20 @@ public class Network {
         for (int i = 0; i < connections.size(); i++) {
             Connection c = (Connection) connections.get(i);
             Neuron neuron = c.getFrom();
-            float output = neuron.getOutput();
-            float deltaWeight = output*deltaOutput;
+            float loutput = neuron.getOutput();
+            float deltaWeight = loutput*deltaOutput;
             c.adjustWeight(LEARNING_CONSTANT*deltaWeight);
         }
         
         // ADJUST HIDDEN WEIGHTS
-        for (int i = 0; i < hidden.length; i++) {
-            connections = hidden[i].getConnections();
+        for (HiddenNeuron hidden1 : hidden) {
+            connections = hidden1.getConnections();
             float sum  = 0;
             // Sum output delta * hidden layer connections (just one output)
             for (int j = 0; j < connections.size(); j++) {
                 Connection c = (Connection) connections.get(j);
                 // Is this a connection from hidden layer to next layer (output)?
-                if (c.getFrom() == hidden[i]) {
+                if (c.getFrom() == hidden1) {
                     sum += c.getWeight()*deltaOutput;
                 }
             }    
@@ -127,9 +127,9 @@ public class Network {
             for (int j = 0; j < connections.size(); j++) {
                 Connection c = (Connection) connections.get(j);
                 // Is this a connection from previous layer (input) to hidden layer?
-                if (c.getTo() == hidden[i]) {
-                    float output = hidden[i].getOutput();
-                    float deltaHidden = output * (1 - output);  // Derivative of sigmoid(x)
+                if (c.getTo() == hidden1) {
+                    float loutput = hidden1.getOutput();
+                    float deltaHidden = loutput * (1 - loutput);  // Derivative of sigmoid(x)
                     deltaHidden *= sum;   // Would sum for all outputs if more than one output
                     Neuron neuron = c.getFrom();
                     float deltaWeight = neuron.getOutput()*deltaHidden;

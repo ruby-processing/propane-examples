@@ -8,8 +8,8 @@ package nn;
 
 public class Connection {
 
-    private Neuron from;     // Connection goes from. . .
-    private Neuron to;       // To. . .
+    private final Neuron from;     // Connection goes from. . .
+    private final Neuron to;       // To. . .
     private float weight;   // Weight of the connection. . .
 
     // Constructor  builds a connection with a random weight
