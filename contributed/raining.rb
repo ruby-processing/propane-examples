@@ -1,25 +1,23 @@
 #!/usr/bin/env jruby -v -W2
 require 'propane'
-require_relative 'lib/rain_drops'
-
+# raining after Rain1 by Thomas R. 'TomK32' Koll
+#
+# draws raindrops as bezier shapes and moves them downwards
+#
+# available key commands:
+#  + make raindrops heavier/bigger
+#  - make raindrops smaller
+#  a more raindrops
+#  s less raindrops
+#  <SPACE>
+#
+# License: Same as processing
+#
 class Raining < Propane::App
-  # raining after Rain1 by Thomas R. 'TomK32' Koll
-  #
-  # draws raindrops as bezier shapes and moves them downwards
-  #
-  # available key commands:
-  #  + make raindrops heavier/bigger
-  #  - make raindrops smaller
-  #  a more raindrops
-  #  s less raindrops
-  #  <SPACE>
-  #
-  # License: Same as processing
-  #
-
+  load_library :rain_drops
   attr_reader :drops, :weight, :drops_size, :paused
-  
-  def setup
+
+  def settings
     size 640, 480
   end
 

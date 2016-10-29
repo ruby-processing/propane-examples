@@ -31,7 +31,7 @@ end
 
 # Encapsulates drop behaviour, and include Proxy to access PApplet methods
 class Drop
-  include Processing::Proxy
+  include Propane::Proxy
   attr_reader :weight, :x, :y
 
   def initialize(x, y, weight = nil)

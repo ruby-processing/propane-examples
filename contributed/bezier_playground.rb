@@ -1,6 +1,5 @@
 #!/usr/bin/env jruby
 require 'propane'
-require_relative 'library/curve/curve'
 
 X1, Y1, X2, Y2 = 50.0, 50.0, 250.0, 250.0
 REDDISH = [250, 100, 100]
@@ -10,9 +9,8 @@ RADIUS = 7
 # Arrows toggle between curves, delete removes them.
 # You can print out the parametric equations for t = 0..1
 class BezierPlayground < Propane::App
+  load_libraries :control_panel, :curve
   include Olap
-  load_library :control_panel
-
   attr_accessor :curves, :c1x, :c1y, :c2x, :c2y
   attr_reader :panel, :hide
 
