@@ -1,10 +1,12 @@
+#!/usr/bin/env jruby -w
 require 'propane'
-
 class TestCapture < Propane::App
-  load_library :video, :video_event  
-  include_package 'processing.video' 
+  load_libraries :video, :video_event
+
+  include_package 'processing.video'
+
   attr_reader :cam
-  
+
   def setup
     sketch_title 'Test Capture'
     cameras = Capture.list
@@ -16,7 +18,7 @@ class TestCapture < Propane::App
     fail 'There are no matching cameras.' if (select.length == 0)
     start_capture(select[0])
   end
-  
+
   def start_capture(cam_string)
     # The camera can be initialized directly using an
     # element from the array returned by list:
@@ -24,22 +26,21 @@ class TestCapture < Propane::App
     p format('Using camera %s', cam_string)
     cam.start
   end
-  
+
   def draw
     image(cam, 0, 0, width, height)
     # The following does the same, and is faster when just drawing the image
     # without any additional resizing, transformations, or tint.
     # set(0, 0, cam)
   end
-  
+
   def captureEvent(c)
     c.read
   end
-  
+
   def settings
-    size 960, 544, P2D
+    size 1280, 720, P2D
   end
 end
 
 TestCapture.new
-
