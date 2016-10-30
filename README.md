@@ -5,5 +5,5 @@ WIP to complete translation from JRubyArt to propane
 
 See how to install [java libraries here][contributed]
 
-[examples]:https://github.com/ruby-processing/Example-Sketches
+[examples]:https://github.com/ruby-processing/JRubyArt-examples
 [contributed]:https://ruby-processing.github.io/propane/contributed
