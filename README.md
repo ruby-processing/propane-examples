@@ -1,14 +1,9 @@
 # propane-examples
-Example Sketches for propane-2.0+ see also [Example-Sketches][examples] for ruby-processing (many of with only need to be class wrapped to run with propane).
+Example Sketches for propane-2.0.5 see also [Example-Sketches][examples] for ruby-processing (many of with only need to be class wrapped to run with propane).
 
-1. Sketches using the [data_path wrapper][path] (yields absolute path to `data` folder).
+WIP to complete translation from JRubyArt to propane
 
-2. Other [sketches][regular]
+See how to install [java libraries here][contributed]
 
-3. See how to install [java libraries here][contributed]
-
-
-[path]:https://github.com/ruby-processing/propane-examples/tree/master/data_path
-[regular]:https://github.com/ruby-processing/propane-examples/tree/master/data_path
 [examples]:https://github.com/ruby-processing/Example-Sketches
 [contributed]:https://ruby-processing.github.io/propane/contributed
