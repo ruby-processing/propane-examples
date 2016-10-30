@@ -2,7 +2,7 @@
 require 'propane'
 # Speed.
 # drag mouse down screen to increase speed
-# drag mouse ip screen to decrease speed
+# drag mouse up screen to decrease speed
 # Uses the Movie.speed method to change
 # the playback speed.
 class Speed < Propane::App
