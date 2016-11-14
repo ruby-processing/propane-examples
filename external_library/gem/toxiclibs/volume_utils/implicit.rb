@@ -58,10 +58,10 @@ class Implicit < Propane::App
     @is_wire_frame = false
     no_stroke
     @implicit = vbo.mesh_to_shape(mesh, true)
-    implicit.set_fill(color(222, 222, 222))
-    implicit.set_ambient(color(50, 50, 50))
-    implicit.set_shininess(color(10, 10, 10))
-    implicit.set_specular(color(50, 50, 50))
+    implicit.setFill(color(222, 222, 222))
+    implicit.setAmbient(color(50, 50, 50))
+    implicit.setShininess(color(10, 10, 10))
+    implicit.setSpecular(color(50, 50, 50))
   end
 
   def draw
@@ -77,21 +77,21 @@ class Implicit < Propane::App
       LaplacianSmooth.new.filter(mesh, 1)
       @implicit = vbo.mesh_to_shape(mesh, true)
       # new mesh so need to set finish
-      implicit.set_fill(color(222, 222, 222))
-      implicit.set_ambient(color(50, 50, 50))
-      implicit.set_shininess(color(10, 10, 10))
-      implicit.set_specular(color(50, 50, 50))
+      implicit.setFill(color(222, 222, 222))
+      implicit.setAmbient(color(50, 50, 50))
+      implicit.setShininess(color(10, 10, 10))
+      implicit.setSpecular(color(50, 50, 50))
     when 's', 'S'
-      save_frame('implicit.png')
+      save_frame(data_path('implicit.png'))
     when 'p', 'P'
       no_loop
       pm = Gfx::POVMesh.new(self)
-      file = java.io.File.new('implicit.inc')
+      file = java.io.File.new(data_path('implicit.inc'))
       pm.begin_save(file)
       pm.set_texture(Gfx::Textures::WHITE)
       pm.saveAsPOV(mesh, true)
       pm.end_save
-      exit
+      puts 'finished'
     end
   end
 
@@ -101,43 +101,41 @@ class Implicit < Propane::App
     directional_light(0, 30, 50, 1, 0, 0)
     spot_light(30, 30, 30, 0, 40, 200, 0, -0.5, -0.5, PI / 2, 2)
   end
+
+  # Custom evaluating Volume Class
+  class EvaluatingVolume < Volume::VolumetricSpace
+
+    attr_reader :upper_bound
+    FREQ = Math::PI * 3.8
+
+    def initialize(scal_vec, resX, resY, resZ, upper_limit)
+      super(scal_vec, resX, resY, resZ)
+      @upper_bound = upper_limit
+    end
+
+    def clear
+      # nothing to do here
+    end
+
+    def getVoxelAt(i)
+      getVoxel(i % resX, (i % sliceRes) / resX, i / sliceRes)
+    end
+
+    def getVoxel(x, y, z)  # can't overload so we renamed
+      val = 0
+      if (x > 0 && x < resX1 && y > 0 && y < resY1 && z > 0 && z < resZ1)
+        xx = x * 1.0 / resX - 0.5  # NB: careful about integer division !!!
+        yy = y * 1.0 / resY - 0.5
+        zz = z * 1.0 / resZ - 0.5
+        #val = Math.sin(xx * FREQ) + Math.cos(yy * FREQ) + Math.sin(zz * FREQ)
+        val = Math.cos(xx * FREQ) * Math.sin(yy* FREQ) + Math.cos(yy* FREQ) * Math.sin(zz* FREQ) + Math.cos(zz* FREQ)* Math.sin(xx* FREQ)
+        if (val > upper_bound)
+          val = 0
+        end
+      end
+      return val
+    end
+  end
 end
 
 Implicit.new
-
-# Custom evaluating Volume Class
-class EvaluatingVolume < Volume::VolumetricSpace
-  include Math
-  attr_reader :upper_bound
-  FREQ = PI * 3.8
-
-  def initialize(scal_vec, resX, resY, resZ, upper_limit)
-    super(scal_vec, resX, resY, resZ)
-    @upper_bound = upper_limit
-  end
-
-  def clear
-    # nothing to do here
-  end
-
-  def getVoxelAt(i)
-    get_voxel(i % resX, (i % sliceRes) / resX, i / sliceRes)
-  end
-
-  def get_voxel(x, y, z) # can't overload so we renamed
-    out = ->(val, res) { val <= 0 || val >= res }
-    return 0 if out.call(x, resX1) || out.call(y, resY1) || out.call(z, resZ1)
-    value = ->(val, res) { val * 1.0 / res - 0.5 }
-    function0 = lambda do |x, y, z, c|
-      cos(x * c) * sin(y * c) + cos(y * c) * sin(z * c) + cos(z * c) * sin(x * c)
-    end
-    function1 = lambda do |x, y, z, c|
-      3 * x**2 + 3 * y**2 - (3 * x**2 - y**2) * y + z**3
-    end
-    # val = function1.call(value.call(x, resX),value.call(y, resY), value.call(z, resZ), FREQ)
-    val = cos(x * FREQ) * sin(y * FREQ) + cos(y * FREQ) * sin(z * FREQ) + cos(z * FREQ) * sin(x * FREQ)
-    # 3*pow(x,2) + 3*pow(y,2) - (3*pow(x,2) - pow(y,2))*y + pow(z,3)
-    return 0 if val > upper_bound
-    val
-  end
-end
