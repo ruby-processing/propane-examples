@@ -9,7 +9,7 @@ In [german][german]
 ### Examples ###
 
 The solid_type sketch is a variant of an Amon Owed sketch requires propane-2.0.7 (or latest github version).
-Requires [geomerative.gem][gem] and hemesh library, see [guide to install vanilla processing libraries][guide] in propane.
+Requires [geomerative.gem][gem] and hemesh library, see [guide to install vanilla processing libraries][guide] in propane. You need to do something similar for vanilla processing pdf library (I have copy installed for JRubyArt), there migh be other ways to get it eg github, ie without requiring a vanilla processing install.
 
 ### Other Examples ###
 
