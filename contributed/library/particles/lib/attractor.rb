@@ -32,7 +32,7 @@ class Attractor
 
   # Method to display
   def render
-    ellipse_mode(PConstants::CENTER)
+    ellipse_mode(CENTER)
     stroke(0)
     fill(175, 200)
     ellipse(loc.x, loc.y, mass * 2, mass * 2)

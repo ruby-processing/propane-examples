@@ -8,7 +8,7 @@ class ParticleSystem
   def initialize(width, height, sprite, n)
     @particles = []
     # The PShape is a group
-    @particle_shape = create_shape(PConstants::GROUP)
+    @particle_shape = create_shape(GROUP)
 
     # Make all the Particles
     n.times do |i|
@@ -52,7 +52,7 @@ class Particle
     part_size = rand(10..60)
     # The particle is a textured quad
     @s_shape = create_shape
-    s_shape.begin_shape(PConstants::QUAD)
+    s_shape.begin_shape(QUAD)
     s_shape.no_stroke
     s_shape.texture(sprite)
     s_shape.normal(0, 0, 1)

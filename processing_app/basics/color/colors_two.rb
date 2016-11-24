@@ -1,4 +1,5 @@
 #!/usr/bin/env jruby -v -w
+# frozen_string_literal: true
 # Creating Colors (Homage to Albers).
 #
 require 'propane'

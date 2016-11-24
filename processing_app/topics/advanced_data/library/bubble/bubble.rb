@@ -28,7 +28,7 @@ class Bubble
     ellipse(x, y, diameter, diameter)
     return unless over
     fill(0)
-    text_align(PConstants::CENTER)
+    text_align(CENTER)
     text(name, x, y + diameter / 2 + 20)
   end
 

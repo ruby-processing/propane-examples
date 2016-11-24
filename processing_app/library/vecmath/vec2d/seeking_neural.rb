@@ -106,7 +106,7 @@ module SeekingNeural
         vertex(0, -sz)
         vertex(-sz * 0.5, sz)
         vertex(sz * 0.5, sz)
-      end_shape(PConstants::CLOSE)
+      end_shape(CLOSE)
       pop_matrix
     end
   end

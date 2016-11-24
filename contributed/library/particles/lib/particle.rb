@@ -55,10 +55,10 @@ class Particle
 
   # Method to display
   def render
-    ellipse_mode(PConstants::CENTER)
+    ellipse_mode(CENTER)
     stroke(255)
     fill(100)
     ellipse(loc.x, loc.y, radius, radius)
-    each { |pt| point(pt[PConstants::X], pt[PConstants::Y], 0) }
+    each { |pt| point(pt[X], pt[Y], 0) }
   end
 end

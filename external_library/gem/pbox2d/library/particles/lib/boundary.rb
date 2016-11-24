@@ -27,7 +27,7 @@ class Boundary
     fill(0)
     stroke(0)
     stroke_weight(1)
-    rect_mode(PConstants::CENTER)
+    rect_mode(CENTER)
     a = b.get_angle
     push_matrix
     translate(pos.x, pos.y)

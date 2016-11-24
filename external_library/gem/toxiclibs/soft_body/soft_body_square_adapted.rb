@@ -1,10 +1,9 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
 require 'propane'
 require 'toxiclibs'
 require 'forwardable'
-require_relative 'blanket'
-require_relative 'connection'
-require_relative 'particle'
+
 # The Nature of Code
 # Daniel Shiffman
 # http://natureofcode.com
@@ -37,6 +36,7 @@ require_relative 'particle'
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
 class SoftBodySquare < Propane::App
+  load_library :blanket
   attr_reader :b, :physics
 
   def settings

@@ -80,7 +80,7 @@ class HairyOrb
       zo = radius * sin(thetaff)
       xb, yb, zb = xo * hair.len, yo * hair.len, zo * hair.len
       stroke_weight(1)
-      begin_shape(PConstants::LINES)
+      begin_shape(LINES)
       stroke_int(0)
       vertex(x, y, za)
       stroke_float_float(200, 150)

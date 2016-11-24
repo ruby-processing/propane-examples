@@ -1,7 +1,6 @@
 #!/usr/bin/env jruby -v -w
 # frozen_string_literal: true
 # Creating Colors (Homage to Albers).
-#
 require 'propane'
 
 # Creating variables for colors that may be referred to
@@ -9,10 +8,10 @@ require 'propane'
 class CreatingColors < Propane::App
   attr_reader :redder, :yellower, :orangish
   WEB = %w(#CC6600 #CC9900 #993300)
-  
+
   def settings
     size 640, 360
-  end  
+  end
 
   def setup
     sketch_title 'Homage to Albers'

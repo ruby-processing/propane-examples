@@ -37,7 +37,7 @@ class Boid
 
   def seek(target)
     desired = target - location
-    return if desired.mag < PConstants::EPSILON
+    return if desired.mag < EPSILON
     desired.normalize!
     desired *= @maxspeed
     steer = desired - velocity
@@ -52,7 +52,7 @@ class Boid
     vehicles.each do |other|
       next if other.equal? self
       d = location.dist(other.location)
-      next unless (PConstants::EPSILON..desired_separation).cover? d
+      next unless (EPSILON..desired_separation).cover? d
       diff = (location - other.location).normalize
       diff /= d
       sum += diff
@@ -75,7 +75,7 @@ class Boid
     count = 0
     boids.each do |other|
       d = location.dist(other.location)
-      next unless (PConstants::EPSILON..neighbordist).cover? d
+      next unless (EPSILON..neighbordist).cover? d
       sum += other.velocity
       count += 1
     end
@@ -95,7 +95,7 @@ class Boid
     boids.each do |other|
       next if other.equal? self
       d = location.dist(other.location)
-      if (PConstants::EPSILON..neighbordist).cover? d
+      if (EPSILON..neighbordist).cover? d
         sum += other.location
         count += 1
       end
@@ -119,7 +119,7 @@ class Boid
     push_matrix
     translate(location.x, location.y)
     rotate(theta)
-    begin_shape(PConstants::TRIANGLES)
+    begin_shape(TRIANGLES)
     vertex(0, -@r * 2)
     vertex(-@r, @r * 2)
     vertex(@r, @r * 2)

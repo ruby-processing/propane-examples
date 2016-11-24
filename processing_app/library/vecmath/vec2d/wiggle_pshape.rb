@@ -47,7 +47,7 @@ class Wiggler
     s.stroke(0)
     s.stroke_weight(2)
     original.map{ |v| v.to_vertex(renderer) }
-    s.end_shape(PConstants::CLOSE)
+    s.end_shape(CLOSE)
   end
 
   def wiggle

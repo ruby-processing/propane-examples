@@ -94,7 +94,7 @@ class Boid
     push_matrix
     translate(location.x,location.y)
     rotate(theta)
-    begin_shape(PConstants::TRIANGLES)
+    begin_shape(TRIANGLES)
     vertex(0, -r * 2)
     vertex(-r, r * 2)
     vertex(r, r * 2)

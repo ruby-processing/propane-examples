@@ -1,5 +1,5 @@
 # Simple demo Rakefile to autorun samples in current directory
-# adjust path to rp5 executable, and or opts as required
+# adjust path to jruby executable, and or opts as required
 
 SAMPLES_DIR = './'
 

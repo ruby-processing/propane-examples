@@ -5,8 +5,6 @@
 # source and frequency
 ########
 class Word
-  X = 0
-  Y = 1
   include Propane::Proxy
   # Store a count for occurences in two different books
   attr_reader :count_dracula, :count_franken, :total_count
@@ -57,7 +55,7 @@ class Word
     fs = map1d(total_count, (5..25), (2..24.0))
     fs = constrain(fs, 2, 48)
     text_size(fs)
-    text_align(PConstants::CENTER)
+    text_align(CENTER)
     text(word, position[X], position[Y])
   end
 end
