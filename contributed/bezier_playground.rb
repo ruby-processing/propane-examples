@@ -1,8 +1,9 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
 require 'propane'
 
 X1, Y1, X2, Y2 = 50.0, 50.0, 250.0, 250.0
-REDDISH = [250, 100, 100]
+REDDISH = [250, 100, 100].freeze
 RADIUS = 7
 
 # A Bezier playground. Click to shape the curve. Drag to move it.
@@ -11,9 +12,7 @@ RADIUS = 7
 class BezierPlayground < Propane::App
   load_libraries :control_panel, :curve
   include Olap
-  attr_accessor :curves, :c1x, :c1y, :c2x, :c2y
-  attr_reader :panel, :hide
-
+  attr_reader :curves, :c1x, :c1y, :c2x, :c2y, :panel, :hide
 
   def settings
     size 300, 300
@@ -103,7 +102,7 @@ class BezierPlayground < Propane::App
     become = curves.detect { |c| c.contains(mouse_x, mouse_y) }
     return unless become && become != current_curve
     current_curve.set_control_points(*control_points)
-    self.set_control_points(*become.control_points)
+    set_control_points(*become.control_points)
     @current = curves.index(become)
   end
 

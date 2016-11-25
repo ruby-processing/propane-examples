@@ -1,4 +1,5 @@
-#!/usr/bin/env jruby -v -W2
+#!/usr/bin/env jruby
+# frozen_string_literal: true
 require 'propane'
 
 class Tree < Propane::App

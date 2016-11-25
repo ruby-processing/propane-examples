@@ -17,8 +17,8 @@ class FullScreen < Propane::App
         new_x, new_y = x * 100, y * 100
         push_matrix
         translate new_x + 50, new_y + 50
-        rotate_y(((mouse_x.to_f + new_x) / width) * Math::PI)
-        rotate_x(((mouse_y.to_f + new_y) / height) * Math::PI)
+        rotate_y(((mouse_x.to_f + new_x) / width) * PI)
+        rotate_x(((mouse_y.to_f + new_y) / height) * PI)
         box 90
         pop_matrix
       end

@@ -1,5 +1,6 @@
+#!/usr/bin/env jruby
+# frozen_string_literal: true
 require 'propane'
-
 # After original by Alex Young https://github.com/alexyoung/fire-p5r
 
 # Algorithm:
