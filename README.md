@@ -6,6 +6,6 @@ WIP to complete translation from JRubyArt to propane using [this conversion tool
 See how to install [java libraries here][contributed]
 
 
-[conversion]
+[conversion]:https://gist.github.com/monkstone/6f61ecf6c0f222d9b80250bd60a8c84f
 [examples]:https://github.com/ruby-processing/JRubyArt-examples
 [contributed]:https://ruby-processing.github.io/propane/contributed
