@@ -38,12 +38,12 @@ class CountingWords < Propane::App
   def draw
     background 51
     fill 255
-    s = (tokens[counter] == 'I') ? tokens[counter] : tokens[counter].downcase
+    s = tokens[counter] == 'I' ? tokens[counter] : tokens[counter].downcase
     @counter = (counter + 1) % tokens.length
     if concordance.key? s
       # Get the word object and increase the count
       # We access objects from a Hash via its key, the String
-      concordance[s].increment    # increment word count
+      concordance[s].increment # increment word count
     else
       # Otherwise make a new Word instance and add it to
       # the Hash using the word String as the key
@@ -55,7 +55,7 @@ class CountingWords < Propane::App
     # Look at each word
     concordance.values.each do |w|
       # Only display words that appear 3 times
-      if w.count > 3  # access word count
+      if w.count > 3 # access word count
         # The size is the count
         fsize = constrain(w.count, 0, 100)
         text_size(fsize)
@@ -65,10 +65,10 @@ class CountingWords < Propane::App
       end
       # If x gets to the end, move y
       # If y == 0 we are done
-      no_loop if y == 0
+      no_loop if y.zero?
       next unless x >= width
       x = 0
-      y = (y < 0) ? 0 : y - 100
+      y = y < 0 ? 0 : y - 100
     end
   end
 

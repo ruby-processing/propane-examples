@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #######
 # word.rb
 # the word class stores data about words (text, source, frequency)

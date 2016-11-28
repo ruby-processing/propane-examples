@@ -2,7 +2,7 @@
 require 'propane'
 # Earth model with bump mapping, specular texture and dynamic cloud layer.
 # Adapted from the THREE.js tutorial to processing by Andres Colubri,
-# translated to JRubyArt by Martin Prout:
+# translated to propane by Martin Prout:
 # http://learningthreejs.com/blog/2013/09/16/how-to-make-the-earth-in-webgl/
 class BlueMarble < Propane::App
   attr_reader :earth, :clouds, :earth_shader, :cloud_shader, :earth_rotation
@@ -30,11 +30,11 @@ class BlueMarble < Propane::App
     cloud_shader.set('texMap', textures[:cloud_tex])
     cloud_shader.set('alphaMap', textures[:alpha_tex])
     @earth = create_shape(SPHERE, 200)
-    earth.setStroke(false)
-    earth.setSpecular(color(125))
-    earth.setShininess(10)
+    earth.set_stroke(false)
+    earth.set_specular(color(125))
+    earth.set_shininess(10)
     @clouds = create_shape(SPHERE, 201)
-    clouds.setStroke(false)
+    clouds.set_stroke(false)
   end
 
   def draw

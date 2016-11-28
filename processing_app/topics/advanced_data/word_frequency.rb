@@ -19,8 +19,8 @@ require 'propane'
 class WordFrequency < Propane::App
   load_library 'word'
 
-  DRACULA = 'data/dracula.txt'
-  FRANKENSTEIN = 'data/frankenstein.txt'
+  DRACULA = 'data/dracula.txt'.freeze
+  FRANKENSTEIN = 'data/frankenstein.txt'.freeze
   DRAC = Regexp.new(DRACULA)
   FRANK = Regexp.new(FRANKENSTEIN)
 
