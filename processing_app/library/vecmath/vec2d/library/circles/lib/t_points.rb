@@ -3,7 +3,7 @@ require 'forwardable'
 MAX_POINT = 3
 # A collection of a maximum of 3 points in the processing world
 # includes a collinearity test using Vec2D
-class TPoints
+class TrianglePoints
   extend Forwardable
   def_delegators(:@points, :each, :map, :size, :shift, :clear, :[])
   include Enumerable
@@ -20,11 +20,12 @@ class TPoints
   end
 
   def collinear?
-    full? ? (vec[0] - vec[1]).cross(vec[1] - vec[2]).zero? : false
+    full? ? (positions[0] - positions[1]).cross(positions[1] - positions[2]).zero? : false
   end
 
-  def vec
-    points.map { |point| point.pos }
+  # returns positions as an array of Vec2D
+  def positions
+    points.map(&:pos)
   end
 
   def full?

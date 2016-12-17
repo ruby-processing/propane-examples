@@ -3,6 +3,7 @@
 class TPoint
   include Propane::Proxy
   attr_reader :pos, :vel, :accel, :xbound, :ybound
+  # attr_reader :width, :height # uncomment for testing
 
   def initialize(position)
     @pos = position
@@ -13,9 +14,11 @@ class TPoint
   end
 
   def direction(acc)
+    # direction of the acceleration is defined by the new angle
+    @accel = acc
     # magnitude of the acceleration is proportional to the angle between
     # acceleration and velocity
-    dif = accel.angle_between(vel)
+    dif = acc.angle_between(vel)
     dif = map1d(dif, 0..PI, 0.1..0.001)
     @accel = acc * dif
   end

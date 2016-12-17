@@ -9,7 +9,7 @@ class Circumcircle
 
   def calculate
     @center = Vec2D.new(-(bx / am), -(by / am))
-    @radius = center.dist(points[2]) # any point would do
+    @radius = center.dist(points[2]) # points[2] = c
   end
 
   private

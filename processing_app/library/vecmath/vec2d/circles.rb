@@ -1,6 +1,7 @@
 #!/usr/bin/env jruby
 require 'propane'
 
+# The sketch class
 class Circles < Propane::App
   load_library :circles
 
@@ -8,21 +9,17 @@ class Circles < Propane::App
     size(800, 600, P2D)
   end
 
-  ## To be overriden by the Presentation Code.
   def setup
     sketch_title 'Circles'
     color_mode(HSB, 360, 100, 100, 100)
-    @c = rand(360)
-    @points = TPoints.new
-    3.times { @points << TPoint.new(Vec2D.new(rand(5..width - 5), rand(5..height - 5))) }
-    background 0
+    reset
     ellipse_mode(RADIUS)
   end
 
   def draw
     fill(0, 0, 0)
     no_stroke
-    rect(0, 0, width, height) if (frame_count % 8_000).zero?
+    reset if (frame_count % 8_000).zero?
     @points.each do |point|
       # change direction sometimes
       point.direction Vec2D.random if rand > 0.96
@@ -39,11 +36,18 @@ class Circles < Propane::App
   end
 
   def draw_circle(pts)
-    circumcircle = Circumcircle.new(@points.vec)
+    circumcircle = Circumcircle.new(@points.positions)
     circumcircle.calculate
     center_point = circumcircle.center
     radius = circumcircle.radius
     ellipse(center_point.x, center_point.y, radius, radius)
+  end
+
+  def reset
+    @c = rand(360)
+    @points = TrianglePoints.new
+    3.times { @points << TPoint.new(Vec2D.new(rand(5..width - 5), rand(5..height - 5))) }
+    background 0
   end
 end
 
