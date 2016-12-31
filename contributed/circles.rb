@@ -16,7 +16,6 @@ class Circles < Propane::App
     size(800, 600, P3D)
   end
 
-  ## To be overriden by the Presentation Code.
   def setup
     sketch_title 'Circles'
     color_mode(HSB, 360, 100, 100, 100)

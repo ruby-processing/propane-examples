@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 require 'propane'
 
+# Demonstrates use of the 4 parameter grid convenience method, where parameters
+# 3 and 4 represent the size of the grid cell
 class Plain < Propane::App
 
   attr_reader :dim, :rnd
@@ -15,12 +17,10 @@ class Plain < Propane::App
     background 0
     fill 120, 160, 220
     stroke 0
-    rect_mode(CENTER)
-    (dim..width - dim).step(dim) do |x|
-      (dim..height - dim).step(dim) do |y|
-        rect x, y, dim, dim, rnd, rnd, rnd, rnd
-      end
+    grid(width / dim, height / dim, dim, dim) do |i, j|
+      rect i, j, dim, dim, rnd, rnd, rnd, rnd
     end
+    no_loop
   end
 
   def settings

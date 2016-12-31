@@ -2,11 +2,9 @@ SCL = 1 # cell length
 
 class CA
   include Propane::Proxy
-  attr_reader :rules, :generation, :cells, :height, :width
+  attr_reader :rules, :generation, :cells
 
   def initialize(rules = [])
-    @width = $app.width
-    @height = $app.height
     if !rules.empty?
       @rules = rules
     else
@@ -29,7 +27,7 @@ class CA
   # Reset to generation 0
   def restart
     @cells = Array.new(width / SCL, 0)
-    cells[cells.length/2] = 1    # We arbitrarily start with just the middle cell having a state of '1'
+    cells[cells.length / 2] = 1    # We arbitrarily start with just the middle cell having a state of '1'
     @generation = 0
   end
 
@@ -39,29 +37,26 @@ class CA
     nextgen = Array.new(cells.length, 0)
     # For every spot, determine new state by examing current state, and neighbour states
     # Ignore edges that only have one neighbour
-    (1 ... cells.length - 1).each do |i|
-      left = cells[i-1]   # Left neighbour state
-      me = cells[i]       # Current state
-      right = cells[i+1]  # Right neighbour state
+    (1...cells.length - 1).each do |i|
+      left = cells[i - 1] # Left neighbour state
+      me = cells[i] # Current state
+      right = cells[i + 1] # Right neighbour state
       nextgen[i] = execute_rules(left, me, right) # Compute next generation state based on ruleset
     end
-    # Copy the array into current value
-    (1..cells.length - 1).each do |i|
-      cells[i] = nextgen[i]
-    end
+    @cells = nextgen.dup
     @generation += 1
   end
 
   # This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   def render
-    (0 ... cells.length).each do |i|
+    (0...cells.length).each do |i|
       if (cells[i] == 1)
         fill(255)
       else
         fill(0)
       end
       no_stroke
-      rect(i*SCL, generation*SCL, SCL, SCL)
+      rect(i * SCL, generation * SCL, SCL, SCL)
     end
   end
 
@@ -76,7 +71,7 @@ class CA
     when 1
       val = (a == 1)? 3 : (b == 1)? 5 : 6
     when 2
-      val = (c == 0)? 1 : (a == 0)? 4 : 2
+      val = c .zero? ? 1 : a.zero? ? 4 : 2
     else
       return val   # default is zero
     end
@@ -86,6 +81,6 @@ class CA
 
   # The CA is done if it reaches the bottom of the screen
   def finished?
-    generation > (height/SCL)
+    generation > height / SCL
   end
 end

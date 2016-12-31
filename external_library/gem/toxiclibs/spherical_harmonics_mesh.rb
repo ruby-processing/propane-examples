@@ -16,7 +16,8 @@ class SphericalHarmonicsSketch < Propane::App
   def setup
     sketch_title 'Spherical Harmonics Mesh Builder'
     Processing::ArcBall.init(self)
-    @param = [8, 4, 1, 5, 1, 4, 0, 0] # default function parameters (m0..m7)
+    # default function parameters (m0..m7)
+    @param = [8, 4, 1, 5, 1, 4, 0, 0].freeze
     @mesh = spherical_mesh(param)
     @gfx = Gfx::MeshToVBO.new(self) # Mesh to vertex buffer object converter
     no_stroke

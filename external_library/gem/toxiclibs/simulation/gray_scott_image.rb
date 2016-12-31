@@ -1,5 +1,4 @@
 #!/usr/bin/env jruby
-# coding: utf-8
 require 'propane'
 require 'toxiclibs'
 # <p>GrayScottImage uses the seedImage() method to use a bitmap as simulation seed.
@@ -62,7 +61,7 @@ class GrayScottToneImage < Propane::App
     update_pixels
   end
 
-  def key_pressed    
+  def key_pressed
     case key
     when *KEYS
       @gs.setF(0.02 + key.to_i * 0.001)
