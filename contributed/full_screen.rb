@@ -12,16 +12,13 @@ class FullScreen < Propane::App
     lights
     background 0
     fill 120, 160, 220
-    (width/100).times do |x|
-      (height/100).times do |y|
-        new_x, new_y = x * 100, y * 100
-        push_matrix
-        translate new_x + 50, new_y + 50
-        rotate_y(((mouse_x.to_f + new_x) / width) * PI)
-        rotate_x(((mouse_y.to_f + new_y) / height) * PI)
-        box 90
-        pop_matrix
-      end
+    grid(width, height, 100, 100) do |x, y|
+      push_matrix
+      translate x + 50, y + 50
+      rotate_y(((mouse_x.to_f + x) / width) * PI)
+      rotate_x(((mouse_y.to_f + y) / height) * PI)
+      box 90
+      pop_matrix
     end
   end
 

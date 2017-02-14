@@ -17,7 +17,7 @@ class Plain < Propane::App
     background 0
     fill 120, 160, 220
     stroke 0
-    grid(width / dim, height / dim, dim, dim) do |i, j|
+    grid(width, height, dim, dim) do |i, j|
       rect i, j, dim, dim, rnd, rnd, rnd, rnd
     end
     no_loop
