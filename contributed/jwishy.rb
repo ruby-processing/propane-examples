@@ -7,11 +7,11 @@ class JWishy < Propane::App
 
   attr_reader :alpha, :back_color, :bluish, :hide, :magnitude, :panel
   attr_reader :x_wiggle, :y_wiggle, :go_big, :shape
-  
+
   def settings
-    size 600, 600  
+    size 600, 600
   end
-  
+
   def setup
     sketch_title 'Wishy Worm'
     control_panel do |c|
@@ -30,7 +30,6 @@ class JWishy < Propane::App
     @back_color = [0.06, 0.03, 0.18]
     color_mode RGB, 1
     ellipse_mode CORNER
-    smooth
   end
 
   def draw_background

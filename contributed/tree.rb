@@ -14,7 +14,6 @@ class Tree < Propane::App
     sketch_title 'Tree'
     color_mode RGB, 1
     frame_rate 30
-    smooth
     @x = 0.0
     @dx = width / 100
     @start_time = Time.now

@@ -35,7 +35,6 @@ class PathPshape < Propane::App
 
   def settings
     size(640, 360, P2D)
-    smooth
   end
 end
 

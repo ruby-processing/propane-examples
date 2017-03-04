@@ -31,7 +31,6 @@ class Deform < Propane::App
 
   def settings
     size(800, 350)
-    smooth
   end
 
   def setup

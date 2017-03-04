@@ -8,7 +8,6 @@ class HelloSvgToPDF < Propane::App
 
   def settings
     size(400, 400)
-    smooth
   end
 
   def setup

@@ -9,7 +9,6 @@ class PhysicsType < Propane::App
 
   def settings
     size(1280, 720, P3D)
-    smooth
   end
 
   def setup

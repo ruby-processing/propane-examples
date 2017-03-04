@@ -31,7 +31,6 @@ class VectorMath < Propane::App
 
   def settings
     size(640,360)
-    smooth
   end
 end
 

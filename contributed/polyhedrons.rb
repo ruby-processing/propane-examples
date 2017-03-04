@@ -32,7 +32,6 @@ class Polyhedrons < Propane::App
 
   def setup
     sketch_title 'Polyhedrons'
-    smooth 4
     text_size(14)
     # some positional variables for translation
     @off_y = height / 2

@@ -9,7 +9,7 @@ class Fern < Propane::App
   def settings
     size 500, 500
     # pixel_density(2) # for HiDpi screens
-    # smooth # see https://processing.org/reference/smooth_.html
+    # smooth 4 # see https://processing.org/reference/smooth_.html
   end
 
   def setup

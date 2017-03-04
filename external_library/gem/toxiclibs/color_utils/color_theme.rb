@@ -41,7 +41,6 @@ class ColorThemeSketch < Propane::App
 
   def settings
     size(1024, 768)
-    # smooth
   end
 
   def setup

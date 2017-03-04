@@ -9,7 +9,6 @@ class RotateFirst < Propane::App
 
   def settings
     size(600, 400)
-    smooth
   end
 
   def setup

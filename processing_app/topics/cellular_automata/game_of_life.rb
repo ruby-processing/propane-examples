@@ -16,7 +16,7 @@ class GameOfLife < Propane::App
   ALIVE_START = 150
   INTERVAL = 100
   attr_reader :pause, :cells, :row, :column, :last_time, :alive, :cells_buffer
-  
+
   def setup
     sketch_title 'Game Of Life'
     @pause = false
@@ -29,7 +29,7 @@ class GameOfLife < Propane::App
     # This stroke will draw the background grid (live cells)
     stroke(48, 100)
   end
-  
+
   def draw
     background(0)
     # Draw live cells
@@ -46,7 +46,7 @@ class GameOfLife < Propane::App
         @last_time = millis
       end
     end
-    
+
     # Create  new cells manually on pause
     if pause && mouse_pressed?
       # Map and avoid out of bound errors
@@ -62,18 +62,18 @@ class GameOfLife < Propane::App
         cells[over_x][over_y] = ALIVE # Make alive
         fill(alive) # Fill alive color
       end
-      
+
     elsif pause && !mouse_pressed? # And then save to buffer once mouse goes up
       # Save a copy of cells to buffer (so we can operate on the copy)
       @cells_buffer = cells.map(&:clone)
     end
   end
-  
+
   def settings
     size(960, 640)
     no_smooth
   end
-  
+
   def tick! # When the clock ticks
     # Save cells to buffer (so we operate with one array keeping the other intact)
     @cells_buffer = cells.map(&:clone)
@@ -95,7 +95,7 @@ class GameOfLife < Propane::App
       cells[x][y] = cells_buffer[x][y] ? ((2..3) === neighbours) : (neighbours == 3)
     end # End of grid block
   end # End of function
-  
+
   def key_pressed
     case key
     when 'r', 'R'

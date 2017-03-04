@@ -27,7 +27,6 @@ def setup
 
   frame_rate 30
   color_mode RGB, 255, 255, 255, 100
-  smooth
 end
 
 def draw

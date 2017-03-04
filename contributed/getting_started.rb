@@ -25,7 +25,6 @@ class GettingStarted < Propane::App
 
   def settings
     size 200, 200
-    smooth
   end
 end
 

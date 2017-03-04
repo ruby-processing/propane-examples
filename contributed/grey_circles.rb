@@ -4,12 +4,11 @@
 require 'propane'
 
 class GreyCircles < Propane::App
-  
+
   def settings
     size(323, 200)
-    smooth
   end
- 
+
   def setup
     sketch_title 'Oh so many circles'
     frame_rate(1)

@@ -39,7 +39,6 @@ class Orbit < Propane::App
 
   def settings
     size 450, 450
-    smooth
   end
 end
 

@@ -10,7 +10,6 @@ class Penrose < Propane::App
 
   def settings
     size 800, 800
-    smooth
   end
 
   def setup
