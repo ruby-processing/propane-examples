@@ -26,7 +26,7 @@ class LetterStairCase < Propane::App
       x = map1d(count, (0..29), (0..width))
       y = map1d(count, (0..29), (0..height))
       count += 1
-      word.set_place(Java::ProcessingCore::PVector.new(x, y))
+      word.set_place(x, y)
       word.set_size(35)
     end
   end
