@@ -6,7 +6,6 @@ require 'propane'
 # pair of numbers is loaded each frame and used to draw a point on the screen.
 class LoadFile < Propane::App
   attr_reader :points, :count
-  X, Y = 0, 1
 
   def setup
     sketch_title 'Load File1'
@@ -18,14 +17,14 @@ class LoadFile < Propane::App
     @points = []
     # The use of vanilla processing load_strings convenience method is
     # of dubious value in ruby processing when you can do this
-    File.open('data/positions.txt').each_line do |line|
-      points << line.split(/\t/).map! { |i| i.to_i * 2 }
+    File.open(data_path('positions.txt')).each_line do |line|
+      points << line.split.map! { |i| i.to_i * 2 }
     end
   end
 
   def draw
     return unless count < points.size
-    point(points[count][X], points[count][Y])
+    point(*points[count])
     @count += 1
   end
 

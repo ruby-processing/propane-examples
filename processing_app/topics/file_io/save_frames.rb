@@ -14,8 +14,6 @@ class SaveFrames < Propane::App
   def setup
     sketch_title 'Save Frames'
     @recording = false
-    directory = 'output'
-    Dir.mkdir(directory) unless File.exist?(directory)
   end
 
   def draw
@@ -30,14 +28,10 @@ class SaveFrames < Propane::App
       line(-100, 0, 100, 0)
       pop_matrix
     end
-
-    # If we are recording call saveFrame!
-    # The number signs (#) indicate to Processing to
-    # number the files automatically
-    save_frame(data_path('frames####.png')) if recording
+    # The '#' symbols makes Processing number the files automatically
+    save_frame(data_path('output/frames####.png')) if recording
     # Let's draw some stuff to tell us what is happening
-    # It's important to note that none of this will show up in the
-    # rendered files b/c it is drawn *after* saveFrame
+    # NB: Content created after this line does not show up rendered files
     text_align(CENTER)
     fill(255)
     if !recording
