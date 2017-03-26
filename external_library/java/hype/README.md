@@ -1,6 +1,6 @@
 # HYPE_Processing
 
-Is a java library for processing maintained by Joshua Davis / twitter.com/joshuadavis.
+Is a java library for processing maintained by Joshua Davis / https://twitter.com/JoshuaDavis.
 
 A collection of classes that performs the heavy lifting for you by writing a minimal amount of code.
 
