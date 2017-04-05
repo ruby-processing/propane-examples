@@ -1,11 +1,14 @@
 #!/usr/bin/env jruby -v -W2
 require 'propane'
 require 'pbox2d'
+require_relative 'lib/particle_system'
+require_relative 'lib/boundary'
 
+# Vector value holder
 Vect = Struct.new(:x, :y)
 
+# The sketch class
 class Liquidy < Propane::App
-  load_library :particles
   attr_reader :box2d, :boundaries, :systems
 
   def settings
