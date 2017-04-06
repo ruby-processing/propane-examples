@@ -5,6 +5,8 @@ WIP to complete translation from JRubyArt to propane using [this conversion tool
 
 See how to install [java libraries here][contributed]
 
+To autorun many samples `cd` this directory and `rake` for others like pbox2d
+`rake pbox2d` you get the idea (read the Rakefile). NB: not all samples ge autorun and where appropriate you need to install library or gem.
 
 [conversion]:https://gist.github.com/monkstone/6f61ecf6c0f222d9b80250bd60a8c84f
 [examples]:https://github.com/ruby-processing/JRubyArt-examples
