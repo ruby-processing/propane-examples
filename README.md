@@ -31,6 +31,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
     2. [vecmath][]
     3. [control-panel][]
     4. [video][]
+    5. [glvideo][]
 
 4. Gems
    1. [PBox2D][pbox2d]
@@ -67,6 +68,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
 [shaders]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/topics/shaders
 [Libraries]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library
 [fastmath]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/fastmath
+[glvideo]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/glvideo
 [vecmath]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/vecmath
 [video]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/video
 [control-panel]:https://github.com/ruby-processing/propane-examples/tree/master/contributed/jwishy.rb
