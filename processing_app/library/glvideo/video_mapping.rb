@@ -10,6 +10,7 @@ class VideoMapping < Propane::App
 
   attr_reader :sources, :sel, :video, :corners, :quads, :last_mouse_move
   RES = 5	# number of subdivisions (e.g. 5 x 5)
+  NONE = -1
 
   def setup
     @last_mouse_move = 0
@@ -28,7 +29,7 @@ class VideoMapping < Propane::App
     video.read if sel.respond_to?(:read) && video.available
     # regenerate mesh if we're dragging a corner
     if corners.selected? && (pmouse_x != mouse_x || pmouse_y != mouse_y)
-      corners.set_corner(mouse_x, mouse_y)
+      corners.change_selected(mouse_x, mouse_y)
       # this improves performance, but will be replaced by a
       # more elegant way in a future release
       @quads = []
@@ -50,7 +51,7 @@ class VideoMapping < Propane::App
 
   def mouse_pressed
     corners.each_with_index do |corner, i|
-      return corners.set_index(i) if dist(mouse_x, mouse_y, corner.x, corner.y) < 20
+      return corners.select_corner(i) if dist(mouse_x, mouse_y, corner.x, corner.y) < 20
     end
     # no corner? then switch texture
     @sel = sel.respond_to?(:loop) ? sources.image : sources.video
@@ -58,7 +59,8 @@ class VideoMapping < Propane::App
   end
 
   def mouse_released
-    corners.set_index(-1)
+    # no corner selected
+    corners.select_corner(NONE)
   end
 
   def create_mesh(tex, corners, res)
