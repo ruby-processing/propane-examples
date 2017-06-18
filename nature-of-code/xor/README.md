@@ -7,4 +7,8 @@ Here we do a [polyglot maven][polyglot] build. But you could do a manual build q
 mvn package
 ```
 
-See also how to build jruby [extensions]:https://github.com/jruby/jruby-examples with polyglot maven
+See also how to build jruby [extensions][extensions] with polyglot maven
+
+
+[polyglot]:https://github.com/takari/polyglot-maven
+[extensions]:https://github.com/jruby/jruby-examples
