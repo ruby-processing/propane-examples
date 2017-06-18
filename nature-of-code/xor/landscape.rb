@@ -31,27 +31,25 @@ class Landscape
   # Render landscape as grid of quads
   def render
     # Every cell is an individual quad
-    # (could use quad_strip here, but produces funny results, investigate this)
-    (0...z.size - 1).each do |x|
-      (0...z[0].size - 1).each do |y|
-        # one quad at a time
-        # each quad's color is determined by the height value at each vertex
-        # (clean this part up)
-        no_stroke
-        push_matrix
-        begin_shape(QUADS)
-        translate(x * scl - w * 0.5, y * scl - h * 0.5, 0)
-        fill(z[x][y] + 127, 220)
-        vertex(0, 0, z[x][y])
-        fill(z[x + 1][y] + 127, 220)
-        vertex(scl, 0, z[x + 1][y])
-        fill(z[x + 1][y + 1] + 127, 220)
-        vertex(scl, scl, z[x + 1][y + 1])
-        fill(z[x][y + 1] + 127, 220)
-        vertex(0, scl, z[x][y + 1])
-        end_shape
-        pop_matrix
-      end
+    # using the propane grid convenience function instead of a nested loop
+    grid(z.size - 1, z[0].size - 1) do |x, y|
+      # one quad at a time
+      # each quad's color is determined by the height value at each vertex
+      # (clean this part up)
+      no_stroke
+      push_matrix
+      begin_shape(QUADS)
+      translate(x * scl - w * 0.5, y * scl - h * 0.5, 0)
+      fill(z[x][y] + 127, 220)
+      vertex(0, 0, z[x][y])
+      fill(z[x + 1][y] + 127, 220)
+      vertex(scl, 0, z[x + 1][y])
+      fill(z[x + 1][y + 1] + 127, 220)
+      vertex(scl, scl, z[x + 1][y + 1])
+      fill(z[x][y + 1] + 127, 220)
+      vertex(0, scl, z[x][y + 1])
+      end_shape
+      pop_matrix
     end
   end
 end
