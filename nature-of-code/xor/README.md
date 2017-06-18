@@ -1,4 +1,4 @@
-Building the nn Library
+Building the xor (neural net) Library
 ===================
 
 Here we do a [polyglot maven][polyglot] build. But you could do a manual build quite easily if you wished. If you have recent mvn installed all you need to do is
