@@ -1,12 +1,10 @@
 Building the nn Library
 ===================
 
-You need `jruby` to run the included `JRakefile`, you also need the `rake-compiler` gem.
+Here we do a [polyglot maven][polyglot] build. But you could do a manual build quite easily if you wished. If you have recent mvn installed all you need to do is
 
-This is the way jruby-extensions used to get build before [polyglot maven][polyglot] (_which is deemed a bit too complicated here_).
+```bash
+mvn package
+```
 
-But you can start process with mri ruby, so cd this directory and rake to compile and run.
-
-Or rake clean to remove library jar (useful if you want to re-compile) and its build.
-
-[polyglot]:https://github.com/jruby/jruby-examples
+See also how to build jruby [extensions]:https://github.com/jruby/jruby-examples with polyglot maven
