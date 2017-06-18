@@ -9,6 +9,8 @@ mvn package
 
 See also how to build jruby [extensions][extensions] with polyglot maven
 
+NB: It is important for the `library_loader` to put the xor jar in `library/xor` directory if you do a manual bulid
+
 
 [polyglot]:https://github.com/takari/polyglot-maven
 [extensions]:https://github.com/jruby/jruby-examples
