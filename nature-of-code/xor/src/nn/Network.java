@@ -22,7 +22,7 @@ public class Network {
     HiddenNeuron[] hidden;
     OutputNeuron output;
     
-    public static final float LEARNING_CONSTANT = 0.5f;
+    public static final double LEARNING_CONSTANT = 0.5;
 
     // Only One output now to start!!! (i can do better, really. . .)
     // Constructor makes the entire network based on number of inputs & number of neurons in hidden layer
@@ -70,7 +70,7 @@ public class Network {
     }
 
 
-    public float feedForward(float[] inputVals) {
+    public double feedForward(double[] inputVals) {
         
         // Feed the input with an array of inputs
         for (int i = 0; i < inputVals.length; i++) {
@@ -89,13 +89,13 @@ public class Network {
         return output.getOutput();
     }
 
-    public float train(float[] inputs, float answer) {
-        float result = feedForward(inputs);
+    public double train(double[] inputs, double answer) {
+        double result = feedForward(inputs);
         
         
         // This is where the error correction all starts
         // Derivative of sigmoid output function * diff between known and guess
-        float deltaOutput = result*(1-result) * (answer-result);
+        double deltaOutput = result*(1-result) * (answer-result);
 
         
         // BACKPROPOGATION
@@ -105,15 +105,15 @@ public class Network {
         for (int i = 0; i < connections.size(); i++) {
             Connection c = (Connection) connections.get(i);
             Neuron neuron = c.getFrom();
-            float loutput = neuron.getOutput();
-            float deltaWeight = loutput*deltaOutput;
+            double loutput = neuron.getOutput();
+            double deltaWeight = loutput*deltaOutput;
             c.adjustWeight(LEARNING_CONSTANT*deltaWeight);
         }
         
         // ADJUST HIDDEN WEIGHTS
         for (HiddenNeuron hidden1 : hidden) {
             connections = hidden1.getConnections();
-            float sum  = 0;
+            double sum  = 0;
             // Sum output delta * hidden layer connections (just one output)
             for (int j = 0; j < connections.size(); j++) {
                 Connection c = (Connection) connections.get(j);
@@ -128,11 +128,11 @@ public class Network {
                 Connection c = (Connection) connections.get(j);
                 // Is this a connection from previous layer (input) to hidden layer?
                 if (c.getTo() == hidden1) {
-                    float loutput = hidden1.getOutput();
-                    float deltaHidden = loutput * (1 - loutput);  // Derivative of sigmoid(x)
+                    double loutput = hidden1.getOutput();
+                    double deltaHidden = loutput * (1 - loutput);  // Derivative of sigmoid(x)
                     deltaHidden *= sum;   // Would sum for all outputs if more than one output
                     Neuron neuron = c.getFrom();
-                    float deltaWeight = neuron.getOutput()*deltaHidden;
+                    double deltaWeight = neuron.getOutput()*deltaHidden;
                     c.adjustWeight(LEARNING_CONSTANT*deltaWeight);
                 }
             } 

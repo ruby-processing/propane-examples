@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Neuron {
 
-    protected float output;
+    protected double output;
     protected ArrayList<Connection> connections; 
     protected boolean bias = false;
 
@@ -36,8 +36,8 @@ public class Neuron {
         if (bias) {
             // do nothing
         } else {
-            float sum = 0;
-            float lbias = 0;
+            double sum = 0;
+            double lbias = 0;
             //System.out.println("Looking through " + connections.size() + " connections");
             for (int i = 0; i < connections.size(); i++) {
                 Connection c = connections.get(i);
@@ -64,13 +64,13 @@ public class Neuron {
         connections.add(c);
     }
 
-    float getOutput() {
+    double getOutput() {
         return output;
     }
 
     // Sigmoid function
-    public static float f(float x) {
-        return 1.0f / (1.0f + (float) Math.exp(-x));
+    public static double f(double x) {
+        return 1.0 / (1.0 + Math.exp(-x));
     }
 
     public ArrayList<Connection> getConnections() {

@@ -28,5 +28,4 @@ project 'xor' do
     source_directory 'src'
     final_name 'xor'
   end
-
 end

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+
+DO NOT MODIFIY - GENERATED CODE
+
+
+-->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>nn</groupId>
+  <artifactId>xor</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>xor</name>
+  <description>neural net library for xor</description>
+  <developers>
+    <developer>
+      <id>shiffman</id>
+      <name>DanShiffman</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <properties>
+    <polyglot.dump.pom>pom.xml</polyglot.dump.pom>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <xor.basedir>${project.basedir}</xor.basedir>
+  </properties>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <defaultGoal>package</defaultGoal>
+    <finalName>xor</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+            <outputDirectory>${xor.basedir}/library/xor</outputDirectory>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
