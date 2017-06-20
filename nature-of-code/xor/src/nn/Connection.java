@@ -16,9 +16,9 @@ public class Connection {
     public Connection(Neuron a_, Neuron b_) {
         from = a_;
         to = b_;
-        weight = (double) Math.random()*2-1;
+        weight = Math.random()*2-1;
     }
-    
+
     // In case I want to set the weights manually, using this for testing
     public Connection(Neuron a_, Neuron b_, double w) {
         from = a_;
@@ -29,11 +29,11 @@ public class Connection {
     public Neuron getFrom() {
         return from;
     }
-    
+
     public Neuron getTo() {
         return to;
-    }  
-    
+    }
+
     public double getWeight() {
         return weight;
     }
@@ -42,6 +42,4 @@ public class Connection {
     public void adjustWeight(double deltaWeight) {
         weight += deltaWeight;
     }
-
-
 }

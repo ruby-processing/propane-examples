@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class Neuron {
 
     protected double output;
-    protected ArrayList<Connection> connections; 
+    protected ArrayList<Connection> connections;
     protected boolean bias = false;
 
     // A regular Neuron
     public Neuron() {
         output = 0;
         // Using an arraylist to store list of connections to other neurons
-        connections = new ArrayList<>();  
+        connections = new ArrayList<>();
         bias = false;
     }
 
@@ -56,7 +56,7 @@ public class Neuron {
                 }
             }
             // Output is result of sigmoid function
-            output = f(lbias+sum);
+            output = f(lbias + sum);
         }
     }
 
@@ -76,6 +76,4 @@ public class Neuron {
     public ArrayList<Connection> getConnections() {
         return connections;
     }
-
-
 }
