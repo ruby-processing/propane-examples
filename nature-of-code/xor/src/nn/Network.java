@@ -86,7 +86,7 @@ public class Network {
         output.calcOutput();
         
         // Return output
-        return output.getOutput();
+        return output.output();
     }
 
     public double train(double[] inputs, double answer) {
@@ -101,11 +101,11 @@ public class Network {
         // BACKPROPOGATION
         // This is easier b/c we just have one output
         // Apply Delta to connections between hidden and output
-        ArrayList connections = output.getConnections();
+        ArrayList<Connection> connections = output.getConnections();
         for (int i = 0; i < connections.size(); i++) {
-            Connection c = (Connection) connections.get(i);
-            Neuron neuron = c.getFrom();
-            double loutput = neuron.getOutput();
+            Connection c = connections.get(i);
+            Neuron neuron = c.from();
+            double loutput = neuron.output();
             double deltaWeight = loutput*deltaOutput;
             c.adjustWeight(LEARNING_CONSTANT*deltaWeight);
         }
@@ -116,24 +116,24 @@ public class Network {
             double sum  = 0;
             // Sum output delta * hidden layer connections (just one output)
             for (int j = 0; j < connections.size(); j++) {
-                Connection c = (Connection) connections.get(j);
+                Connection c = connections.get(j);
                 // Is this a connection from hidden layer to next layer (output)?
-                if (c.getFrom() == hidden1) {
-                    sum += c.getWeight()*deltaOutput;
+                if (c.from() == hidden1) {
+                    sum += c.weight()*deltaOutput;
                 }
             }    
             // Then adjust the weights coming in based:
             // Above sum * derivative of sigmoid output function for hidden neurons
             for (int j = 0; j < connections.size(); j++) {
-                Connection c = (Connection) connections.get(j);
+                Connection c = connections.get(j);
                 // Is this a connection from previous layer (input) to hidden layer?
-                if (c.getTo() == hidden1) {
-                    double loutput = hidden1.getOutput();
+                if (c.to() == hidden1) {
+                    double loutput = hidden1.output();
                     double deltaHidden = loutput * (1 - loutput);  // Derivative of sigmoid(x)
                     deltaHidden *= sum;   // Would sum for all outputs if more than one output
-                    Neuron neuron = c.getFrom();
-                    double deltaWeight = neuron.getOutput()*deltaHidden;
-                    c.adjustWeight(LEARNING_CONSTANT*deltaWeight);
+                    Neuron neuron = c.from();
+                    double deltaWeight = neuron.output() * deltaHidden;
+                    c.adjustWeight(LEARNING_CONSTANT * deltaWeight);
                 }
             } 
         }

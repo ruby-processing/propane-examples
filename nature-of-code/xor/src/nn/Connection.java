@@ -26,15 +26,15 @@ public class Connection {
         weight = w;
     }
 
-    public Neuron getFrom() {
+    public Neuron from() {
         return from;
     }
 
-    public Neuron getTo() {
+    public Neuron to() {
         return to;
     }
 
-    public double getWeight() {
+    public double weight() {
         return weight;
     }
 
