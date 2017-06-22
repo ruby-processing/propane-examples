@@ -1,0 +1,11 @@
+task default: [:compile, :run]
+
+desc 'Compile'
+task :compile do
+  sh 'mvn package'
+end
+
+desc 'Run'
+task :run do
+  sh 'jruby xor.rb'
+end

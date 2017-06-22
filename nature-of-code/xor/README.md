@@ -1,10 +1,10 @@
 Building the xor (neural net) Library
 ===================
 
-Here we do a [polyglot maven][polyglot] build. But you could do a manual build quite easily if you wished. If you have a recent maven installed all you need to do is
+Here we do a [polyglot maven][polyglot] build. But you could do a manual build quite easily if you wished. If you have a recent maven installed all you need to do is to compile and run.
 
 ```bash
-mvn package
+rake
 ```
 
 See also how to build jruby [extensions][extensions] with polyglot maven
