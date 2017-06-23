@@ -3,7 +3,6 @@
 # http://natureofcode.com
 
 # An animated drawing of a Neural Network
-
 class Connection
   include Propane::Proxy
   # Connection is from A to B

@@ -1,18 +1,18 @@
 #!/usr/bin/env jruby
+
+# The Nature of Code
+# Daniel Shiffman
+# http://natureofcode.com
 require 'propane'
-
+# An animated drawing of a Neural Network
 class LayeredNetwork < Propane::App
-  # The Nature of Code
-  # Daniel Shiffman
-  # http://natureofcode.com
 
-  # An animated drawing of a Neural Network
   load_libraries :neural_network
 
   attr_reader :network, :output
 
   def setup
-    sketch_title 'Exercise 10 05 Layered Network Animation'
+    sketch_title 'Layered Network Animation'
     # Create the Network object
     @network = Network.new(width / 2, height / 2)
     layers = 3
@@ -42,7 +42,7 @@ class LayeredNetwork < Propane::App
     network.update
     network.display
     # Every 30 frames feed in an input
-    network.feedforward(rand, rand) if (frame_count % 30 == 0)
+    network.feedforward(rand, rand) if (frame_count % 30).zero?
   end
 
   def settings
