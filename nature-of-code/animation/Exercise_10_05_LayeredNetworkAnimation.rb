@@ -6,9 +6,7 @@
 require 'propane'
 # An animated drawing of a Neural Network
 class LayeredNetwork < Propane::App
-
   load_libraries :neural_network
-
   attr_reader :network, :output
 
   def setup
@@ -29,7 +27,7 @@ class LayeredNetwork < Propane::App
             network.connect(prev, n, rand)
           end
         end
-        network.connect(n, output, rand) if (i == layers - 1)
+        network.connect(n, output, rand) if i == (layers - 1)
         network.add_neuron(n)
       end
     end

@@ -24,7 +24,7 @@ class Connection
 
   # Update traveling sender
   def update
-    return unless sending       # favour a guard clause in ruby
+    return unless sending # favour a guard clause in ruby
     # Use a simple interpolation
     sender.lerp!(b.location, 0.1)
     d = sender.dist(b.location)
