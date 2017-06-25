@@ -1,3 +1,5 @@
+# Generic Neuron Class
+# Can be a bias neuron (true or false)
 class Neuron
   attr_reader :output, :connections, :bias
 
@@ -15,7 +17,7 @@ class Neuron
     return if bias #  do nothing
     sigmoid = ->(x) { 1.0 / (1.0 + Math.exp(-x)) }
     sum = 0
-    lbias = 0
+    bias_value = 0
     # fstring = 'Looking through %d connections'
     # puts(format(fstring, connections.size))
     connections.each do |c|
@@ -27,13 +29,13 @@ class Neuron
         #  This isn't really necessary
         #  Ttreating the bias individually in case needed to at some point
         if from.bias
-          lbias = from.output * c.weight
+          bias_value = from.output * c.weight
         else
           sum += from.output * c.weight
         end
       end
     end
     #  Output is result of sigmoid function
-    @output = sigmoid.call(lbias + sum)
+    @output = sigmoid.call(bias_value + sum)
   end
 end

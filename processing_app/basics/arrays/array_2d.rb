@@ -1,12 +1,10 @@
 #!/usr/bin/env jruby
 require 'propane'
-
+# Demonstrates the use of :grid to create a two-dimensional (2D) array in ruby
+# Values in a 2D array are accessed through two index values.
+# 2D arrays are useful for storing images. In this example, each dot
+# is colored in relation to its distance from the center of the image.
 class Array2d < Propane::App
-  # Demonstrates the use of :grid to create a two-dimensional (2D) array in ruby
-  # Values in a 2D array are accessed through two index values.
-  # 2D arrays are useful for storing images. In this example, each dot
-  # is colored in relation to its distance from the center of the image.
-
   attr_reader :distances
 
   def setup

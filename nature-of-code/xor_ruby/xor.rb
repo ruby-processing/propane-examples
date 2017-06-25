@@ -1,3 +1,4 @@
+#!/usr/bin/env jruby
 require 'propane'
 # The Nature of Code
 # Daniel Shiffman
@@ -8,7 +9,6 @@ class Xor < Propane::App
   load_library :xor
 
   require_relative './landscape'
-  include_package 'nn'
 
   ITERATIONS_PER_FRAME = 5
 
@@ -23,11 +23,12 @@ class Xor < Propane::App
     @nn = Network.new(2, 4)
     @count = 0
     # Create a list of 4 training inputs
-    @inputs = []
-    inputs << [1.0, 0]
-    inputs << [0, 1.0]
-    inputs << [1.0, 1.0]
-    inputs << [0, 0.0]
+    @inputs = [
+      [1.0, 0],
+      [0, 1.0],
+      [1.0, 1.0],
+      [0, 0.0]
+    ]
   end
 
   def draw

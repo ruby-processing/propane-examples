@@ -7,12 +7,12 @@ require 'propane'
 # In this example, an array named "coswave" is created using ruby
 # map with the cosine values. This data is displayed three
 # separate ways on the screen.
-class Array < Propane::App
+class SimpleArray < Propane::App
 
   attr_reader :coswave
 
   def setup
-    sketch_title 'Array'
+    sketch_title 'Simple Array'
     @coswave = (0..width).map do |i|
       Math.cos(map1d(i, (0..width), (0..PI))).abs
     end
@@ -34,4 +34,4 @@ class Array < Propane::App
   end
 end
 
-Array.new
+SimpleArray.new
