@@ -1,35 +1,8 @@
 #!/usr/bin/env jruby
 require 'propane'
 require 'toxiclibs'
-# ColorTheme demo showing the following:
-# - construction of TColor themes via textual descriptions of shades and Colors
-# - adding an rand element to the theme
-#
-# Press SPACE to toggle rendering mode, any other key will re-generate a
-# random variation of the color theme
-#
-# @author Karsten Schmidt <info at postspectacular dot com>
-# Copyright (c) 2009 Karsten Schmidt
-#
-# This demo & library is free software you can redistribute it and/or
-# modify it under the terms of the GNU Lesser General Public
-# License as published by the Free Software Foundation either
-# version 2.1 of the License, or (at your option) any later version.
-#
-# http://creativecommons.org/licenses/LGPL/2.1/
-#
-# This library is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public
-# License along with this library if not, write to the Free Software
-# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-class ColorThemeSketch < Propane::App
-
-  include_package 'toxi.color'
-  include_package 'toxi.util.datatypes'
+# Demo of small part of toxiclibs color utils
+class ToxicLibsColorTheme < Propane::App
 
   SWATCH_HEIGHT = 40.0
   SWATCH_WIDTH = 5.0
@@ -37,10 +10,11 @@ class ColorThemeSketch < Propane::App
 
   MAX_SIZE = 150.0
   NUM_DISCS = 300
-  attr_reader :show_discs, :list
+  attr_reader :show_discs
 
   def settings
     size(1024, 768)
+    # smooth
   end
 
   def setup
@@ -62,7 +36,7 @@ class ColorThemeSketch < Propane::App
     # now add another rand hue which is using only bright shades
     t.add_range(Toxi::ColorRange::BRIGHT, TColor.new_random, rand(0.02..0.05))
     # use the TColor theme to create a list of 160 Colors
-    @list = t.get_colors(160)
+    list = t.get_colors(160)
     if show_discs
       background(list.get_lightest.toARGB)
       discs(list)
@@ -84,9 +58,10 @@ class ColorThemeSketch < Propane::App
       list.sort_by_criteria(Toxi::AccessCriteria::HUE, false)
       swatches(list, 32, yoff)
       yoff += SWATCH_HEIGHT + 10
-      list.sort_by_proximity_to(Toxi::NamedColor::WHITE, Toxi::RGBDistanceProxy.new, false)
+      list.sort_by_proximity_to(Toxi::NamedColor::WHITE, RGBDistanceProxy.new, false)
       swatches(list, 32, yoff)
     end
+    # save_frame(format('theme-%s%s', timestamp, '_##.png'))
   end
 
   def timestamp
@@ -94,19 +69,8 @@ class ColorThemeSketch < Propane::App
   end
 
   def key_pressed
-    case key
-    when 's', 'S'
-      save_frame(data_path(format('theme-%s%s', timestamp, '_##.png')))
-      redraw
-    when 'd', 'D'
-      @show_discs = !show_discs
-      redraw
-    when 'p', 'P'
-      File.open(data_path('color_theme.rb'), 'w') do |file|
-        file.write("# Test Theme\n")
-        file.write(list.to_ruby_string)
-      end
-    end
+    @show_discs = !show_discs if key == ' '
+    redraw
   end
 
   def swatches(sorted, x, y)
@@ -130,4 +94,4 @@ class ColorThemeSketch < Propane::App
   end
 end
 
-ColorThemeSketch.new
+ToxicLibsColorTheme.new
