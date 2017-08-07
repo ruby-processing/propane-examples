@@ -3,6 +3,7 @@ require 'propane'
 
 class MouseEventDemo < Propane::App
   load_libraries :library_proxy, :mouse_thing
+  attr_reader :thing
 
   def settings
     size(800, 600)
@@ -10,7 +11,7 @@ class MouseEventDemo < Propane::App
 
   def setup
     sketch_title 'Mouse Event Demo'
-    MouseThing.new(self)
+    @thing = MouseThing.new(self)
   end
 
   def draw
