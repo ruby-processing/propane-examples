@@ -1,5 +1,5 @@
 # propane-examples
-Example Sketches for propane-2.3.2+ features updated control_panel library (replacing `c.title = 'PaneTitle'` with `c.title('PaneTitle')`) also enable use of `block` with `button's`.
+Example Sketches for propane-2.4.0+ features updated control_panel library (replacing `c.title = 'PaneTitle'` with `c.title('PaneTitle')`) also enable use of `block` with `button's`.
 See also [Example-Sketches][examples] for JRubyArt (many of with only need to be class wrapped to run with propane).
 
 WIP to complete translation from JRubyArt to propane using [this conversion tool][conversion], and by replacing `Processing::Proxy` with `Propane::Proxy`, and unnest some classes as required.
