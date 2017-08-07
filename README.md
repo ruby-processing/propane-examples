@@ -87,4 +87,4 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
 [examples]:https://github.com/JRubyArt-examples/propane-examples
 [contributed]:https://ruby-processing.github.io/propane/contributed
 
-[library_proxy]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/library_proxy
+[library proxy]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/library_proxy
