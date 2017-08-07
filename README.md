@@ -33,6 +33,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
     3. [control-panel][]
     4. [video][]
     5. [glvideo][]
+    6. [library proxy][]
 
 4. Gems
    1. [PBox2D][pbox2d]
@@ -85,3 +86,5 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
 [conversion]:https://gist.github.com/monkstone/6f61ecf6c0f222d9b80250bd60a8c84f
 [examples]:https://github.com/JRubyArt-examples/propane-examples
 [contributed]:https://ruby-processing.github.io/propane/contributed
+
+[library_proxy]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/library_proxy
