@@ -7,7 +7,7 @@ WIP to complete translation from JRubyArt to propane using [this conversion tool
 See how to install [java libraries here][contributed]
 
 To auto-run many samples `cd` this directory and `rake` for others like pbox2d
-`rake pbox2d` you get the idea (read the Rakefile). NB: not all samples get auto-run, and where appropriate you need to install library or gem.
+`rake pbox2d` you get the idea (read the Rakefile). NB: not all samples get auto-run, and where appropriate you need to install required library or gem.
 
 ### Partial Catalogue (for the lazy)
 
