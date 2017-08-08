@@ -1,5 +1,5 @@
 # propane-examples
-Example Sketches for propane-2.3.2+ features updated control_panel library (replacing `c.title = 'PaneTitle'` with `c.title('PaneTitle')`) also enable use of `block` with `button's`.
+Example Sketches for propane-2.4.0+ features updated control_panel library (replacing `c.title = 'PaneTitle'` with `c.title('PaneTitle')`) also enable use of `block` with `button's`.
 See also [Example-Sketches][examples] for JRubyArt (many of with only need to be class wrapped to run with propane).
 
 WIP to complete translation from JRubyArt to propane using [this conversion tool][conversion], and by replacing `Processing::Proxy` with `Propane::Proxy`, and unnest some classes as required.
@@ -7,7 +7,7 @@ WIP to complete translation from JRubyArt to propane using [this conversion tool
 See how to install [java libraries here][contributed]
 
 To auto-run many samples `cd` this directory and `rake` for others like pbox2d
-`rake pbox2d` you get the idea (read the Rakefile). NB: not all samples get auto-run, and where appropriate you need to install library or gem.
+`rake pbox2d` you get the idea (read the Rakefile). NB: not all samples get auto-run, and where appropriate you need to install required library or gem.
 
 ### Partial Catalogue (for the lazy)
 
@@ -33,6 +33,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
     3. [control-panel][]
     4. [video][]
     5. [glvideo][]
+    6. [library proxy][]
 
 4. Gems
    1. [PBox2D][pbox2d]
@@ -85,3 +86,5 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
 [conversion]:https://gist.github.com/monkstone/6f61ecf6c0f222d9b80250bd60a8c84f
 [examples]:https://github.com/JRubyArt-examples/propane-examples
 [contributed]:https://ruby-processing.github.io/propane/contributed
+
+[library proxy]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library/library_proxy
