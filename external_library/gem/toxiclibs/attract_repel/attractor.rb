@@ -10,7 +10,7 @@ class Attractor < Physics::VerletParticle2D
 
   def initialize(loc)
     super(loc)
-    @app = $app
+    @app = Propane.app
     @r = 24
     physics.add_particle(self)
     physics.add_behavior(Physics::AttractionBehavior2D.new(self, width, 0.1))

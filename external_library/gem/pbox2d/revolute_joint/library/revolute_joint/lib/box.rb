@@ -8,15 +8,13 @@ CENTER ||= Java::ProcessingCore::PConstants::CENTER
 # A rectangular box
 class Box
   extend Forwardable
-  def_delegators(:@app, :push_matrix, :pop_matrix, :fill, :rotate, :box2d,
-                 :stroke_weight, :translate, :rect_mode, :stroke, :rect)
+  include Propane::Proxy
   # We need to keep track of a Body and a width and height
   attr_reader :body, :w, :h
 
   # Constructor
   def initialize(x, y, w, h, lock)
     @w, @h = w, h
-    @app = $app
     # Define and create the body
     bd = BodyDef.new
     bd.position.set(box2d.processing_to_world(Vec2.new(x, y)))

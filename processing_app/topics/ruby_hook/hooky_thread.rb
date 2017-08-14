@@ -1,6 +1,6 @@
 #!/usr/bin/env jruby
 # Creating threaded instance of Hooky maty not be mush use because we create a
-# global $app
+# global Propane.app
 require_relative 'lib/hooky_instance'
 
 colors = %w[#ff0000 #00ff00 #0000ff].freeze

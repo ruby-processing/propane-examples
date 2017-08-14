@@ -11,7 +11,7 @@ class Spring
   attr_reader :mouse_joint
 
   def initialize
-    @app = $app
+    @app = Propane.app
   end
 
   # If it exists we set its target to the mouse location

@@ -4,15 +4,12 @@
 
 # A fixed boundary class (now incorporates angle)
 class Boundary
-  extend Forwardable
-  def_delegators(:@app, :fill, :no_fill, :stroke, :rect, :rect_mode, :box2d,
-                 :stroke_weight, :translate, :push_matrix, :pop_matrix, :rotate)
+  include Propane::Proxy
   # A boundary is a simple rectangle with x,y,width,and height
   attr_reader :x, :y, :w, :h, :b
 
   def initialize(x, y, w, h, a)
     @x, @y, @w, @h, @a = x, y, w, h, a
-    @app = $app
     # Define the polygon
     sd = PolygonShape.new
     # Figure out the box2d coordinates
@@ -36,7 +33,7 @@ class Boundary
     stroke(127)
     fill(127)
     stroke_weight(1)
-    rect_mode(Java::ProcessingCore::PConstants::CENTER)
+    rect_mode(CENTER)
     a = b.get_angle
     push_matrix
     translate(x, y)

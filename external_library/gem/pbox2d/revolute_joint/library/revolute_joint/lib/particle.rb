@@ -1,19 +1,13 @@
 # The Nature of Code
 # Daniel Shiffman
 # http://natureofcode.com
-require 'forwardable'
-
 # A circular particle
 class Particle
-  extend Forwardable
-  def_delegators(:@app, :box2d, :push_matrix, :pop_matrix, :fill, :rotate, 
-                 :line, :stroke_weight, :translate, :rect_mode, :stroke, 
-                 :ellipse, :height)
+  include Propane::Proxy
   # We need to keep track of a Body and a radius
   attr_reader :body, :r
 
   def initialize(x, y, r)
-    @app = $app
     @r = r
     # This function puts the particle in the Box2d world
     makeBody(x, y, r)
@@ -37,7 +31,7 @@ class Particle
     false
   end
 
-  # 
+  #
   def display
     # We look at each body and get its screen position
     pos = box2d.body_coord(body)
@@ -83,4 +77,3 @@ class Particle
     body.setAngularVelocity(rand(-10.0..10))
   end
 end
-

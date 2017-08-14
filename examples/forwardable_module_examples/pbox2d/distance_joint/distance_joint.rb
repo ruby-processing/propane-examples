@@ -11,6 +11,7 @@ require 'forwardable'
 # A bridge is formed by connected a series of particles with joints
 class DistanceJoint < Propane::App
   load_library :distance_joint
+
   attr_reader :box2d, :boundaries, :system
 
   def settings
