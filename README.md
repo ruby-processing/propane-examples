@@ -26,6 +26,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
     1. [shaders][]
     2. [lsystems][]
     3. [advanced data][]
+    4. [filters][]
 
 3. [Libraries][]
     1. [fastmath][]
@@ -66,6 +67,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
 [image]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/basics/image
 [Topics]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/topics
 [lsystems]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/topics/lsystems
+[filters]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/topics/filters
 [advanced data]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/topics/advanced_data
 [shaders]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/topics/shaders
 [Libraries]:https://github.com/ruby-processing/propane-examples/tree/master/processing_app/library
