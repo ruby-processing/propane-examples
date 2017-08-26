@@ -1,5 +1,5 @@
 # propane-examples
-Example Sketches for propane-2.5.0+ features replacement of `$app` with `Propane.app`.
+Example Sketches for propane-2.6.0+ features replacement of `$app` with `Propane.app`, and additional hemesh examples.
 See also [Example-Sketches][examples] for JRubyArt (many of with only need to be class wrapped to run with propane).
 
 WIP to complete translation from JRubyArt to propane using [this conversion tool][conversion], and by replacing `Processing::Proxy` with `Propane::Proxy`, and unnest some classes as required.
