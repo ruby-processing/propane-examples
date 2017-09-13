@@ -29,7 +29,7 @@ class SkylightBasic < Propane::App
 
   include Skylight # so we don't need fully qualified names for java classes
 
-  VIEWPORT_W = 1280
+  VIEWPORT_W = 1_280
   VIEWPORT_H = 720
   VIEWPORT_X = 230
   VIEWPORT_Y = 0
@@ -43,13 +43,13 @@ class SkylightBasic < Propane::App
   def setup
     surface.setLocation(VIEWPORT_X, VIEWPORT_Y)
     # camera
-    @peasycam = PeasyCam.new(self, -4.083, -6.096, 7.000, 1500)
+    @peasycam = PeasyCam.new(self, -4.083, -6.096, 7.000, 1_500)
     peasycam.set_rotations(1.085, -0.477, 2.910)
     peasycam.set_distance(100)
     @cam_pos = [0, 0, 0]
     @cam_active = false
     # projection
-    perspective(60 * DEG_TO_RAD, width / height.to_f, 2, 5000)
+    perspective(60 * DEG_TO_RAD, width / height.to_f, 2, 5_000)
     # load obj file into shape-object
     @shape = load_shape(data_path('skylight_demo_scene.obj'))
     # record list of vertices of the given shape
@@ -64,12 +64,12 @@ class SkylightBasic < Propane::App
     context.print
     context.printGL
     # callback for rendering scene, implements DwSceneDisplay interface
-    display = lambda do |canvas|
+    scene_display = lambda do |canvas|
       canvas.background(32) if canvas == skylight.renderer.pg_render
       canvas.shape(shape)
     end
     # init skylight renderer
-    @skylight = DwSkyLight.new(context, display, mat_scene_bounds)
+    @skylight = DwSkyLight.new(context, scene_display, mat_scene_bounds)
     # parameters for sky-light
     param = skylight.sky.param
     param.iterations = 50
@@ -100,7 +100,7 @@ class SkylightBasic < Propane::App
     peasycam.beginHUD
     # display result
     image(skylight.renderer.pg_render, 0, 0)
-    #    image(skylight.sky.getSrc, 0, 0)
+    # image(skylight.sky.getSrc, 0, 0)
     peasycam.endHUD
     # some info, window title
     sun_pass = skylight.sun.RENDER_PASS
@@ -123,11 +123,11 @@ class SkylightBasic < Propane::App
     rot = peasycam.get_rotations
     lat = peasycam.get_look_at
     dis = peasycam.get_distance
-    cam_format = '%s: (%7.3f, %7.3f, %7.3f)'
-    dist_format = 'distance: (%7.3f)'
-    puts format(cam_format, 'position', pos[0], pos[1], pos[2])
-    puts format(cam_format, 'rotation', rot[0], rot[1], rot[2])
-    puts format(cam_format, 'look_at', lat[0], lat[1], lat[2])
+    cam_format = '%s: (%7.3f, %7.3f, %7.3f)'.freeze
+    dist_format = 'distance: (%7.3f)'.freeze
+    puts format(cam_format, 'position', *pos) # use splat operator on array
+    puts format(cam_format, 'rotation', *rot)
+    puts format(cam_format, 'look_at', *lat)
     puts format(dist_format, dis)
   end
 
