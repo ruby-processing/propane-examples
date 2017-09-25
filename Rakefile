@@ -23,6 +23,11 @@ task :shaders do
   sh "cd #{PRWD}/processing_app/topics/shaders && rake"
 end
 
+desc 'PixelFlow'
+task :pixel_flow do
+  sh "cd #{PRWD}/external_library/java/pixel_flow && rake"
+end
+
 desc 'vecmath'
 task :vecmath do
   sh "cd #{PRWD}/processing_app/library/vecmath/vec2d && rake"
