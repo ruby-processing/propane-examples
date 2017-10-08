@@ -46,6 +46,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
 5. Java Libraries
    1. [Hype-processing][hype]
    2. [Hemesh][hemesh]
+   3. [PixelFlow][pixel_flow]
 6. Others
    1. [WOVNS patterns][wovns]
 
@@ -84,7 +85,7 @@ To auto-run many samples `cd` this directory and `rake` for others like pbox2d
 [toxiclibs]:https://github.com/ruby-processing/propane-examples/tree/master/external_library/gem/toxiclibs
 [wordcram]:https://github.com/ruby-processing/propane-examples/tree/master/external_library/gem/ruby_wordcram
 [propane]:https://ruby-processing.github.io/propane/
-
+[pixel_flow]:https://github.com/ruby-processing/propane-examples/tree/master/external_library/java/pixel_flow
 [conversion]:https://gist.github.com/monkstone/6f61ecf6c0f222d9b80250bd60a8c84f
 [examples]:https://github.com/JRubyArt-examples/propane-examples
 [contributed]:https://ruby-processing.github.io/propane/contributed
