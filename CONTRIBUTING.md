@@ -10,7 +10,7 @@ Here are some ways *you* can contribute:
   to do this, and to get recognized for your contribution:- clone this repo, and submit a pull request
 * by refactoring examples to be more rubyfied
 * by closing [issues][]
-* by proselytizing JRubyArt, we need more champions
+* by proselytizing propane, we need more champions
 * by supporting [Processing.org][], nothing to do with us but we rely on them
 * by figuring out if we could replace swing with javafx for control_panel etc
 * by testing / contributing to the [development branch][]
