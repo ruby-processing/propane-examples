@@ -106,9 +106,9 @@ class ImageProcessingFilters < Propane::App
   PEPPER = 1000
 
   attr_reader :img, :context, :flowfield, :minmax_global, :harris, :filter
-  attr_reader :tex_A, :pg_src_A, :pg_src_B, :pg_src_C, :cp5, :current, :hide
-  attr_reader :convolution_kernel_index, :pg_voronoi_centers, :laplace_weight
-  attr_reader :show_geom, :show_image, :animations, :passes, :gaussblur_sigma
+  attr_reader :tex_A, :pg_src_A, :pg_src_B, :pg_src_C, :cp5, :hide
+  attr_reader :pg_voronoi_centers, :laplace_weight
+  attr_reader :show_geom, :show_image, :animations, :passes
   attr_reader :rs, :vel, :pos, :panel, :filters, :blur_radius, :conv_kernel_idx
 
   def settings
@@ -176,9 +176,9 @@ class ImageProcessingFilters < Propane::App
       @hide = true
       panel.set_visible(hide)
     end
-    @current = FILTERS.index(filters)
-    @convolution_kernel_index = conv_kernel_idx.to_i
-    @gaussblur_sigma = blur_radius / 2.0
+    current = FILTERS.index(filters)
+    convolution_kernel_index = conv_kernel_idx.to_i
+    gaussblur_sigma = blur_radius / 2.0
     w = VIEW_WIDTH
     h = VIEW_HEIGHT
     # update rectangle position
