@@ -1,7 +1,7 @@
 #!/usr/bin/env jruby
 
 require 'propane'
-# PixelFlow v1.03
+# PixelFlow v1.19
 # Shadertoy Demo:   https://www.shadertoy.com/view/ldyGWm
 # Shadertoy Author: https://www.shadertoy.com/user/Shane
 class ShadertoyMenger < Propane::App
@@ -10,8 +10,8 @@ class ShadertoyMenger < Propane::App
   module Shadertoy
     java_import 'com.thomasdiewald.pixelflow.java.DwPixelFlow'
     java_import 'com.thomasdiewald.pixelflow.java.imageprocessing.DwShadertoy'
+    java_import 'com.thomasdiewald.pixelflow.java.utils.DwUtils'
     java_import 'com.jogamp.opengl.GL2'
-    java_import 'com.thomasdiewald.pixelflow.java.dwgl.DwGLTextureUtils'
   end
 
   include Shadertoy
@@ -32,18 +32,18 @@ class ShadertoyMenger < Propane::App
 
     @toy = DwShadertoy.new(context, data_path('MengerSponge.frag'))
     pg_albedo = create_graphics(512, 512, P2D)
-    DwGLTextureUtils::changeTextureWrap pg_albedo, GL2::GL_MIRRORED_REPEAT
-    DwGLTextureUtils::changeTextureFilter pg_albedo, GL2::GL_LINEAR, GL2::GL_LINEAR
+    DwUtils::changeTextureWrap pg_albedo, GL2::GL_MIRRORED_REPEAT
+    DwUtils::changeTextureFilter pg_albedo, GL2::GL_LINEAR, GL2::GL_LINEAR
 
     pg_albedo.beginDraw
-    pg_albedo.background(200,100,5)
+    pg_albedo.background(200, 100, 5)
     pg_albedo.endDraw
 
     frameRate(60)
   end
 
   def mouse_dragged
-    toy.set_iMouse(mouse_x, height-1-mouse_y, mouse_x, height-1-mouse_y)
+    toy.set_iMouse(mouse_x, height - 1 - mouse_y, mouse_x, height - 1 - mouse_y)
   end
 
   def draw

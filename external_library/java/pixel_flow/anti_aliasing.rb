@@ -12,15 +12,14 @@ class Antialiasing < Propane::App
     java_import 'com.thomasdiewald.pixelflow.java.antialiasing.FXAA.FXAA'
     java_import 'com.thomasdiewald.pixelflow.java.antialiasing.GBAA.GBAA'
     java_import 'com.thomasdiewald.pixelflow.java.antialiasing.SMAA.SMAA'
-    java_import 'com.thomasdiewald.pixelflow.java.dwgl.DwGLTextureUtils'
     java_import 'com.thomasdiewald.pixelflow.java.geometry.DwCube'
     java_import 'com.thomasdiewald.pixelflow.java.geometry.DwMeshUtils'
     java_import 'com.thomasdiewald.pixelflow.java.imageprocessing.filter.DwFilter'
     java_import 'com.thomasdiewald.pixelflow.java.render.skylight.DwSceneDisplay'
     java_import 'com.thomasdiewald.pixelflow.java.utils.DwMagnifier'
+    java_import 'com.thomasdiewald.pixelflow.java.utils.DwUtils'
     java_import 'peasy.PeasyCam'
     java_import 'processing.core.PShape'
-    java_import 'processing.opengl.PJOGL'
   end
 
   include AA
@@ -50,7 +49,6 @@ class Antialiasing < Propane::App
   def settings
     size(VIEWPORT_W, VIEWPORT_H, P3D)
     smooth(0)
-    PJOGL.profile = 4
   end
 
   def setup
@@ -186,7 +184,7 @@ class Antialiasing < Propane::App
 
   def display_scene_wrap(canvas)
     canvas.begin_draw
-    DwGLTextureUtils.copy_matrices(g, canvas)
+    DwUtils.copy_matrices(g, canvas)
     background_color_gamma = (BACKGROUND_COLOR / 255.0)**GAMMA * 255.0
     # background
     canvas.blend_mode BLEND
