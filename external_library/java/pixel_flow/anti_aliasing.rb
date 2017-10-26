@@ -142,7 +142,7 @@ class Antialiasing < Propane::App
                end
     magnifier.apply(display, mouse_x, mouse_y)
     magnifier.display_tool
-    peasycam.beginHUD
+    DwUtils.beginScreen2D(g)
     # display Anti Aliased result
     blend_mode(REPLACE)
     clear
@@ -176,7 +176,7 @@ class Antialiasing < Propane::App
     text mode << buffer, tx + 2, ty + 2
     fill(255, 200, 0)
     text mode, tx, ty
-    peasycam.endHUD
+    DwUtils.endScreen2D(g)
     # some info, window title
     format_string = 'Anti Aliasing | fps: (%6.2f)'
     surface.set_title(format(format_string, frame_rate))
