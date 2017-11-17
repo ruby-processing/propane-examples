@@ -2,11 +2,14 @@
 require 'propane'
 require 'skatolo'
 # In this simple sketch we attach three buttons to skatolo in the regular way,
-# named buttons 'press_me' and 'reset' thanks to some fancy metaprogramming
-# we can create methods :red_color, :green_color and :blue_color for the buttons
-class SkatoloButtonGroup < Propane::App
-
+# and group them, then add the group to the accordion widget
+# named buttons 'red_color' ... thanks to some fancy metaprogramming
+# we can create methods :red_color, :green_color and :blue_color buttons
+class ButtonGroup < Propane::App
   include EventMethod
+
+  COLOR = %w[Red Green Blue].freeze
+
   attr_reader :skatolo, :back_color
 
   def settings
@@ -39,21 +42,13 @@ class SkatoloButtonGroup < Propane::App
   def create_gui
     @skatolo = Skatolo.new(self)
     color_group = skatolo.add_group('colors')
-    skatolo.add_button('red_color')
-           .set_group(color_group)
-           .set_position(0, 10)
-           .set_size(50, 20)
-           .set_label('Red')
-    skatolo.add_button('green_color')
-           .set_group(color_group)
-           .set_position(0, 30)
-           .set_size(50, 20)
-           .set_label('Green')
-    skatolo.add_button('blue_color')
-           .set_group(color_group)
-           .set_position(0, 50)
-           .set_size(50, 20)
-           .set_label('Blue')
+    %w[red_color green_color blue_color].freeze.each_with_index do |col, index|
+      skatolo.add_button(col)
+             .set_group(color_group)
+             .set_position(0, 10 + index * 20)
+             .set_size(50, 20)
+             .set_label(COLOR[index])
+    end
     skatolo.add_accordion('acc')
            .set_position(20, 10)
            .set_size(50, 20)
@@ -61,4 +56,4 @@ class SkatoloButtonGroup < Propane::App
   end
 end
 
-SkatoloButtonGroup.new
+ButtonGroup.new

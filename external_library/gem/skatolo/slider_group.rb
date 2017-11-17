@@ -1,11 +1,10 @@
 #!/usr/bin/env jruby
 require 'propane'
 require 'skatolo'
-# In this simple sketch we attach three buttons to skatolo in the regular way,
-# named buttons 'press_me' and 'reset' thanks to some fancy metaprogramming
-# we can create methods :red_color, :green_color and :blue_color for the buttons
-class SkatoloSliderGroup < Propane::App
-
+# In this simple sketch we attach three sliders to skatolo in the regular way,
+# then group them and attach to an accordion widget, the slider values are sent
+# (auto-magically) to the sketch as red_value, green_value and blue_value
+class SliderGroupDemo < Propane::App
   include EventMethod
   attr_reader :skatolo, :back_color
 
@@ -27,24 +26,14 @@ class SkatoloSliderGroup < Propane::App
   def create_gui
     @skatolo = Skatolo.new(self)
     color_group = skatolo.add_group('colors')
-    skatolo.add_slider('red')
-           .set_group(color_group)
-           .set_size(100, 15)
-           .set_position(0, 10)
-           .set_range(0, 255)
-           .set_value(50)
-    skatolo.add_slider('green')
-           .set_group(color_group)
-           .set_size(100, 15)
-           .set_position(0, 30)
-           .set_range(0, 255)
-           .set_value(50)
-    skatolo.add_slider('blue')
-           .set_group(color_group)
-           .set_size(100, 15)
-           .set_position(0, 50)
-           .set_range(0, 255)
-           .set_value(50)
+    %w[red green blue].freeze.each_with_index do |slider, index|
+      skatolo.add_slider(slider)
+             .set_group(color_group)
+             .set_size(100, 15)
+             .set_position(0, 10 + 20 * index)
+             .set_range(0, 255)
+             .set_value(50)
+    end
     skatolo.add_accordion('acc')
            .set_position(10, 10)
            .set_size(120, 20)
@@ -52,4 +41,4 @@ class SkatoloSliderGroup < Propane::App
   end
 end
 
-SkatoloSliderGroup.new
+SliderGroupDemo.new
