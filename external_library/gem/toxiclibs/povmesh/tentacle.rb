@@ -69,6 +69,8 @@ class Tentacle < Propane::App
       pm.saveAsPOV(mesh, true)
       pm.end_save
       exit
+   when 't', 'T'
+      mesh.saveAsSTL(data_path('tentacle.stl'))
     when 's', 'S'
       save_frame('Tentacle.png')
     end
