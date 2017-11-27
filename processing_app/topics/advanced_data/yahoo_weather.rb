@@ -37,7 +37,7 @@ class YahooWeather < Propane::App
   end
 
   def settings
-    size 600, 360, FX2D
+    size 600, 360
   end
 end
 
