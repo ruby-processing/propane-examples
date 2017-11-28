@@ -1,11 +1,12 @@
-#!/usr/bin/env jruby
+#!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
 require 'propane'
 require 'arcball'
 
 # ProgressReporter class
 class ProgressReporter < Propane::App
-  load_library :hemesh
+
+  load_libraries :hemesh
   # namespace for hemesh java classes
   module WBlut
     java_import 'wblut.processing.WB_Render'
@@ -22,7 +23,8 @@ class ProgressReporter < Propane::App
   def setup
     sketch_title 'Progress Reporter'
     Processing::ArcBall.init(self)
-    @pr= WBlut::WB_ProgressReporter.new(5) # maximum depth of reporting
+    # maximum depth of reporting 10
+    @pr = WBlut::WB_ProgressReporter.new(10, data_path("log.txt"), false)
     pr.start
     create_mesh
     @render= WBlut::WB_Render.new(self)
@@ -39,20 +41,21 @@ class ProgressReporter < Propane::App
     render.draw_edges(mesh)
   end
 
+
   def create_mesh
     creator= WBlut::HEC_Geodesic.new.setC(2).setB(2).set_radius(300)
     @mesh= WBlut::HE_Mesh.new(creator)
     mesh.add(WBlut::HE_Mesh.new(
-    WBlut::HEC_Grid.new(10, 10, 700, 700).set_center(0, 0, -350))
+      WBlut::HEC_Grid.new(10, 10, 700, 700).set_center(0, 0, -350))
     )
     modifier= WBlut::HEM_Lattice.new
     modifier.set_width(10) # desired width of struts
     modifier.set_depth(10) # depth of struts
     # treat edges sharper than this angle as hard edges
     modifier.set_threshold_angle(1.5 * HALF_PI)
-    # try to fuse planar adjacent planar faces created by the extrude
+   # try to fuse planar adjacent planar faces created by the extrude
     modifier.set_fuse(true)
-    # threshold angle to be considered coplanar
+     # threshold angle to be considered coplanar
     modifier.set_fuse_angle(0.1 * HALF_PI)
     sel= WBlut::HE_Selection.select_random_faces(mesh, 0.4)
     sel.modify(modifier)
@@ -60,8 +63,8 @@ class ProgressReporter < Propane::App
   end
 
   def stop
-    pr.interrupt
-    super.stop
+   pr.interrupt
+   super.stop
   end
 end
 
