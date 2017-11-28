@@ -46,6 +46,11 @@ class HES_CatmullClarkExample < Propane::App
     size(1000, 1000, P3D)
     smooth(8)
   end
+
+  def key_pressed
+    return unless key == 's'
+    HET_Export.save_to_stl(mesh, data_path('STL'), 'catmull_clark')
+  end
 end
 
 HES_CatmullClarkExample.new
