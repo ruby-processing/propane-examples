@@ -65,6 +65,7 @@ class HEC_JohnsonDemo < Propane::App
 
   def key_pressed
     return unless key == 's'
+    jmesh.fItr.map { |face| face.set_color(color(200, 0, 0)) }
     HET_Export.saveToSTL(jmesh, data_path('/'), creator.get_name)
   end
 end
