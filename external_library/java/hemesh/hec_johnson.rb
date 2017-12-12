@@ -44,7 +44,9 @@ class HEC_JohnsonDemo < Propane::App
   end
 
   def setup_lights
-    ambient_light 100, 100, 100
+    ambient_light 50, 50, 50
+    directional_light(127, 127, 127, 1, 1, -1)
+    directional_light(65, 65, 65, -1, -1, 1)
   end
 
   def mouse_pressed
