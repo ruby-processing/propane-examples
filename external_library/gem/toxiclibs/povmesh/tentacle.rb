@@ -70,6 +70,7 @@ class Tentacle < Propane::App
       pm.end_save
       exit
    when 't', 'T'
+      mesh.compute_face_normals
       mesh.saveAsSTL(data_path('tentacle.stl'))
     when 's', 'S'
       save_frame('Tentacle.png')
