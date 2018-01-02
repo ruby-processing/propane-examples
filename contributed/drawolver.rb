@@ -54,15 +54,15 @@ class Drawolver < Propane::App
 
   def mouse_pressed
     reset_scene
-    points << Vec3D.new(mouse_x, mouse_y)
+    points << Vec2D.new(mouse_x, mouse_y)
   end
 
   def mouse_dragged
-    points << Vec3D.new(mouse_x, mouse_y)
+    points << Vec2D.new(mouse_x, mouse_y)
   end
 
   def mouse_released
-    points << Vec3D.new(mouse_x, mouse_y)
+    points << Vec2D.new(mouse_x, mouse_y)
     recalculate_shape
   end
 
@@ -80,7 +80,7 @@ class Drawolver < Propane::App
       # nlen = c.mag
       vertices << []
       (0..TAU).step(PI / 15) do |ang|
-        e = normal + c * cos(ang)
+        e = Vec3D.new(normal + c * cos(ang))
         e.z = c.mag * sin(ang)
         vertices.last << e
       end
