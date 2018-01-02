@@ -1,6 +1,6 @@
 ### PixelFlow examples
 
-Requires peascam library
+Requires peasycam library
 
 Note how we can implement callbacks in jruby with a ruby lambda
 
