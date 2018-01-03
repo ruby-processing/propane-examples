@@ -3,19 +3,19 @@
 require 'propane'
 require 'arcball'
 require 'csv'
-# Capital name, Latitude and Longitude from csv
-
+# To store Capital name, Latitude and Longitude from csv
 Place = Struct.new(:lat, :lon, :name)
 
-
+# Sketch class
 class LatLong < Propane::App
   load_library :vector_utils
   # Uses to_cartesian to map lat lon of cities, read from a csv file, on a globe
   attr_reader :places
   def setup
     sketch_title 'Latitude and Longitude'
-    noStroke
-    textSize(9)
+    smooth(8)
+    no_stroke
+    text_size(9)
     Processing::ArcBall.init self
     @places = []
     CSV.foreach(data_path('capitals.csv'), headers: true) do |row|
@@ -31,15 +31,15 @@ class LatLong < Propane::App
     lights
     counter = 0
     places.each do |place|
-      p = VectorUtil.to_cartesian(lat: place.lat, long: place.lon, radius: 300)
+      pos = VectorUtil.to_cartesian(lat: place.lat, long: place.lon, radius: 300)
       push_matrix
-      translate(p.x, p.y, p.z)
-      polar = VectorUtil.cartesian_to_polar(vec: p)
+      translate(pos.x, pos.y, pos.z)
+      polar = VectorUtil.cartesian_to_polar(vec: pos)
       rotate_y(polar.y)
       rotate_z(polar.z)
       push_matrix
       fill(255)
-      text(place.name,0,0) if (counter % 3).zero?
+      text(place.name, 0, 0) if (counter % 3).zero?
       pop_matrix
       fill(255, 255, 0, 100)
       box(8, 3, 3)
