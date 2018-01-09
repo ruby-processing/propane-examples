@@ -1,7 +1,7 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
 require 'propane'
-require 'arcball'
+
 class SpiralLayout < Propane::App
   load_library :vector_utils
 
