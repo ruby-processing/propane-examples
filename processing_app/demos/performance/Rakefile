@@ -1,5 +1,6 @@
 # Simple demo Rakefile to autorun samples in current directory
-# adjust path to jruby, and or opts as required
+# adjust path to jruby, ARGS, and or opts as required
+# NB: use `-J-` prefix to send java args via jruby
 
 SAMPLES_DIR="./"
 ARGS = '-J-XX:InlineSmallCode=500 -J-Xms256m -J-Xmx2g -J-XX:NewSize=64m -J-XX:MaxNewSize=64m'
