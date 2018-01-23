@@ -45,6 +45,11 @@ task :slider do
   sh "cd #{PRWD}/processing_app/library/slider && rake"
 end
 
+desc 'geomerative'
+task :geomerative do
+  sh "cd #{PRWD}/external_library/gem/geomerative && rake"
+end
+
 desc 'hemesh'
 task :hemesh do
   sh "cd #{PRWD}/external_library/java/hemesh && rake"
