@@ -1,7 +1,8 @@
 #!/usr/bin/env jruby -w
+
+
 require 'propane'
 require 'geomerative'
-require_relative 'font_agent'
 
 # --------- GEOMERATIVE EXAMPLES ---------------
 # //////////////////////////////////////////////
@@ -26,6 +27,7 @@ require_relative 'font_agent'
 # www.freeartbureau.org/blog
 #
 class Deform < Propane::App
+  load_library :font_agent
   attr_reader :my_font, :my_group, :my_points, :my_text
   attr_reader :my_agents, :step, :stop_anime
 
@@ -44,7 +46,7 @@ class Deform < Propane::App
     RCommand.setSegmentLength(10)
     RCommand.setSegmentator(RCommand::UNIFORMLENGTH)
     @my_points = my_font.toGroup(my_text).getPoints
-    @my_agents = my_points.map { |point| FontAgent.new(location: Vec2D.new(point.x, point.y)) }
+    @my_agents = my_points.map { |point| FontAgent.new(location: Vec2D.new(point)) }
   end
 
   def draw
