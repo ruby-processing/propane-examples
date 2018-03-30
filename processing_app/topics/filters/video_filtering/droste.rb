@@ -16,20 +16,19 @@ class Droste < Propane::App
 
   def setup
     sketch_title 'Droste'
-    @origin = Time.now
+    @origin = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     @my_filter = load_shader(data_path('droste.glsl'))
     my_filter.set('sketchSize', width.to_f, height.to_f)
     start_capture(width, height)
   end
 
   def time
-    (Time.now - origin) * 0.5
+    (Process.clock_gettime(Process::CLOCK_MONOTONIC) - origin) * 0.5
   end
 
   def draw
     # Draw the image on the scene
     image(cam, 0, 0)
-
     my_filter.set('globalTime', time)
     # Applies the shader to everything that has already been drawn
     return if mouse_pressed?

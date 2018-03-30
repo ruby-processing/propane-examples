@@ -1,3 +1,4 @@
+#!/usr/bin/env jruby
 require 'propane'
 #-------------------------------------------------------------
 # Display endless moving background using a tile texture.
@@ -15,7 +16,7 @@ class InfiniteTiling < Propane::App
     texture_wrap(REPEAT)
     @tile_texture = load_image(data_path('penrose.jpg'))
     load_tile_shader
-    @time0 = Time.now
+    @time0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
   end
 
   def load_tile_shader
@@ -25,7 +26,7 @@ class InfiniteTiling < Propane::App
   end
 
   def draw
-    mil = (Time.now - time0).to_f
+    mil = Process.clock_gettime(Process::CLOCK_MONOTONIC) - time0
     tile_shader.set('time', mil)
     shader(tile_shader)
     rect(0, 0, width, height)

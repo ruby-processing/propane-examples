@@ -39,7 +39,6 @@ class Spin
   def post_initialize(_args)
     nil
   end
-
 end
 
 class SpinArm < Spin # inherit from (or "extend") class Spin
@@ -75,6 +74,5 @@ class SpinSpots < Spin
     pop_matrix
   end
 end
-
 
 SubClassSketch.new

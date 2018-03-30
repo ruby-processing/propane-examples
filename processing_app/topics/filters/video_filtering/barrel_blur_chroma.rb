@@ -7,7 +7,6 @@ class BarrelBlurChroma < Propane::App
   include_package 'processing.video'
 
   attr_reader :movie, :my_shader
-
   # How much barrel effect do we want?
   # Values between 0.5 and 3.0 work best, but feel free to try other values
   BARREL = 2.2

@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 require 'propane'
 
+TIME_FORMAT = 'Time after this iteration: %.2f'
+
 class Tree < Propane::App
   # http://processing.org/learning/topics/tree.html
   # by Joe Holt
@@ -16,12 +18,12 @@ class Tree < Propane::App
     frame_rate 30
     @x = 0.0
     @dx = width / 100
-    @start_time = Time.now
+    @start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     @frame_time = nil
   end
 
   def draw
-    t = Time.now
+    t = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     if @frame_time
       fps = 1.0 / (t - @frame_time)
       # printf "%0.1f fps\n", fps
@@ -46,7 +48,7 @@ class Tree < Propane::App
 
     @x += @dx
     if @x < 0
-      puts "Time after this iteration: " + (Time.now - @start_time).to_s
+      puts format(TIME_FORMAT, t - @start_time)
     end
     if @x > width || @x < 0
       @dx = - @dx

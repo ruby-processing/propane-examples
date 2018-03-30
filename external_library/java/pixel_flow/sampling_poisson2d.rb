@@ -37,11 +37,11 @@ class PoissonSampling2D < Propane::App
     rmax = 25
     roff = 0.5
     new_points = 100
-    start = Time.now
+    start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     pds.setRandomSeed(rand(0..10_0000))
     pds.generatePoissonSampling2D(bounds, rmin, rmax, roff, new_points)
     @samples = pds.samples
-    time = Time.now - start
+    time = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start
     puts("poisson samples 2D generated")
     puts("    time: #{(time * 1000).floor}ms")
     puts("    count: #{samples.size}")

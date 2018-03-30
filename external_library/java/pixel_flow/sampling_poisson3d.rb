@@ -57,7 +57,7 @@ class PoissonSampling3D < Propane::App
     rmax = 50
     roff = 1
     new_points = 50
-    start = Time.now
+    start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     pds.generatePoissonSampling(bounds, rmin, rmax, roff, new_points)
     @shp_samples_spheres = create_shape(GROUP)
     @shp_samples_points  = create_shape(GROUP)
@@ -65,13 +65,13 @@ class PoissonSampling3D < Propane::App
     samples.each do |sample|
       add_shape(sample)
     end
-    time = Time.now - start
-    start = Time.now
+    time = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start
+    start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     puts("poisson samples 3D generated")
     puts("    time: #{(time * 1_000).floor}ms")
     puts("    count: #{pds.samples.size}")
 
-    time = Time.now - start
+    time = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start
     puts("PShapes created")
     puts("    time: #{(time * 1_000).floor}ms")
     puts("    count: #{samples.size}")

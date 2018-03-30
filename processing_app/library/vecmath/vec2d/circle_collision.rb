@@ -42,7 +42,7 @@ class CircleCollision < Propane::App
   end
 
   def draw
-    t = Time.now
+    t = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     fps = 1.0 / (t - @frame_time) if @frame_time
     @frame_time = t
     @frame_count += 1
