@@ -8,29 +8,24 @@ require 'propane'
 # Note how to specify fill and background using hexadecimal string for color,
 # this is different from vanilla processing
 class Quadraticvertex < Propane::App
-
   load_library :control_panel
 
-  attr_reader :debug, :save_one, :step_angle, :cr, :detail, :panel, :hide
+  attr_reader :debug, :save_one, :step_angle, :cr, :detail
 
   def setup
     sketch_title 'Quadratic Vertex'
     @hide = false
     control_panel do |c|
       c.title 'Controller'
+      c.look_feel 'Nimbus'
       c.menu(:detail, %w(4 5 6 7 8 9 10), '7')
       c.checkbox :debug
       c.button :save_image
-      @panel = c
     end
     @save_one = false
   end
 
   def draw
-    unless hide
-      panel.set_visible true
-      @hide = true
-    end
     background color('#BDF018')
     translate width / 2, height / 2
     @step_angle = TAU / (detail.to_i - 1)
@@ -67,7 +62,7 @@ class Quadraticvertex < Propane::App
       end
     end
     return unless save_one
-    save_frame('images/quadraticvertex-#####.png')
+    save_frame(data_path('quadraticvertex-#####.png'))
     @save_one = false
   end
 

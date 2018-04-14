@@ -9,7 +9,7 @@ class Luciernagas < Propane::App
 
 load_library :control_panel
 
-attr_reader :panel, :hide, :image_mask, :spots
+attr_reader :image_mask, :spots
 ACCURACY = 4
 
 # Firefly holder
@@ -31,9 +31,7 @@ def setup
     control.slider(:target_radius, 5...100, 20)
     control.slider(:spot_distance, 5..200, 80)
     control.button :reset
-    @panel = control
   end
-  @hide = false
   @spotlight = create_spotlight
   @background = load_image(data_path('background.png'))
   @image_mask = load_image(data_path('mask.png'))
@@ -46,10 +44,6 @@ def reset
 end
 
 def draw
-  unless hide
-    @hide = true
-    panel.set_visible(hide)
-  end
   image @background, 0, 0
   draw_lights
   draw_flyers
@@ -129,9 +123,9 @@ end
 def load_spots(spot_image, accuracy = ACCURACY)
   @spots = []
   spot_image.load_pixels
-  corner_color = spot_image.get 0, 0
+  corner_color = spot_image.pixels[0]
   grid(spot_image.width, spot_image.height, accuracy, accuracy) do |x, y|
-    color = spot_image.get(x, y)
+    color = spot_image.pixels[x + y * spot_image.width]
     spots << Vec2D.new(x, y) if color != corner_color
   end
 end

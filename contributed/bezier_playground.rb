@@ -12,7 +12,7 @@ RADIUS = 7
 class BezierPlayground < Propane::App
   load_libraries :control_panel, :curve
   include Olap
-  attr_reader :curves, :c1x, :c1y, :c2x, :c2y, :panel, :hide
+  attr_reader :curves, :c1x, :c1y, :c2x, :c2y
 
   def settings
     size 300, 300
@@ -28,16 +28,11 @@ class BezierPlayground < Propane::App
       c.look_feel 'Nimbus'
       c.button :new_curve
       c.button :print_equations
-      @panel = c
     end
     generate_curve
   end
 
   def draw
-    unless hide
-      panel.set_visible true
-      @hide = true
-    end
     background 50
     draw_control_tangent_lines
     draw_curves

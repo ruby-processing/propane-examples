@@ -2,8 +2,8 @@
 require 'propane'
 class Checkbox < Propane::App
   load_library :control_panel
-
-  attr_reader :hide, :panel, :shouting
+  WARN = 'warning!'.freeze
+  attr_reader :shouting
 
   def setup
     sketch_title 'Simple Checkbox'
@@ -11,23 +11,17 @@ class Checkbox < Propane::App
       c.look_feel 'Nimbus'
       c.title 'Checkbox'
       c.checkbox :shouting
-      @panel = c
     end
     text_font(create_font('mono', 48))
     fill(200, 0, 0)
   end
 
   def warning
-    shouting ? 'WARNING!' : 'warning!'
+    shouting ? WARN.upcase : WARN
   end
 
   def draw
     background 0
-    # only make control_panel visible once, or again when hide is false
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     text(warning, 20, 100)
   end
 

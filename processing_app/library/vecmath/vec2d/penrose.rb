@@ -9,7 +9,7 @@ require_relative 'library/tile/tile'
 # Translated (and refactored) to JRubyArt July 2015 by Martin Prout
 class Penrose < Propane::App
   load_library :control_panel
-  attr_reader :tris, :s, :panel, :hide, :acute
+  attr_reader :tris, :s, :acute
 
   def setup
     sketch_title 'Penrose'
@@ -20,23 +20,14 @@ class Penrose < Propane::App
       c.checkbox  :acute
       c.button    :generate
       c.button    :reset!
-      @panel = c
     end
-    @hide = false
     init false # defaults to regular penrose
   end
 
   def draw
-    # only make control_panel visible once, or again when hide is false
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     background(255)
     translate(width / 2, height / 2)
-    tris.each do |t|
-      t.display
-    end
+    tris.each(&:display)
   end
 
   def generate
@@ -78,4 +69,5 @@ class Penrose < Propane::App
     size 1024, 576
   end
 end
+
 Penrose.new

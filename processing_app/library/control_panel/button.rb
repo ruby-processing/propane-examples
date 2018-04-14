@@ -3,8 +3,7 @@ require 'propane'
 class SimpleButton < Propane::App
   load_library :control_panel
 
-  attr_reader :hide, :panel, :back
-
+  attr_reader :back
   def setup
     sketch_title 'Simple Button'
     control_panel do |c|
@@ -12,7 +11,6 @@ class SimpleButton < Propane::App
       c.title 'Control Button'
       c.button :color_background # see method below
       c.button(:exit!) { exit } # example of a button with a simple block
-      @panel = c
     end
     color_mode RGB, 1
     @back = [0, 0, 1.0]
@@ -23,11 +21,6 @@ class SimpleButton < Propane::App
   end
 
   def draw
-    # only make control_panel visible once, or again when hide is false
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     background *back
   end
 

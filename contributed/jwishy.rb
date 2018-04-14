@@ -5,7 +5,7 @@ require 'propane'
 class JWishy < Propane::App
   load_library :control_panel
 
-  attr_reader :alpha, :back_color, :bluish, :hide, :magnitude, :panel
+  attr_reader :alpha, :back_color, :bluish, :magnitude
   attr_reader :x_wiggle, :y_wiggle, :go_big, :shape
 
   def settings
@@ -16,13 +16,12 @@ class JWishy < Propane::App
     sketch_title 'Wishy Worm'
     control_panel do |c|
       c.title 'Control Panel'
-      c.look_feel 'Motif'
+      c.look_feel 'Nimbus'
       c.slider :bluish, 0.0..1.0, 0.5
       c.slider :alpha,  0.0..1.0, 0.5
       c.checkbox :go_big, false
       c.button :reset
       c.menu :shape, %w(oval square triangle), 'oval'
-      @panel = c
     end
     @hide = false
     @x_wiggle, @y_wiggle = 10.0, 0
@@ -43,11 +42,6 @@ class JWishy < Propane::App
   end
 
   def draw
-    # only make control_panel visible once, or again when hide is false
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     draw_background
     # Seed the random numbers for consistent placement from frame to frame
     srand(0)
@@ -72,11 +66,6 @@ class JWishy < Propane::App
     end
     @x_wiggle += 0.05
     @y_wiggle += 0.1
-  end
-
-  def mouse_pressed
-    return unless hide
-    @hide = false
   end
 
   def draw_shape(args)

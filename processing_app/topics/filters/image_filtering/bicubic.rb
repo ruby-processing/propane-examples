@@ -6,7 +6,7 @@ require 'propane'
 class BicubicFilter < Propane::App
   load_library :control_panel
 
-  attr_reader :bicubic, :my_image, :hide, :panel, :zoom
+  attr_reader :bicubic, :my_image, :zoom
 
   def settings
     size(512, 512, P2D)
@@ -17,9 +17,8 @@ class BicubicFilter < Propane::App
     control_panel do |c|
       c.look_feel 'Nimbus'
       c.title = 'zoom / bicubic'
-      c.slider    :zoom, 0.0..100, 60.0
-      c.checkbox  :apply_filter, true
-      @panel = c
+      c.slider    :zoom, 1..100, 25
+      c.checkbox  :apply_filter, false
     end
     @hide = false
     @my_image  = load_image(data_path('texture.jpg'))
@@ -28,10 +27,6 @@ class BicubicFilter < Propane::App
   end
 
   def draw
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     background(0)
     # Draw the image on the scene
     image(my_image, 0, 0)
@@ -41,10 +36,6 @@ class BicubicFilter < Propane::App
     bicubic.set('zoomLevel', level)
     # Applies the shader to everything that has already been drawn
     filter(bicubic)
-  end
-
-  def mouse_pressed
-    @hide = false if hide
   end
 end
 

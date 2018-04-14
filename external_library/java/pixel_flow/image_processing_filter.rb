@@ -20,7 +20,7 @@ class ImageProcessingFilters < Propane::App
   filters.each do |filter|
     java_import format(filter_format, filter)
   end
-  java_import 'com.jogamp.opengl.GL'
+  java_import com.jogamp.opengl.GL
 
   GUI_WIDTH = 200
   VIEW_WIDTH = 927
@@ -109,7 +109,7 @@ class ImageProcessingFilters < Propane::App
   attr_reader :tex_A, :pg_src_A, :pg_src_B, :pg_src_C, :cp5, :hide
   attr_reader :pg_voronoi_centers, :laplace_weight
   attr_reader :show_geom, :show_image, :animations, :passes
-  attr_reader :rs, :vel, :pos, :panel, :filters, :blur_radius, :conv_kernel_idx
+  attr_reader :rs, :vel, :pos, :filters, :blur_radius, :conv_kernel_idx
 
   def settings
     size VIEW_WIDTH, VIEW_HEIGHT, P2D
@@ -154,6 +154,12 @@ class ImageProcessingFilters < Propane::App
       pg_voronoi_centers.point(px + 0.5,  py + 0.5)
     end
     pg_voronoi_centers.end_draw
+    setup_control_panel
+    # frame_rate(60)
+    frame_rate(1000)
+  end
+
+  def setup_control_panel
     control_panel do |c|
       c.look_feel 'Nimbus'
       c.title 'Filter Chooser and Settings'
@@ -165,17 +171,10 @@ class ImageProcessingFilters < Propane::App
       c.checkbox :show_image, true
       c.checkbox :show_geom, true
       c.checkbox :animations, true
-      @panel = c
     end
-    # frame_rate(60)
-    frame_rate(1000)
   end
 
   def draw
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     current = FILTERS.index(filters)
     convolution_kernel_index = conv_kernel_idx.to_i
     gaussblur_sigma = blur_radius / 2.0

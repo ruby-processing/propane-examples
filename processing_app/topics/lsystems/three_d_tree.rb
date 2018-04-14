@@ -8,7 +8,7 @@ class ThreeDTree < Propane::App
   ########################################################
 
   load_libraries :stochastic_grammar, :control_panel
-  attr_reader :plant, :zoom, :rot_y, :panel, :hide
+  attr_reader :plant, :zoom, :rot_y
 
   def setup
     sketch_title 'Three D Tree'
@@ -19,17 +19,15 @@ class ThreeDTree < Propane::App
     plant.create_grammar(5)
     no_stroke
     @rot_y = 0
-    @hide = false
   end
 
   def setup_panel
     control_panel do |c|
       c.title 'Control:'
-      c.look_feel 'Metal'
-      c.slider :zoom, 1..8, 3
+      c.look_feel 'nimbus'
+      c.slider :zoom, 0.1..5, 0.1
       c.slider :rot_y, -PI..PI, 0
       c.button :reset
-      @panel = c
     end
   end
 
@@ -39,10 +37,6 @@ class ThreeDTree < Propane::App
   end
 
   def draw
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     background(0)
     rotate_y rot_y
     scale zoom

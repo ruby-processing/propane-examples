@@ -8,7 +8,7 @@ require 'propane'
 # Hold mouse click to show unfiltered image
 class FisheyePincushion < Propane::App
   load_library :control_panel
-  attr_reader :my_filter, :my_image, :amount, :panel, :hide
+  attr_reader :my_filter, :my_image, :amount
 
   def settings
     size(512, 512, P2D)
@@ -18,15 +18,9 @@ class FisheyePincushion < Propane::App
     sketch_title 'FishEye / Pincushion'
     setup_control
     @my_image  = load_image(data_path('texture.jpg'))
-    @hide = false
   end
 
   def draw
-    # only make control_panel visible once, or again when hide is false
-    unless hide
-      @hide = true
-      panel.set_visible(hide)
-    end
     background(0)
     @my_filter = load_shader(data_path('fish_eye.glsl'))
     my_filter.set('sketchSize', width.to_f, height.to_f)
@@ -42,8 +36,7 @@ class FisheyePincushion < Propane::App
     control_panel do |c|
       c.look_feel 'Nimbus'
       c.title = 'adjust pin..fish'
-      c.slider :amount, -50.0..50.0, 0
-      @panel = c
+      c.slider :amount, -50.0..50.0, 0      
     end
   end
 end
