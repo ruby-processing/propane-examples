@@ -21,7 +21,7 @@ class Attractor < Propane::App
 
   def setup
     sketch_title 'Attractor'
-    H.init(self)
+    H.init(self.g)
     H.background(color('#242424'))
     H.use3D(true)
     @r = 0
