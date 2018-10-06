@@ -84,7 +84,7 @@ def draw_flyers
       flyer.rotation = to_rotation if flyer.rotation < to_rotation
     end
     # add tail position
-    flyer.positions << flyer.pos.dup
+    flyer.positions << flyer.pos.copy
     flyer.positions.shift while flyer.positions.size > @tail_length
     # set flyer position
     flyer.pos.x = flyer.pos.x + @speed * cos(flyer.rotation)
