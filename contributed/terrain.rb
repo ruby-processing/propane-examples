@@ -20,7 +20,7 @@ class Terrain < Propane::App
   end
 
   def setup
-    sketch_title 'Terreno' # sketch_title doesn't work with P3D on PI
+    sketch_title 'Terrain'
     @columns = WIDTH / SCL
     @rows = HEIGHT / SCL
     @terrain = {}
@@ -50,7 +50,7 @@ class Terrain < Propane::App
         terrain[Key.new(x, y)].to_vertex(renderer)
         terrain[Key.new(x, y.succ)].to_vertex(renderer)
       end
-      end_shape(CLOSE)
+      end_shape
     end
   end
 
