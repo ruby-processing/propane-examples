@@ -88,7 +88,7 @@ class Boid
 
   def render
     # Draw a triangle rotated in the direction of velocity
-    theta = velocity.heading + Math::PI/2
+    theta = velocity.fast_heading + Math::PI/2
     fill(200, 100)
     stroke(255)
     push_matrix

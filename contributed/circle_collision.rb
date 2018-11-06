@@ -24,7 +24,7 @@ class CircleCollision < Propane::App
   end
 
   def settings
-    size 640, 360, FX2D
+    size 640, 360
   end
 end
 
@@ -60,7 +60,7 @@ class Ball
     # calculate magnitude of the vector separating the balls
     return unless difference.mag < (r + other_ball.r)
     # get angle of difference
-    theta  = difference.heading
+    theta  = difference.fast_heading
     # precalculate trig values
     sine = sin(theta)
     cosine = cos(theta)

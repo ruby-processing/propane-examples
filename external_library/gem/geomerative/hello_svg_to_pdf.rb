@@ -3,7 +3,8 @@ require 'propane'
 require 'geomerative'
 
 class HelloSvgToPDF < Propane::App
-  load_library 'pdf'
+  load_library :pdf
+  include_package 'processing.pdf'
   attr_reader :grp, :pdf
 
   def settings
@@ -14,7 +15,7 @@ class HelloSvgToPDF < Propane::App
     sketch_title 'SVG to PDF sketch'
     RG.init(self)
     @grp = RG.load_shape(data_path('bot1.svg'))
-    @pdf = create_graphics(width, height, PDF, 'bot1.pdf')
+    @pdf = create_graphics(width, height, PDF, data_path('bot1.pdf'))
   end
 
   def draw

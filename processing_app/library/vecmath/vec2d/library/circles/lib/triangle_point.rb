@@ -18,7 +18,7 @@ class TPoint
     @accel = acc
     # magnitude of the acceleration is proportional to the angle between
     # acceleration and velocity
-    dif = acc.angle_between(vel)
+    dif = acc.fast_angle_between(vel)
     dif = map1d(dif, 0..PI, 0.1..0.001)
     @accel = acc * dif
   end
