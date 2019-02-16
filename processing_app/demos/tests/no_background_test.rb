@@ -15,7 +15,7 @@ class NoBackground < Propane::App
   end
 
   def settings
-    size(400, 400, FX2D)
+    size(400, 400)
   end
 end
 

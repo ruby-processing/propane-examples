@@ -19,7 +19,7 @@ class TextRendering < Propane::App
   end
 
   def settings
-    size(800, 600, FX2D)
+    size(800, 600)
   end
 end
 

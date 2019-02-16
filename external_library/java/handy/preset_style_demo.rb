@@ -42,7 +42,7 @@ class PresetStyleDemo < Propane::App
     # Should work with all Processing 3 renderers.
     # size(1200, 800, P2D)
     # size(1200, 800, P3D)
-    # size(1200, 800, FX2D)
+    # size(1200, 800)
     pixelDensity(displayDensity) # Use platform's maximum display density.
   end
 

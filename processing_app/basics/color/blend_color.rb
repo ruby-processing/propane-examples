@@ -25,7 +25,7 @@ class BlendColor < Propane::App
   end
 
   def settings
-    size 100, 100, FX2D
+    size 100, 100
   end
 end
 

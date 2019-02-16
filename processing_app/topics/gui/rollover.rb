@@ -62,7 +62,7 @@ class Rollover < Propane::App
   end
 
   def settings
-    size 640, 360, FX2D
+    size 640, 360
     smooth(4)
   end
 end

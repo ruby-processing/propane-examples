@@ -29,7 +29,7 @@ class CSTest < Propane::App
   end
 
   def settings
-    size 125, 250, FX2D
+    size 125, 250
   end  
 end
 

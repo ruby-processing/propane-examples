@@ -93,7 +93,7 @@ create_wheel width / 2, height / 2, @style
 end
 
 def settings
-size 640, 360, FX2D
+size 640, 360
 end
 end
 
