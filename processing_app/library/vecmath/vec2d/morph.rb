@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 require 'propane'
 
-java_import 'monkstone.vecmath.AppRender'
+java_import 'monkstone.vecmath.GfxRender'
 # Morph.
 #
 # Changing one shape into another by interpolating
@@ -78,7 +78,7 @@ class Morph < Propane::App
   end
 
   def renderer
-    @renderer = AppRender.new(self)
+    @renderer = GfxRender.new(self.g)
   end
 
   def settings

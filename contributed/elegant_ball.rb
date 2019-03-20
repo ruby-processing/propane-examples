@@ -4,7 +4,7 @@ require 'propane'
 # Ben Notorianni aka lazydog
 #
 # elegant.rb
-java_import 'monkstone.vecmath.AppRender'
+java_import 'monkstone.vecmath.GfxRender'
 
 class ElegantBall < Propane::App
 
@@ -38,7 +38,7 @@ class ElegantBall < Propane::App
   end
 
   def renderer
-    @renderer ||= AppRender.new(self)
+    @renderer ||= GfxRender.new(self.g)
   end
 
   def setup_lights

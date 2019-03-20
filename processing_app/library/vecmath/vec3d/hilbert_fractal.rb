@@ -3,7 +3,7 @@
 require 'propane'
 require 'arcball'
 require_relative 'library/hilbert/hilbert'
-java_import 'monkstone.vecmath.AppRender'
+java_import 'monkstone.vecmath.GfxRender'
 
 ########################################################
 # A 3D Hilbert fractal implemented using a

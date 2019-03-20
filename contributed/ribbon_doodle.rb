@@ -84,9 +84,9 @@ class Doodle < Propane::App
     @q = b
   end
 
-  # An example of AppRenderer usage for Vec3D => vertex conversion
+  # An example of GfxRenderer usage for Vec3D => vertex conversion
   def renderer
-    @renderer ||= Propane::Render::AppRender.new(self)
+    @renderer ||= Propane::Render::GfxRender.new(self.g)
   end
 end
 

@@ -3,7 +3,7 @@
 require 'propane'
 require 'arcball'
 require_relative 'library/geometry/geometry'
-java_import 'monkstone.vecmath.AppRender'
+java_import 'monkstone.vecmath.GfxRender'
 
 class FrameOfReference < Propane::App
   ###############
@@ -115,7 +115,7 @@ class FrameOfReference < Propane::App
   end
 
   def renderer
-    @renderer ||= AppRender.new(self)
+    @renderer ||= GfxRender.new(self.g)
   end
 end
 
