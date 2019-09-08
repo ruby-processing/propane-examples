@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+require 'fileutils'
 
 PRWD = File.expand_path(__dir__)
 
 desc 'run contributed samples'
-task :default => [:all]
+task default: [:all]
 
 desc 'run all autorun samples except hype'
 task :all do
@@ -11,60 +11,116 @@ task :all do
   Rake::Task[:vecmath].execute
   Rake::Task[:shaders].execute
   Rake::Task[:slider].execute
+  Rake::Task[:demo].execute
 end
 
 desc 'run contributed samples'
 task :contributed do
-  sh "cd #{PRWD}/contributed && rake"
+  FileUtils.cd(File.join(PRWD, 'contributed'))
+  system 'rake'
 end
 
-desc 'shaders'
-task :shaders do
-  sh "cd #{PRWD}/processing_app/topics/shaders && rake"
+desc 'run graphics demo'
+task :demos do
+  FileUtils.cd(
+    File.join(PRWD,
+      'processing_app',
+      'demos',
+      'graphics'
+    )
+  )
+  system 'rake'
 end
 
-desc 'PixelFlow'
-task :pixel_flow do
-  sh "cd #{PRWD}/external_library/java/pixel_flow && rake"
-end
-
-desc 'vecmath'
+desc 'run vecmath samples'
 task :vecmath do
-  sh "cd #{PRWD}/processing_app/library/vecmath/vec2d && rake"
-  sh "cd #{PRWD}/processing_app/library/vecmath/vec3d && rake"
-  sh "cd #{PRWD}/processing_app/library/vecmath/arcball && rake"
+  %w[vec2d vec3d arcball].each do |folder|
+    FileUtils.cd(
+      File.join(
+        PRWD,
+        'processing_app',
+        'library',
+        'vecmath',
+        folder
+      )
+    )
+    system 'rake'
+  end
 end
 
-desc 'hype'
+desc 'run shader samples'
+task :shaders do
+  FileUtils.cd(
+    File.join(
+      PRWD,
+      'processing_app',
+      'topics',
+      'shaders'
+    )
+  )
+  system 'rake'
+end
+
+desc 'run Hype Processing samples'
 task :hype do
-  sh "cd #{PRWD}/external_library/java/hype && rake"
+  FileUtils.cd(
+    File.join(
+      PRWD,
+      'external_library',
+      'java',
+      'hype'
+    )
+  )
+  system 'rake'
 end
 
-desc 'slider'
-task :slider do
-  sh "cd #{PRWD}/processing_app/library/slider && rake"
-end
-
-desc 'geomerative'
-task :geomerative do
-  sh "cd #{PRWD}/external_library/gem/geomerative && rake"
+desc 'run WordCram samples'
+task :wordcram do
+  FileUtils.cd(
+    File.join(
+      PRWD,
+      'external_library',
+      'gem',
+      'ruby_wordcram'
+    )
+  )
+  system 'rake'
 end
 
 desc 'hemesh'
 task :hemesh do
-  sh "cd #{PRWD}/external_library/java/hemesh && rake"
+  FileUtils.cd(
+    File.join(
+      PRWD,
+      'external_library',
+      'java',
+      'hemesh'
+    )
+  )
+  system 'rake'
 end
 
 desc 'pbox2d'
 task :pbox2d do
-  sh "cd #{PRWD}/external_library/gem/pbox2d && rake"
-  sh "cd #{PRWD}/external_library/gem/pbox2d/revolute_joint && jruby revolute_joint.rb"
-  sh "cd #{PRWD}/external_library/gem/pbox2d/test_contact && jruby test_contact.rb"
-  sh "cd #{PRWD}/external_library/gem/pbox2d/mouse_joint && jruby mouse_joint.rb"
-  sh "cd #{PRWD}/external_library/gem/pbox2d/distance_joint && jruby distance_joint.rb"
-end
-
-desc 'wordcram'
-task :wordcram do
-  sh "cd #{PRWD}/external_library/gem/ruby_wordcram && rake"
+  FileUtils.cd(
+    File.join(
+      PRWD,
+      'external_library',
+      'gem',
+      'pbox2d'
+    )
+  )
+  system 'rake'
+  %w[revolute_joint test_contact mouse_joint distance_joint].each do |folder|
+    FileUtils.cd(
+      File.join(
+        PRWD,
+        'external_library',
+        'gem',
+        'pbox2d',
+        folder
+      )
+    )
+    system "k9 -r #{folder}.rb"
+  end
 end
