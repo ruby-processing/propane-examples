@@ -43,12 +43,10 @@ class SketchServer < Propane::App
     input = c.read_string
     # Split input into an array of lines
     data = input.split("\n")
-    data.each do |str|
-      # Split each line to array of string and convert to array of java float
-      coords = str.split(' ').map(&:to_f).to_java(:float)
-      # Draw line using received coords
-      line(*coords)
-    end
+    # Split first line to array of string and convert to array of java float
+    coords = data[0].split(' ').map(&:to_f).to_java(:float)
+    # Draw line using received coords
+    line(*coords)
   end
 end
 
