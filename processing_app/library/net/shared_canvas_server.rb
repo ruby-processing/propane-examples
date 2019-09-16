@@ -31,19 +31,24 @@ class SketchServer < Propane::App
   def draw
     if mouse_pressed?
       # Draw our line
-      stroke(255)
+      stroke 255
       line(pmouse_x, pmouse_y, mouse_x, mouse_y)
       # Send mouse coords to other person
-      s.write(format("%d %d %d %d\n", pmouse_x, pmouse_y, mouse_x, mouse_y))
+      s.write(format("%f %f %f %f\n", pmouse_x, pmouse_y, mouse_x, mouse_y))
     end
     # Receive data from client
     c = s.available
     return if c.nil?
+    stroke 255, 0, 0
     input = c.read_string
-    # Split values into an array and convert to int
-    data = input.split(' ').map(&:to_f).to_java(:float)
-    # Draw line using received coords
-    line(*data)
+    # Split input into an array of lines
+    data = input.split("\n")
+    data.each do |str|
+      # Split each line to array of string and convert to array of java float
+      coords = str.split(' ').map(&:to_f).to_java(:float)
+      # Draw line using received coords
+      line(*coords)
+    end
   end
 end
 

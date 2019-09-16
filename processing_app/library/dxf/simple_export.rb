@@ -7,8 +7,6 @@ require 'propane'
 # Press the 'R' key to export a DXF file.
 class DXFExport < Propane::App
   load_library :dxf
-  include_package 'processing.dxf'
-
   attr_reader :recording
 
   def setup

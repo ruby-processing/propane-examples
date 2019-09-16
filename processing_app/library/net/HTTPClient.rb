@@ -28,7 +28,7 @@ class HTTPClient < Propane::App
 
   def draw
     return unless client.available > 0
-    data = client.read_string # ...then grab it and print it
+    @data = client.read_string # ...then grab it and print it
     puts data
   end
 
