@@ -6,7 +6,6 @@ require 'propane'
 # press mouse to generate new pattern
 # use `c` key to toggle colored / greyscale
 # use 's' to save
-
 class ArcTesselation < Propane::App
   attr_reader :cols, :coloured
 

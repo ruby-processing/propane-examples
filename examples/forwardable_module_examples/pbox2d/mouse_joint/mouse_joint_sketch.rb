@@ -2,13 +2,13 @@
 require 'propane'
 require 'pbox2d'
 
-
 # The Nature of Code
 # Daniel Shiffman
 # http://natureofcode.com
 
 # Basic example of controlling an object with the mouse (by attaching a spring)
 class MouseJoint < Propane::App
+  load_library :mouse_joint
   # A reference to our box2d world
   attr_reader :box2d, :boundaries, :box, :spring
   def settings

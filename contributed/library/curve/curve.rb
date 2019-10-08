@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Olap
   def self.overlaps(x, y, point_x, point_y)
     Math.hypot(x - point_x, y - point_y) < RADIUS

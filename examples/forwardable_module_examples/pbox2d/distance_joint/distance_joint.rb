@@ -1,6 +1,6 @@
 #!/usr/bin/env jruby -v -W2
-require 'propane'
-require 'pbox2d'
+require 'propane' # A ruby-processing gem
+require 'pbox2d' #  A ruby-processing gem
 require 'forwardable'
 
 # The Nature of Code
