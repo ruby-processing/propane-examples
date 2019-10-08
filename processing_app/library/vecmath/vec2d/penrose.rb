@@ -1,14 +1,14 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
+
 require 'propane'
-require_relative 'library/tile/tile'
 # Penrose Tile Generator
 # Using a variant of the "ArrayList" recursion technique: http://natureofcode.com/book/chapter-8-fractals/chapter08_section4
 # Penrose Algorithm from: http://preshing.com/20110831/penrose-tiling-explained
 # Daniel Shiffman May 2013
 # Translated (and refactored) to JRubyArt July 2015 by Martin Prout
 class Penrose < Propane::App
-  load_library :control_panel
+  load_libraries :control_panel, :tile
   attr_reader :tris, :s, :acute
 
   def setup

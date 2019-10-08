@@ -2,9 +2,6 @@
 # frozen_string_literal: true
 require 'propane'
 require 'arcball'
-require_relative 'library/hilbert/hilbert'
-java_import 'monkstone.vecmath.GfxRender'
-
 ########################################################
 # A 3D Hilbert fractal implemented using a
 # Lindenmayer System in JRubyArt by Martin Prout
@@ -14,6 +11,7 @@ java_import 'monkstone.vecmath.GfxRender'
 # intuitive rotation using mouse drag.
 ########################################################
 class HilbertFractal < Propane::App
+  load_library :hilbert
   attr_reader :hilbert
 
   def setup

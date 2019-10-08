@@ -1,7 +1,6 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
 require 'propane'
-java_import 'monkstone.vecmath.GfxRender'
 # Drawolver: draw 2D & revolve 3D
 
 # Example shows how to use the vecmath library, including GfxRender utility.

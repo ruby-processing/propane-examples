@@ -1,11 +1,11 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
+
+require 'propane'
 #
 # Verlet Integration - ragdoll chain
 # after a sketch by Ira Greenberg
 #
-require 'propane'
-
 class VerletIntegration < Propane::App
   load_library :verlet_chain
   PARTICLES = 5

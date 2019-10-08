@@ -2,15 +2,14 @@
 # frozen_string_literal: true
 require 'propane'
 require 'arcball'
-require_relative 'library/geometry/geometry'
-java_import 'monkstone.vecmath.GfxRender'
 
+###############
+# Frame of Reference example by Ira Greenberg
+# https://github.com/irajgreenberg/ProcessingTips
+# Translated to JRubyArt by Martin Prout February 2016
+###############
 class FrameOfReference < Propane::App
-  ###############
-  # Frame of Reference example by Ira Greenberg
-  # https://github.com/irajgreenberg/ProcessingTips
-  # Translated to JRubyArt by Martin Prout February 2016
-  ###############
+  load_library :geometry
   FACE_COUNT = 50
 
   attr_reader :c, :p

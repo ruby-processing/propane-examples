@@ -1,14 +1,12 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
 require 'propane'
-require_relative 'library/particle/particle'
-
 # ParticleSystemPShape
 # A particle system optimized for drawing using PShape
 # For guts of implementation see 'particle' library
 #
 class ParticleShape < Propane::App
-
+  load_library :particle
   # Particle System object and image
   attr_reader :ps
 

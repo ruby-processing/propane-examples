@@ -1,7 +1,6 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
 require 'propane'
-java_import 'monkstone.vecmath.GfxRender'
 # Click on the box and drag it across the screen.
 class AaBbExample < Propane::App
   attr_reader :block, :block_locked, :over_block, :bounds

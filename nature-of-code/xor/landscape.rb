@@ -38,7 +38,7 @@ class Landscape
       # (clean this part up)
       no_stroke
       push_matrix
-      begin_shape(QUADS)
+      begin_shape(Processing::QUADS)
       translate(x * scl - w * 0.5, y * scl - h * 0.5, 0)
       fill(z[x][y] + 127, 220)
       vertex(0, 0, z[x][y])

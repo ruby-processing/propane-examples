@@ -1,7 +1,6 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
 require 'propane'
-java_import 'monkstone.vecmath.GfxRender'
 ########
 # Soft Body by Ira Greenberg
 # Softbody dynamic simulation using curve_vertex

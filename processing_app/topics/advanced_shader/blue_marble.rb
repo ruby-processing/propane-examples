@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby -w
+# frozen_string_literal: true
+
 require 'propane'
 # Earth model with bump mapping, specular texture and dynamic cloud layer.
 # Adapted from the THREE.js tutorial to processing by Andres Colubri,
@@ -6,35 +8,45 @@ require 'propane'
 # http://learningthreejs.com/blog/2013/09/16/how-to-make-the-earth-in-webgl/
 class BlueMarble < Propane::App
   attr_reader :earth, :clouds, :earth_shader, :cloud_shader, :earth_rotation
-  attr_reader :clouds_rotation, :target_angle
+  attr_reader :clouds_rotation, :target_angle, :shaders
 
-  SHADERS = %w(EarthFrag.glsl EarthVert.glsl CloudFrag.glsl CloudVert.glsl).freeze
-  SHADER_NAME = %i(earth_frag earth_vert cloud_frag cloud_vert).freeze
-  IMAGES = %w(earthmap1k earthcloudmap earthcloudmaptrans earthbump1k earthspec1k).freeze
-  IMAGE_NAME = %i(earth_tex cloud_tex alpha_tex bump_map spec_map).freeze
+  SHADERS = %w[EarthFrag.glsl EarthVert.glsl CloudFrag.glsl CloudVert.glsl].freeze
+  SHADER_NAME = %i[earth_frag earth_vert cloud_frag cloud_vert].freeze
+  IMAGES = %w[earthmap1k earthcloudmap earthcloudmaptrans earthbump1k earthspec1k].freeze
+  IMAGE_NAME = %i[earth_tex cloud_tex alpha_tex bump_map spec_map].freeze
 
   def setup
     sketch_title 'Blue Marble'
     @earth_rotation = 0
     @clouds_rotation = 0
     glsl_files = SHADERS.map { |shade| data_path(shade) }
-    shaders = SHADER_NAME.zip(glsl_files.to_java(:string)).to_h
+    @shaders = SHADER_NAME.zip(glsl_files.to_java(:string)).to_h
     images = IMAGES.map { |img| load_image(data_path("#{img}.jpg")) }
     textures = IMAGE_NAME.zip(images).to_h
-    @earth_shader = load_shader(shaders[:earth_frag], shaders[:earth_vert])
-    earth_shader.set('texMap', textures[:earth_tex])
-    earth_shader.set('bumpMap', textures[:bump_map])
-    earth_shader.set('specularMap', textures[:spec_map])
-    earth_shader.set('bumpScale', 0.05)
-    @cloud_shader = load_shader(shaders[:cloud_frag], shaders[:cloud_vert])
-    cloud_shader.set('texMap', textures[:cloud_tex])
-    cloud_shader.set('alphaMap', textures[:alpha_tex])
-    @earth = create_shape(SPHERE, 200)
-    earth.set_stroke(false)
-    earth.set_specular(color(125))
-    earth.set_shininess(10)
-    @clouds = create_shape(SPHERE, 201)
-    clouds.set_stroke(false)
+    @earth_shader = init_shader(:earth_frag, :earth_vert).tap do |shp|
+      shp.set('texMap', textures[:earth_tex])
+      shp.set('bumpMap', textures[:bump_map])
+      shp.set('specularMap', textures[:spec_map])
+      shp.set('bumpScale', 0.05)
+    end
+    @cloud_shader = init_shader(:cloud_frag, :cloud_vert).tap do |shp|
+      shp.set('texMap', textures[:cloud_tex])
+      shp.set('alphaMap', textures[:alpha_tex])
+    end
+    @earth = create_sphere(200).tap do |shp|
+      shp.set_stroke(false)
+      shp.set_specular(color(125))
+      shp.set_shininess(10)
+    end
+    @clouds = create_sphere(201).tap { |shp| shp.set_stroke(false) }
+  end
+
+  def create_sphere(dim)
+    create_shape(SPHERE, dim)
+  end
+
+  def init_shader(frag, vert)
+    load_shader(shaders[frag], shaders[vert])
   end
 
   def draw

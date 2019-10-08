@@ -1,8 +1,6 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
 require 'propane'
-
-java_import 'monkstone.vecmath.GfxRender'
 # Morph.
 #
 # Changing one shape into another by interpolating
