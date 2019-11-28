@@ -1,11 +1,10 @@
-#!/usr/bin/env jruby
+#!/usr/bin/env jruby --dev
 require 'propane'
-# Because this sketch uses a glsl shader it needs to run using
-# jruby-complete (typically rp5 --nojruby sketch.rb)
+# From an original shader by RavenWorks
 # hold down mouse to see unfiltered output
 class Steinberg < Propane::App
-  load_library :glvideo
-  include_package 'gohai.glvideo'
+  load_library :video
+  java_import 'processing.video.Capture'
   attr_reader :cam, :my_shader
 
   def settings
@@ -20,15 +19,19 @@ class Steinberg < Propane::App
   end
 
   def start_capture(w, h)
-    @cam = GLCapture.new(self)
+    @cam = Capture.new(self, width, height, 'UVC Camera (046d:0825)')
     cam.start
   end
 
   def draw
+    return unless cam.available
+
     background 0
-    cam.read if cam.available
-    image(cam, 0, 0, width, height)
+    cam.read
+    set(0, 0, cam)
+    # image(cam, 0, 0, width, height)
     return if mouse_pressed?
+
     filter(my_shader)
   end
 end
