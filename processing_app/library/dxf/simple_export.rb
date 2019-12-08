@@ -1,9 +1,12 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
+
 require 'propane'
+require 'arcball'
 # DXF DXF Export
-# by Simon Greenwold.
-#
+# original by Simon Greenwold.
+# Translated to propane by Martin Prout
+# Rotate by dragging mouse, wheel to zoom.
 # Press the 'R' key to export a DXF file.
 class DXFExport < Propane::App
   load_library :dxf
@@ -11,39 +14,38 @@ class DXFExport < Propane::App
 
   def setup
     sketch_title 'DXF Export'
-    noStroke
-    sphereDetail(12)
+    Processing::ArcBall.init(self)
+    no_stroke
+    sphere_detail(15)
     @recording = false
   end
 
   def draw
-    begin_raw(DXF, data_path('output.dxf')) if recording # Start recording to the file
+    # Start recording to the file
+    begin_raw(DXF, data_path('output.dxf')) if recording
     lights
     background(0)
-    translate(width / 3, height / 3, -200)
-    rotate_z(map1d(mouse_y, (0..height), (0..PI)))
-    rotateY(map1d(mouse_x, (0..width), (0..HALF_PI)))
-    (-2..2).step do |y|
-      (-2..2).step do |x|
-        (-2..2).step do |z|
-          push_matrix
-          translate(120 * x, 120 * y, -120 * z)
-          sphere(30)
-          pop_matrix
-        end
-      end
+    mesh_grid(400, 400, 400, 80, 80, 80) do |x, y, z|
+      push_matrix
+      translate(x - 200, y - 200, z - 200)
+      sphere(25)
+      pop_matrix
     end
     end_raw if recording
-    @recording = false # Stop recording to the file
+    # Stop recording to the file
+    @recording = false
   end
 
   def key_pressed
-    return unless key == 'R' || key == 'r' # Press R to save the file
+    # Press R to save the file
+    return unless key == 'R' || key == 'r'
+
     @recording = true
   end
 
   def settings
     size(400, 400, P3D)
+    smooth(16)
   end
 end
 

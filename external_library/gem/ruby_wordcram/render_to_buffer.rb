@@ -44,11 +44,11 @@ class RenderToBuffer < Propane::App
     rect(100, (height / 2) - 30, (width - 200), 60)
     # Fill in the portion that's done:
     fill(gray)
-    rect(100, (height/2)-30, (width-200) * progress, 60)
+    rect(100, (height / 2) - 30, (width - 200) * progress, 60)
   end
 
-  def draw_progress_text(progress)
-    text(format('%d%', (progress * 100).round), width / 2, (height / 2) + 50)
+  def draw_progress_text(progress = 0)
+    text "#{(progress * 100).round}%", width / 2, (height / 2) + 50
   end
 
   def settings

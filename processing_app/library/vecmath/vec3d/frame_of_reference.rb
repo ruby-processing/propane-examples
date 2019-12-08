@@ -1,5 +1,6 @@
 #!/usr/bin/env jruby -v -W2
 # frozen_string_literal: true
+
 require 'propane'
 require 'arcball'
 

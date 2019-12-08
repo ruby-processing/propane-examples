@@ -7,6 +7,7 @@ require 'propane'
 # use `c` key to toggle colored / greyscale
 # use 's' to save
 class ArcTesselation < Propane::App
+  load_library :color_group
   attr_reader :cols, :coloured
 
   PALETTE = %w[#152A3B #158ca7 #F5C03E #D63826 #0F4155 #7ec873 #4B3331].freeze
@@ -19,7 +20,7 @@ class ArcTesselation < Propane::App
     background 0
     sketch_title 'Arc Tesselation'
     # create a java primitive array of signed int
-    @cols = web_to_color_array(PALETTE)
+    @cols = ColorGroup.from_web_array(PALETTE)
     stroke_weight 1.5
     stroke_cap SQUARE
     stroke(0, 200)
@@ -35,7 +36,7 @@ class ArcTesselation < Propane::App
   end
 
   def sep_color(idx, number)
-    cols[sep_index(idx - 1, number + 1)]
+    cols.colors[sep_index(idx - 1, number + 1)]
   end
 
   def arc_pattern
@@ -63,7 +64,7 @@ class ArcTesselation < Propane::App
   end
 
   def mouse_pressed
-    @cols = shuffle_array(cols) if coloured
+    cols.shuffle!
     loop
   end
 
@@ -74,13 +75,6 @@ class ArcTesselation < Propane::App
     when 's', 'S'
       save(data_path('arc_pattern.png'))
     end
-  end
-
-  # do a ruby shuffle! on a primitive java array
-  def shuffle_array(arr)
-    cols = arr.to_a
-    cols.shuffle!
-    cols.to_java(Java::int)
   end
 end
 

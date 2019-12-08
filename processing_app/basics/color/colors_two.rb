@@ -11,11 +11,10 @@ class CreatingColors < Propane::App
   def settings
     size 640, 360
   end
-  
+
   def setup
     sketch_title 'Homage to Albers'
-    # palette = web_to_color_array(['#CC6600', '#CC9900', '#993300'].to_java(:string))
-    palette = web_to_color_array(['#CC6600', '#CC9900', '#993300'])
+    palette = web_to_color_array(%w[#CC6600 #CC9900 #993300])
     # @redder = color 204, 102, 0
     # @yellower = color 204, 153, 0
     # @orangish = color 153, 51, 0
