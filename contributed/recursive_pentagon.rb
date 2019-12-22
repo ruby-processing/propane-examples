@@ -30,7 +30,7 @@ end
 
 RecursivePentagons.new
 
-# Here we include Processing::Proxy to mimic vanilla processing inner class
+# Here we include Propane::Proxy to mimic vanilla processing inner class
 # access.
 class PentagonFractal
   include Propane::Proxy

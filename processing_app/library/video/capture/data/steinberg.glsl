@@ -2,7 +2,7 @@
 // Fake Floyd-Steinberg dithering
 // https://www.shadertoy.com/view/4sjGRD
 
-// Adapted for PiCrate by Martin Prout <@monkstoneT>
+// Adapted for propane by Martin Prout <@monkstoneT>
 
 #ifdef GL_ES
 precision mediump float;

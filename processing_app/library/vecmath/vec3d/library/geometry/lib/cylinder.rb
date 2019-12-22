@@ -1,6 +1,6 @@
 # encoding: UTF-8
 # frozen_string_literal: true
-# Cylinder class includes Processing::Proxy to use sketch methods
+# Cylinder class includes Propane::Proxy to use sketch methods
 class Cylinder
   include Propane::Proxy
   attr_accessor :vecs

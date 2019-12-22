@@ -4,7 +4,7 @@
 
 # Example 22-2: Polymorphism
 require_relative 'shape'
-# Square class can inherit Processing::Proxy methods from Shape
+# Square class can inherit Propane::Proxy methods from Shape
 # Variables are inherited from the parent.
 # We could also add variables unique to the Square class if we so desire
 # NB: run could be the only visible method

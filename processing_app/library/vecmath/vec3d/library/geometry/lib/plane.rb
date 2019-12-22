@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 NORM_LEN = 225.0
-# Plane class includes Processing::Proxy to use sketch methods
+# Plane class includes Propane::Proxy to use sketch methods
 class Plane
   include Propane::Proxy
   attr_reader :vecs, :c, :n

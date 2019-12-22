@@ -9,7 +9,7 @@ module Runner
   end
 end
 
-# Euler Ball Class, we include Processing::Proxy module to access PApplet methods
+# Euler Ball Class, we include Propane::Proxy module to access PApplet methods
 class EulerBall
   include Propane::Proxy, Runner
   attr_reader :pos, :spd, :radius, :bounds_x, :bounds_y

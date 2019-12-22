@@ -3,10 +3,10 @@
 # http://www.learningprocessing.com
 
 # Example 22-2: Polymorphism
-# class Shape does not require Processing::Proxy but can pass it on to
+# class Shape does not require Propane::Proxy but can pass it on to
 # the inheriting classes Square and Circle (NB: change to using run)
 class Shape
-  include Processing::Proxy
+  include Propane::Proxy
   attr_reader :x, :y, :r
 
   def initialize(x:, y:, r:, **opts)

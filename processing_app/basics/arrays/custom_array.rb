@@ -31,7 +31,7 @@ class CustomArray < Propane::App
   Particle = Struct.new(:x, :y, :mx, :my, :size, :speed, :xdir, :ydir)
 
   # The custom Array created using Forwardable
-  # Processing::Proxy gives access to PApplet methods
+  # Propane::Proxy gives access to PApplet methods
   class CustomArray
     extend Forwardable
     def_delegators(:@objs, :each, :<<)
