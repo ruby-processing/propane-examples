@@ -12,6 +12,7 @@ task :all do
   Rake::Task[:shaders].execute
   Rake::Task[:slider].execute
   Rake::Task[:demo].execute
+  Rake::Task[:sound].execute
 end
 
 desc 'run contributed samples'
@@ -98,6 +99,19 @@ task :hemesh do
     )
   )
   system 'rake'
+end
+
+desc 'sound'
+task :sound do
+  FileUtils.cd(
+    File.join(
+      PRWD,
+      'processing_app',
+      'library',
+      'sound'
+     )
+   )    
+   system 'rake'
 end
 
 desc 'pbox2d'
