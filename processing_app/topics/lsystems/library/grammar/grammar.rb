@@ -8,27 +8,20 @@ class Grammar
     @rules = rules
   end
 
-  def expand(production, iterations, &block)
-    production.each_char do |token|
-      if rules.key?(token) && iterations > 0
-        expand(rules[token], iterations - 1, &block)
-      else
-        yield token
-      end
-    end
-  end
-
-  def each(gen)
-    expand(axiom, gen) { |token| yield token }
+  def apply_rules(prod)
+    prod.gsub(/./) { |token| rules.fetch(token, token) }
   end
 
   def generate(gen)
-    [].tap do |output|
-      each(gen) { |token| output << token }
+    return axiom if gen.zero?
+
+    prod = axiom
+    gen.times do
+      prod = apply_rules(prod)
     end
+    prod
   end
 end
-
 
 Turtle = Struct.new(:x, :y, :angle, :color)
 
@@ -75,7 +68,7 @@ class PenroseColored
     repeated = %w(1 2 3 4)
     pen = Turtle.new(xpos, ypos, theta, :R)   # simple Struct for pen, symbol :R = red
     stack = []                      # simple array for stack
-    production.each do |element|
+    production.scan(/./) do |element|
       case element
       when 'F'
         pen = draw_line(pen, draw_length)

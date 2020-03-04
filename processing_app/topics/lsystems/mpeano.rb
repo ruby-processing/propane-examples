@@ -62,7 +62,7 @@ class MPeano
 
   def translate_rules(prod)
     [].tap do |points|      # An empty array to store line vertices
-      prod.each do |ch|
+      prod.scan(/./) do |ch|
         case ch
         when 'F'
           points << xpos << ypos << (@xpos -= draw_length * cos(theta)) << (@ypos -= draw_length * sin(theta))

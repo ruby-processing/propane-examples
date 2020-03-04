@@ -35,11 +35,11 @@ class PenroseSnowflake
 
   attr_accessor :axiom, :grammar, :start_length, :theta, :production,
   :draw_length, :xpos, :ypos
-  DELTA = 18 # degrees as radians
+  DELTA = 36 # degrees
 
   def initialize(xpos, ypos)
-    @axiom = 'F3-F3-F3-F3-F'
-    @grammar = Grammar.new(axiom, 'F' => 'F3-F3-F45-F++F3-F')
+    @axiom = 'F2-F2-F2-F2-F'
+    @grammar = Grammar.new(axiom, 'F' => 'F2-F2-F5-F+F2-F')
     @start_length = 450.0
     @theta = 0
     @xpos = xpos
@@ -54,7 +54,7 @@ class PenroseSnowflake
 
   def render
     repeats = 1
-    production.each do |element|
+    production.scan(/./) do |element|
       case element
       when 'F'
         line(xpos, ypos, (@xpos -= multiplier(repeats, :cos)), (@ypos += multiplier(repeats, :sin)))
@@ -65,8 +65,8 @@ class PenroseSnowflake
       when '-'
         @theta -= DELTA * repeats
         repeats = 1
-      when '3', '4', '5'
-        repeats += element.to_i
+      when '2', '5'
+        repeats = element.to_i
       else
         puts "Character '#{element}' is not in grammar"
       end

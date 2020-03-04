@@ -59,7 +59,7 @@ class DavidTour
   def translate_rules(prod)
     swap = false
     [].tap do |points| # An array to store lines as a flat array of points
-      prod.each do |ch|
+      prod.scan(/./) do |ch|
         case ch
         when 'F'
           points << xpos << ypos << (@xpos += draw_length * Math.cos(theta)) << (@ypos -= draw_length * Math.sin(theta))

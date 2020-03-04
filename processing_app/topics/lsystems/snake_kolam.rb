@@ -28,6 +28,8 @@ class SnakeKolamSketch < Propane::App
   end
 end
 
+SimpleTurtle = Struct.new(:x, :y, :angle)
+
 # class SnakeKolam
 class SnakeKolam
   include Propane::Proxy
@@ -55,15 +57,15 @@ class SnakeKolam
   end
 
   def render # NB not using affine transforms here
-    turtle = [xpos, ypos, 0]
-    production.each do |element|
+    turtle = SimpleTurtle.new(xpos, ypos, 0)
+    production.scan(/./) do |element|
       case element
       when 'F'
         turtle = draw_line(turtle, draw_length)
       when '+'
-        turtle[ANGLE] += DELTA
+        turtle.angle += DELTA
       when '-'
-        turtle[ANGLE] -= DELTA
+        turtle.angle -= DELTA
       when 'X'
       else
         puts "Character '#{element}' is not in grammar"
@@ -90,10 +92,12 @@ class SnakeKolam
   ######################################################
 
   def draw_line(turtle, length)
-    new_xpos = turtle[XPOS] + length * DegLut.cos(turtle[ANGLE])
-    new_ypos = turtle[YPOS] + length * DegLut.sin(turtle[ANGLE])
-    line(turtle[XPOS], turtle[YPOS], new_xpos, new_ypos)
-    [new_xpos, new_ypos, turtle[ANGLE]]
+    x_temp = turtle.x
+    y_temp = turtle.y
+    turtle.x += draw_length * DegLut.cos(turtle.angle)
+    turtle.y += draw_length * DegLut.sin(turtle.angle)
+    line(x_temp, y_temp, turtle.x, turtle.y)
+    turtle
   end
 end
 

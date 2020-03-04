@@ -79,7 +79,7 @@ class Pentagonal
       shape.stroke 200
       shape.stroke_weight 3
       shape.vertex(xpos, ypos)
-      production.each do |element|
+      production.scan(/./) do |element|
         case element
         when 'F'
           shape.vertex(@xpos -= adjust(:cos), @ypos += adjust(:sin))

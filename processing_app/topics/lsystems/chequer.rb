@@ -44,7 +44,7 @@ class Chequer
   end
 
   def render
-    production.each do |element|
+    production.scan(/./) do |element|
       case element
       when 'F'
         x_temp = xpos
