@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 ########################################################
 # A MPeano fractal implemented using a
@@ -15,7 +17,7 @@ class MPeanoSketch < Propane::App
   def setup
     sketch_title 'MPeano'
     mpeano = MPeano.new(width * 0.8, height * 0.8)
-    production = mpeano.generate 7                  # 7 generations looks OK
+    production = mpeano.generate 7 # 7 generations looks OK
     @points = mpeano.translate_rules(production)
     no_loop
   end
@@ -49,7 +51,7 @@ class MPeano
       'B' => 'AFF'
     }
     @grammar = Grammar.new(axiom, rules)
-    @delta   = PI / 4          # 45 degrees
+    @delta   = PI / 4 # 45 degrees
     @theta   = PI / 4
     @draw_length = 8
     @xpos = xpos
@@ -61,7 +63,7 @@ class MPeano
   end
 
   def translate_rules(prod)
-    [].tap do |points|      # An empty array to store line vertices
+    [].tap do |points| # An empty array to store line vertices
       prod.scan(/./) do |ch|
         case ch
         when 'F'

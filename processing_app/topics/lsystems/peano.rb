@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 #######################################################
 # A Peano fractal implemented using a
@@ -34,7 +36,7 @@ class PeanoSketch < Propane::App
   end
 
   def renderer
-    @renderer ||= GfxRender.new(self.g)
+    @renderer ||= GfxRender.new(g)
   end
 
   def settings
@@ -73,8 +75,8 @@ class Peano
         when 'F'
           pts << vec.copy
           @vec = Vec2D.new(
-          coss.call(vec.x, theta, draw_length),
-          sinn.call(vec.y, theta, draw_length)
+            coss.call(vec.x, theta, draw_length),
+            sinn.call(vec.y, theta, draw_length)
           )
           pts << vec
         when '+'

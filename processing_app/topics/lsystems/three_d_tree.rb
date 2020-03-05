@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 
 class ThreeDTree < Propane::App
@@ -13,7 +15,7 @@ class ThreeDTree < Propane::App
   def setup
     sketch_title 'Three D Tree'
     camera(400.0, 500.0, 200.0, 0.0, -160.0, 0.0,
-    0.0, 1.0, 0.0)
+           0.0, 1.0, 0.0)
     setup_panel
     @plant = Plant.new
     plant.create_grammar(5)
@@ -56,7 +58,7 @@ end
 class Plant
   include Propane::Proxy
   attr_reader :grammar, :axiom, :production, :premis, :rule,
-  :theta, :scale_factor, :distance, :phi
+              :theta, :scale_factor, :distance, :phi
 
   def initialize
     @axiom = 'F'

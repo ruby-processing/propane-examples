@@ -1,13 +1,12 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 # Lindenmayer System in propane by Martin Prout
 # Very loosely based on a processing Penrose L-System
 # by Geraldine Sarmiento
 class Snowflake < Propane::App
   load_library :grammar
-
-
-
 
   attr_reader :penrose
 
@@ -27,14 +26,13 @@ class Snowflake < Propane::App
   def settings
     size 1000, 900
   end
-
 end
 
 class PenroseSnowflake
   include Propane::Proxy
 
   attr_accessor :axiom, :grammar, :start_length, :theta, :production,
-  :draw_length, :xpos, :ypos
+                :draw_length, :xpos, :ypos
   DELTA = 36 # degrees
 
   def initialize(xpos, ypos)

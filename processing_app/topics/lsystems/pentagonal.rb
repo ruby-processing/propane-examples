@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 ############################
 # pentagonal.rb here I roll one of my own
@@ -6,7 +8,7 @@ require 'propane'
 class PentagonalSketch < Propane::App
   load_library :grammar
   #  Empirically determined position adjustments
-  ADJUST = [[800, 50], [500, 500], [500, 500], [300, 280], [50, 600]]
+  ADJUST = [[800, 50], [500, 500], [500, 500], [300, 280], [50, 600]].freeze
 
   attr_reader :pentagonal, :pentive
 
@@ -25,7 +27,7 @@ class PentagonalSketch < Propane::App
 
   def key_pressed
     case key
-    when '1', '2', '3', '4', '5'  # key corresponds to generation
+    when '1', '2', '3', '4', '5' # key corresponds to generation
       gen = key.to_i
       @pentagonal = Pentagonal.new
       pentagonal.create_grammar gen
@@ -50,7 +52,7 @@ end
 ###
 class Pentagonal
   include Propane::Proxy
-  DELTA = 72    # degrees
+  DELTA = 72 # degrees
   attr_accessor :draw_length
   attr_reader :axiom, :grammar, :theta, :production, :xpos, :ypos
   def initialize

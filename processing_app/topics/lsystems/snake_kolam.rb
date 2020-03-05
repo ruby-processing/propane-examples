@@ -1,18 +1,19 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 #######################################################
 # Lindenmayer System in propane by Martin Prout
 # snake_kolam.rb using l-systems
 #######################################################
 class SnakeKolamSketch < Propane::App
-
   load_library :grammar
   attr_reader :kolam
 
   def setup
     sketch_title 'Snake Kolam'
     @kolam = SnakeKolam.new width / 8, height * 0.8
-    kolam.create_grammar 3          # create grammar from rules
+    kolam.create_grammar 3 # create grammar from rules
     no_loop
   end
 
@@ -28,16 +29,13 @@ class SnakeKolamSketch < Propane::App
   end
 end
 
-SimpleTurtle = Struct.new(:x, :y, :angle)
+Turtle = Struct.new(:x, :y, :angle)
 
 # class SnakeKolam
 class SnakeKolam
   include Propane::Proxy
 
-  attr_accessor :axiom, :start_length, :xpos, :ypos, :grammar, :production, :draw_length, :gen
-  XPOS = 0
-  YPOS = 1
-  ANGLE = 2
+  attr_reader :axiom, :start_length, :xpos, :ypos, :grammar, :production, :draw_length, :gen
   DELTA = 90 # degrees
 
   def initialize(xpos, ypos)
@@ -52,12 +50,13 @@ class SnakeKolam
   def setup_grammar
     @axiom = 'FX+F+FX+F'
     @grammar = Grammar.new(
-    axiom,
-    'X' => 'X-F-F+FX+F+FX-F-F+FX')
+      axiom,
+      'X' => 'X-F-F+FX+F+FX-F-F+FX'
+    )
   end
 
   def render # NB not using affine transforms here
-    turtle = SimpleTurtle.new(xpos, ypos, 0)
+    turtle = Turtle.new(xpos, ypos, 0)
     production.scan(/./) do |element|
       case element
       when 'F'
@@ -91,7 +90,7 @@ class SnakeKolam
   # returns a turtle corresponding to the new position
   ######################################################
 
-  def draw_line(turtle, length)
+  def draw_line(turtle, _length)
     x_temp = turtle.x
     y_temp = turtle.y
     turtle.x += draw_length * DegLut.cos(turtle.angle)

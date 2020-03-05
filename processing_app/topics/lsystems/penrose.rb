@@ -1,11 +1,13 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 #######################################################
 # penrose tiling in propane using LSystems
 # by Martin Prout
 ######################################################
 class Penrose < Propane::App
-  load_library :grammar
+  load_library :grammar, :penrose
   attr_reader :penrose
 
   def settings

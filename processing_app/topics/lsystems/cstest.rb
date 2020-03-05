@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 
 class CSTest < Propane::App
@@ -20,9 +22,9 @@ class CSTest < Propane::App
   def draw
     (0..7).each do |i|
       grammar = Grammar.new(
-      'baaaaaa',
-      'b<a' => 'b',   # context sensitive rule replace a when preceded by b
-      'b' => 'a'
+        'baaaaaa',
+        'b<a' => 'b', # context sensitive rule replace a when preceded by b
+        'b' => 'a'
       )
       text grammar.generate(i), 30, i * 25
     end
@@ -30,7 +32,7 @@ class CSTest < Propane::App
 
   def settings
     size 125, 250
-  end  
+  end
 end
 
 CSTest.new

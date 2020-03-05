@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 
 Turtle = Struct.new(:x, :y, :angle)
@@ -48,7 +50,7 @@ class StochasticPlant
   def initialize(xpos, ypos)
     @draw_length = 350
     # use Struct as turtle
-    @turtle = Turtle.new(xpos, ypos, 90)        # this way is up?
+    @turtle = Turtle.new(xpos, ypos, 90) # this way is up?
     setup_grammar
   end
 
@@ -100,6 +102,5 @@ class StochasticPlant
     Turtle.new(new_xpos, new_ypos, turtle.angle)
   end
 end
-
 
 StochasticTest.new

@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 require 'arcball'
 
@@ -42,7 +44,7 @@ class CSPlant
 
   IGNORE = '[]+-^&3'
   attr_reader :grammar, :axiom, :production, :premis, :rule,
-  :theta, :scale_factor, :len, :phi, :len
+              :theta, :scale_factor, :len, :phi, :len
 
   def initialize(len)
     @axiom = 'F'

@@ -1,10 +1,10 @@
 #!/usr/bin/env jruby
+# frozen_string_literal: true
+
 require 'propane'
 
 class DavidTourSketch < Propane::App
   load_library :grammar
-
-
 
   attr_reader :points
 
@@ -27,7 +27,6 @@ class DavidTourSketch < Propane::App
   def settings
     size(800, 900, P2D)
   end
-
 end
 
 ########################################################
@@ -39,12 +38,12 @@ class DavidTour
   DELTA = Math::PI / 3 # 60 degrees
 
   def initialize(xpos, ypos)
-    @axiom = 'FX-XFX-XFX-XFX-XFX-XF'   # Axiom
-    @theta  = 0
+    @axiom = 'FX-XFX-XFX-XFX-XFX-XF' # Axiom
+    @theta = 0
     @grammar = Grammar.new(
-    axiom,
-    'F' => '!F!-F-!F!',              # Rules
-    'X' => '!X'
+      axiom,
+      'F' => '!F!-F-!F!', # Rules
+      'X' => '!X'
     )
     @draw_length = 15
     @xpos = xpos
