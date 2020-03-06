@@ -43,7 +43,7 @@ class StochasticGrammar
   end
 
   def new_production(prod) # note the use of gsub!
-    prod.gsub!(/./) do |ch|
+    prod.gsub(/./) do |ch|
       rule?(ch) ? stochastic_rule(srules[ch]) : ch
     end
   end

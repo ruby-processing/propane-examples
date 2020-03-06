@@ -43,7 +43,7 @@ class Grammar
 
   def new_production(prod) # single iteration grammar rules
     @idx = -1
-    prod.gsub!(/./) do |ch|
+    prod.gsub(/./) do |ch|
       get_rule(prod, ch)
     end
   end

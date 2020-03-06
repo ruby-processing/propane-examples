@@ -66,7 +66,7 @@ class CSPlant
     specular(255, 255, 255)
     shininess(1.0)
     repeat = 1
-    production.each_char do |ch|
+    production.scan(/./) do |ch|
       case ch
       when 'F'
         translate(0, len / -2, 0)

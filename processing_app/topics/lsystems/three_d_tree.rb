@@ -75,7 +75,7 @@ class Plant
   end
 
   def render
-    production.each_char do |ch|
+    production.scan(/./) do |ch
       case ch
       when 'F'
         fill(0, 200, 0)
