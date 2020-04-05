@@ -1,4 +1,6 @@
 #!/usr/bin/env jruby -w
+# frozen_string_literal: true
+
 require 'propane'
 require 'parallel'
 # Request Image
@@ -18,10 +20,9 @@ class RequestImage < Propane::App
   def setup
     sketch_title 'Request Image'
     # Load images asynchronously, kind of pointless with this few small images
-    @imgs = Parallel.map(0...10) do |i|
-      request_image(
-        data_path(format('PT_anim%s.gif', i.to_s.rjust(4, '0'))
-        )
+    @imgs = (0...12).map do |i|
+      load_image(
+        data_path(format('PT_anim%<just>s.gif', just: i.to_s.rjust(4, '0')))
       )
     end
   end
@@ -30,7 +31,7 @@ class RequestImage < Propane::App
     background 0
     # put pre-load animation here?
     # When all images are loaded draw them to the screen
-    # return unless all_loaded?
+    return unless all_loaded?
     imgs.each_with_index do |img, i|
       image(img, width / imgs.length * i, 0, width / imgs.length, height)
     end
@@ -38,7 +39,7 @@ class RequestImage < Propane::App
 
   # Return true when all images are loaded
   def all_loaded?
-    imgs.length == 10
+    imgs.length == 12
   end
 
   def settings
