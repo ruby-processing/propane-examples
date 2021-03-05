@@ -36,7 +36,7 @@ class AsciiCapture < Propane::App
   def init_video
     # This the default video input, see the test_capture
     # example if it creates an error
-    @video = Capture.new(self, 160, 120)
+    @video = Capture.new(self, 240, 110, "pipeline:autovideosrc")
     # Start capturing the images from the camera
     video.start
     @cheat_screen = false

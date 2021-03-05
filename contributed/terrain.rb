@@ -8,7 +8,7 @@ Key = Struct.new(:x, :y) do
     key.x == x
   end
 end
-# The propane sketch
+# The propane sketch press mouse to use SimpleNoise
 class Terrain < Propane::App
   WIDTH = 1400
   HEIGHT = 1100
@@ -43,7 +43,7 @@ class Terrain < Propane::App
     stroke 235, 69, 129
     translate width / 2, height / 2
     rotate_x PI / 3
-    translate(-WIDTH / 2, -HEIGHT / 2)    
+    translate(-WIDTH / 2, -HEIGHT / 2)
     (0...rows).each do |y|
       begin_shape(TRIANGLE_STRIP)
       (0..columns).each do |x|
@@ -52,6 +52,18 @@ class Terrain < Propane::App
       end
       end_shape
     end
+  end
+
+  def mouse_pressed
+    mode = Propane::SIMPLEX
+    noise_mode mode
+    sketch_title "#{mode}"
+  end
+
+  def mouse_released
+    mode = Propane::VALUE
+    noise_mode(mode)
+    sketch_title "#{mode}"
   end
 
   private

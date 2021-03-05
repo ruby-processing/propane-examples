@@ -21,7 +21,7 @@ class Voronoi1 < Propane::App
     smooth
     stroke_weight 1
     stroke 255
-    voronoi.get_regions.each {  |polygon| gfx.polygon2D(polygon) }
+    voronoi.get_regions.each { |polygon| gfx.polygon2D(polygon) }
     save_frame(data_path('voronoi-001.png'))
   end
 

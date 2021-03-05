@@ -3,7 +3,6 @@
 require 'propane'
 
 class Noise < Propane::App
-  load_library :simplex_noise
 
   # by Martin Prout.
   # Using noise to create simple texture.
@@ -24,11 +23,23 @@ class Noise < Propane::App
       yoff = 0.0
       (0...height).each do |y|
         yoff += @increment
-        bright = SimplexNoise.noise(x / x_val, y / x_val) * 255
+        bright = noise(x / x_val, y / x_val) * 255
         pixels[x + y * width] = color(bright)
       end
     end
     update_pixels
+  end
+
+  def mouse_pressed
+    mode = Propane::SIMPLEX
+    noise_mode mode
+    sketch_title "#{mode}"
+  end
+
+  def mouse_released
+    mode = Propane::VALUE
+    noise_mode(mode)
+    sketch_title "#{mode}"
   end
 
   def settings
