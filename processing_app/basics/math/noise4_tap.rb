@@ -6,6 +6,8 @@ Coord = Struct.new(:mx, :my, :mz, :az, :al)
 class ForD < Propane::App
   attr_reader :half_w, :half_h, :radius, :spin_x, :spin, :coords
 
+  PHI = ((1.0 + Math.sqrt(5)) / 2.0 - 1) * TWO_PI # Fibonacci distribution
+
   def settings
     size(480, 480, P3D)
   end
@@ -21,11 +23,9 @@ class ForD < Propane::App
     @radius = height * 0.4
     @spin_x = 0.0
     @spin = 0.0
-
-    angle = ((1.0 + Math.sqrt(5)) / 2.0 - 1) * TWO_PI # Fibonacci distribution
     @coords = (0..2_000).map do |i|
       inc = Math.asin(i / 1_000.0 - 1.0) # inclination
-      az = angle * i # azimuth
+      az = PHI * i # azimuth
       # Too lazy to do this the right way... precalculating both the angles and the coordinates
       Coord.new.tap do |coord|
         push_matrix

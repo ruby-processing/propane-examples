@@ -1,8 +1,7 @@
 #!/usr/bin/env jruby
 require 'propane'
 require 'ruby_wordcram'
-# US Constitution text from http://www.usconstitution.net/const.txt
-# Liberation Serif font from RedHat: https://www.redhat.com/promo/fonts/
+
 WEB = %w(#0033ff #0055ff #0088ff #00bbff #00ffdd).freeze
 LETTERS = ('A'..'Z').to_a
 

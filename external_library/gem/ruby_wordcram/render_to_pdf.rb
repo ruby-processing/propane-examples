@@ -28,7 +28,7 @@ class RenderToPDF < Propane::App
   end
 
   def settings
-    size(700, 700, PDF, 'usconst.pdf')
+    size(700, 700, PDF, data_path('usconst.pdf'))
   end
 end
 RenderToPDF.new
