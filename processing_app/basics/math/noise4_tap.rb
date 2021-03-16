@@ -17,7 +17,6 @@ class ForD < Propane::App
     background(0)
     stroke(255)
     fill(32, 255, 64)
-    noise_mode(Propane::SIMPLEX)
     @half_w = width * 0.5
     @half_h = height * 0.5
     @radius = height * 0.4
