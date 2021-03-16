@@ -8,7 +8,6 @@ require 'propane'
 
 class Complex3D < Propane::App
   load_library :pdf
-  include_package 'processing.pdf'
   attr_reader :num, :pt, :style, :dosave
   
   def setup
