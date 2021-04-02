@@ -34,18 +34,6 @@ class Noise3D < Propane::App
     @zoff += z_increment
   end
 
-  def mouse_pressed
-    mode = Propane::SIMPLEX
-    noise_mode mode
-    sketch_title "#{mode}"
-  end
-
-  def mouse_released
-    mode = Propane::VALUE
-    noise_mode(mode)
-    sketch_title "#{mode}"
-  end
-
   def settings
     size 640, 360
   end

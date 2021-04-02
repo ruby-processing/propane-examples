@@ -22,15 +22,15 @@ class Noise1D < Propane::App
   end
 
   def mouse_pressed
-    mode = Propane::SIMPLEX
+    mode = NoiseMode::SMOOTH_OPEN
     noise_mode mode
-    sketch_title "#{mode}"
+    sketch_title "#{mode.description}"
   end
 
   def mouse_released
-    mode = Propane::VALUE
+    mode = NoiseMode::DEFAULT
     noise_mode(mode)
-    sketch_title "#{mode}"
+    sketch_title "#{mode.description}"
   end
 
   def settings

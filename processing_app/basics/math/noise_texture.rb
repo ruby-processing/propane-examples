@@ -7,10 +7,12 @@ class Noise < Propane::App
   # by Martin Prout.
   # Using noise to create simple texture.
   # control parameter with mouse
+  attr_reader :smth
 
   def setup
     sketch_title 'Noisy Texture'
     @increment = 0.02
+    @smth = false
   end
 
   def draw
@@ -23,23 +25,18 @@ class Noise < Propane::App
       yoff = 0.0
       (0...height).each do |y|
         yoff += @increment
-        bright = noise(x / x_val, y / x_val) * 255
+        noise_val = smth ? SmoothNoise.noise(x / x_val, y / x_val) : noise(x / x_val, y / x_val)
+        bright = (noise_val + 1) * 125
         pixels[x + y * width] = color(bright)
       end
     end
     update_pixels
   end
 
-  def mouse_pressed
-    mode = Propane::SIMPLEX
-    noise_mode mode
-    sketch_title "#{mode}"
-  end
+  def key_pressed
+    return unless key == 's'
 
-  def mouse_released
-    mode = Propane::VALUE
-    noise_mode(mode)
-    sketch_title "#{mode}"
+    @smth = !smth
   end
 
   def settings

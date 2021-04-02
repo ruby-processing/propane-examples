@@ -1,5 +1,5 @@
 #!/usr/bin/env jruby
-
+require 'java'
 require 'propane'
 
 Coord = Struct.new(:mx, :my, :mz, :az, :al)
