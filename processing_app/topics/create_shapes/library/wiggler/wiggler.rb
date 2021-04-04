@@ -34,16 +34,16 @@ class Wiggler
     (0...s.get_vertex_count).each do |i|
       # Calculate a new vertex location based on noise around 'original' location
       pos = original[i]
-      a = TAU * noise(xoff, yoff)
+      a = PI * SmoothNoise.noise(xoff, yoff)
       r = Java::ProcessingCore::PVector::from_angle(a)
       r.mult(4)
       r.add(pos)
       # Set the location of each vertex to the new one
       s.set_vertex(i, r.x, r.y)
-      # increment perlin noise x value
+      # increment noise x value
       @xoff += 0.5
     end
-    # Increment perlin noise y value
+    # Increment noise y value
     @yoff += 0.02
   end
 

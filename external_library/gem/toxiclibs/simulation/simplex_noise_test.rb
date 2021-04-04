@@ -3,6 +3,7 @@
 require 'propane'
 require 'toxiclibs'
 # Test and SimplexNoise Karsten Schmidt
+# Better to use Built in OPenSimplex2 in propane
 class SimplexNoiseTest < Propane::App
   attr_reader :noise_dimension, :noise_offset
 

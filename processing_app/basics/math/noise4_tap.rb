@@ -58,7 +58,7 @@ class ForD < Propane::App
       dst = (g.model_z(0, 0, 0) + half_h) / 2 + 32
       stroke(dst, dst * 0.5, dst * 0.25)
       #  4D Simplex noise(x, y, z, time)
-      ang = noise(ci.mx, ci.my, ci.mz, frame_count * 0.007) * TWO_PI
+      ang = noise(ci.mx, ci.my, ci.mz, frame_count * 0.007) * PI
       rotate_x(ang)
       line(0, 0, 0, 0, 15, 0)
       translate(0, 15, 0)

@@ -7,7 +7,7 @@ require 'propane'
 # Press mouse to switch Noise Implementions
 class NoiseWave < Propane::App
 
-attr_reader :yoff, :smth         # 2nd dimension of perlin noise
+attr_reader :yoff, :smth         # 2nd dimension of noise
 
 def setup
   sketch_title 'Noise Wave'

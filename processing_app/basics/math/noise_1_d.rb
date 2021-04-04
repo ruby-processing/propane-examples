@@ -3,6 +3,7 @@
 require 'propane'
 
 class Noise1D < Propane::App
+  attr_reader :smth
 
   def setup
     sketch_title 'Noise 1D'
@@ -10,27 +11,20 @@ class Noise1D < Propane::App
     @x_increment = 0.01
     background 0
     no_stroke
+    @smth = false
   end
 
   def draw
     fill 0, 10
     rect 0, 0, width, height
-    n = noise(@xoff) * width
+    n = smth ? SmoothNoise.noise(@xoff) * width : noise(@xoff) * width
     @xoff += @x_increment
     fill 200
     ellipse n, height / 2, 64, 64
   end
 
   def mouse_pressed
-    mode = NoiseMode::SMOOTH_OPEN
-    noise_mode mode
-    sketch_title "#{mode.description}"
-  end
-
-  def mouse_released
-    mode = NoiseMode::DEFAULT
-    noise_mode(mode)
-    sketch_title "#{mode.description}"
+    @smth = !smth
   end
 
   def settings

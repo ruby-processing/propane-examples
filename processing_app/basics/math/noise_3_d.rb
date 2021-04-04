@@ -26,7 +26,7 @@ class Noise3D < Propane::App
       yoff = 0.0
       (0...height).each do |y|
         yoff += increment
-        bright = noise(xoff, yoff, @zoff) * 255
+        bright = (noise(xoff, yoff, @zoff) + 1) * 128
         pixels[x + y * width] = color(bright, bright, bright)
       end
     end

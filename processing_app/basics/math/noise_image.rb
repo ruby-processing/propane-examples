@@ -19,9 +19,9 @@ class NoiseImage < Propane::App
     load_pixels
     grid(500, 500) do |x, y|
       if smth
-        col = SmoothNoise.noise(SCALE * x, SCALE * y) > 0 ? 255 : 0
+        col = SmoothNoise.noise(SCALE * x, SCALE * y).positive? ? 255 : 0
       else
-        col = noise(SCALE * x, SCALE * y) > 0 ? 255 : 0
+        col = noise(SCALE * x, SCALE * y).positive? ? 255 : 0
       end
       pixels[x + width * y] = color(col, 0, 0)
     end

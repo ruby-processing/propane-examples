@@ -66,8 +66,8 @@ class HairyOrb
 
   def render
     each do |hair|
-      off = (noise(millis * 0.0005, sin(hair.phi)) - 0.5) * 0.3
-      offb = (noise(millis * 0.0007, sin(hair.z) * 0.01) - 0.5) * 0.3
+      off = noise(millis * 0.0005, sin(hair.phi)) * 0.15
+      offb = noise(millis * 0.0007, sin(hair.z) * 0.01) * 0.15
       thetaff = hair.theta + off
       costhetaff = cos(thetaff)
       coshairtheta = cos(hair.theta)

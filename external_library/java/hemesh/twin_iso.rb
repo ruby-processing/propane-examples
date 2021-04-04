@@ -24,7 +24,7 @@ class TwinIso < Propane::App
       (0..RES).each do |j|
         val = []
         (0..RES).each do |k|
-          val << 2.1 * noise(0.35 * i, 0.35 * j, 0.35 * k)
+          val << 1.05 * SmoothNoise.noise(0.35 * i, 0.35 * j, 0.35 * k) + 1
         end
         valu << val
       end

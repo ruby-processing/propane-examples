@@ -17,14 +17,12 @@ class Noise2D < Propane::App
     background 0
     load_pixels
     xoff = 0.0
-    detail = map1d(mouse_x, (0..width), (0.1..0.6))
-    noise_detail(8, detail)
     (0...width).each do |x|
       xoff += @increment
       yoff = 0.0
       (0...height).each do |y|
         yoff += @increment
-        bright = noise(xoff, yoff) * 255
+        bright = (noise(xoff, yoff) + 1) * 128
         pixels[x + y * width] = color(bright)
       end
     end

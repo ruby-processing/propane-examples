@@ -20,7 +20,7 @@ class DefaultPlot < Propane::App
     points = GPointsArray.new(POINTS)
 
     POINTS.times do |i|
-      points.add(i, 10 * noise(0.1 * i))
+      points.add(i, 5 * (noise(0.1 * i) + 1))
     end
 
     # Create a new plot and set its position on the screen

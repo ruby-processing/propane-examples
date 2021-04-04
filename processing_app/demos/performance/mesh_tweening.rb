@@ -27,17 +27,17 @@ class MeshTweening < Propane::App
     begin_shape(QUADS)
     (-500..500).step(d) do |x|
       (-500..500).step(d) do |y|
-        fill(255 * noise(x, y))
-        attrib_position('tweened', x, y, 100 * noise(x, y))
+        fill(128 * (SmoothNoise.tnoise(x, y) + 1))
+        attrib_position('tweened', x, y, 50 * (SmoothNoise.tnoise(x, y) + 1))
         vertex(x, y, 0)
-        fill(255 * noise(x + d, y))
-        attrib_position('tweened', x + d, y, 100 * noise(x + d, y))
+        fill(128 * (SmoothNoise.tnoise(x + d, y) + 1))
+        attrib_position('tweened', x + d, y, 50 * (SmoothNoise.tnoise(x + d, y) + 1))
         vertex(x + d, y, 0)
-        fill(255 * noise(x + d, y + d))
-        attrib_position('tweened', x + d, y + d, 100 * noise(x + d, y + d))
+        fill(128 * (SmoothNoise.tnoise(x + d, y + d) + 1))
+        attrib_position('tweened', x + d, y + d, 50 * (SmoothNoise.tnoise(x + d, y + d) + 1))
         vertex(x + d, y + d, 0)
-        fill(255 * noise(x, y + d))
-        attrib_position('tweened', x, y + d, 100 * noise(x, y + d))
+        fill(128 * (SmoothNoise.tnoise(x, y + d) + 1))
+        attrib_position('tweened', x, y + d, 50 * (SmoothNoise.tnoise(x, y + d) + 1))
         vertex(x, y + d, 0)
       end
     end

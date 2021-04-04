@@ -26,7 +26,7 @@ class GridFromNetwork < Propane::App
     network = WB_Network.new
     vertices.each_with_index do |vertex, i|
       # compromise on 2D noise for elegance and simplicity
-      network.addNode(vertex[0], vertex[1], vertex[2], noise(0.1 * rand(3), 0.1 * i))
+      network.addNode(vertex[0], vertex[1], vertex[2], (noise(0.1 * rand(3), 0.1 * i) + 1) / 2)
     end
     grid(40, 40) do |i, j|
       network.addConnection(i + 41 * j, i + 1 + 41 * j) if rand(100) > 30
