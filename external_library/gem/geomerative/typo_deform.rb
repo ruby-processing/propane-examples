@@ -1,6 +1,5 @@
 #!/usr/bin/env jruby -w
 
-
 require 'propane'
 require 'geomerative'
 

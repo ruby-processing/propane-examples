@@ -19,9 +19,8 @@ require 'geomerative'
 # A series of tutorials for using the Geomerative Library
 # developed by Ricard Marxer.
 # http://www.ricardmarxer.com/geomerative/
+# Hold mouse over bottom of `B` to focus, move away to blur
 #
-# More info on these tutorials and workshops at :
-# www.freeartbureau.org/blog
 # translated for propane by Martin Prout
 class ExtraBright < Propane::App
   load_library :f_agent
