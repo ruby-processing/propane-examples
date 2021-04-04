@@ -13,7 +13,7 @@ class Terrain < Propane::App
   WIDTH = 1400
   HEIGHT = 1100
   SCL = 30
-  attr_reader :terrain, :rows, :columns, :mover
+  attr_reader :terrain, :rows, :columns, :mover, :smth
 
   def settings
     size 800, 800, P3D
@@ -25,6 +25,7 @@ class Terrain < Propane::App
     @rows = HEIGHT / SCL
     @terrain = {}
     @mover = 0
+    @smth = false
   end
 
   def draw
@@ -34,7 +35,11 @@ class Terrain < Propane::App
     (0..rows).each do |y|
       xoff = 0
       (0..columns).each do |x|
-        terrain[Key.new(x, y)] = Vec3D.new(x * SCL, y * SCL, map1d(noise(xoff, yoff), 0..1.0, -65..65))
+        if smth
+          terrain[Key.new(x, y)] = Vec3D.new(x * SCL, y * SCL, map1d(SmoothNoise.tnoise(xoff, yoff), -1.0..1.0, -65..65))
+        else
+          terrain[Key.new(x, y)] = Vec3D.new(x * SCL, y * SCL, map1d(tnoise(xoff, yoff), -1.0..1.0, -65..65))
+        end
         xoff += 0.2
       end
       yoff += 0.2
@@ -55,17 +60,9 @@ class Terrain < Propane::App
   end
 
   def mouse_pressed
-    mode = Propane::SIMPLEX
-    noise_mode mode
-    sketch_title "#{mode}"
+    @smth = !smth
   end
-
-  def mouse_released
-    mode = Propane::VALUE
-    noise_mode(mode)
-    sketch_title "#{mode}"
-  end
-
+  
   private
 
   def renderer

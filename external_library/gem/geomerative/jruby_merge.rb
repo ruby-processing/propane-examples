@@ -1,3 +1,4 @@
+#!/usr/bin/env jruby
 #######################
 # --------- GEOMERATIVE EXAMPLES ---------------
 #######################
@@ -24,71 +25,77 @@
 #
 # Adapted for JRubyArt by Martin Prout
 #######################
+require 'propane'
 require 'geomerative'
 
-attr_reader :my_font, :stop, :xoff, :yoff, :x_inc, :y_inc
+class RubyMerge < Propane::App
 
-TEXT = %w(RubyArt Processing).freeze
+  attr_reader :my_font, :stop, :xoff, :yoff, :x_inc, :y_inc
 
-def settings
-  size(960, 640)
-end
+  TEXT = %w(RubyArt Processing).freeze
 
-def setup
-  sketch_title TEXT.join ' '
-  RG.init(self)
-  @my_font = RFont.new(data_path('FreeSans.ttf'), 200, CENTER)
-  @stop = false
-  no_fill
-  stroke(255)
-  stroke_weight(0.5)
-  rect_mode(CENTER)
-  @xoff = 0.0
-  @yoff = 0.0
-  @x_inc = 0.01
-  @y_inc = 0.015
-end
-
-def draw
-  background(0, 50)
-  displace_x = noise(xoff) * width
-  displace_y = noise(yoff) * height
-  @xoff += x_inc
-  @yoff += y_inc
-  translate(width / 2, height / 1.7)
-  frequency = map1d(displace_x, (300..500), (3..200))
-  RCommand.set_segment_length(frequency)
-  my_points = my_font.to_group(TEXT[0]).get_points
-  begin_shape
-  my_points.each do |point|
-    vertex(point.x, point.y)
-    rotation = map1d(displace_y, (0..height), (0..TWO_PI))
-    push_matrix
-    translate(point.x, point.y)
-    rotate(rotation)
-    size = frequency / 6
-    rect(0, 0, size, size)
-    pop_matrix
+  def settings
+    size(960, 640)
   end
-  end_shape
-  frequency2 = map1d(displace_x, (300..500), (200..3))
-  RCommand.set_segment_length(frequency2)
-  my_points = my_font.to_group(TEXT[1]).get_points
-  begin_shape
-  my_points.each do |point|
-    vertex(point.x, point.y)
-    size = frequency2 / 7
-    ellipse(point.x, point.y, size, size)
+
+  def setup
+    sketch_title TEXT.join ' '
+    RG.init(self)
+    @my_font = RFont.new(data_path('FreeSans.ttf'), 200, CENTER)
+    @stop = false
+    no_fill
+    stroke(255)
+    stroke_weight(0.5)
+    rect_mode(CENTER)
+    @xoff = 0.0
+    @yoff = 0.0
+    @x_inc = 0.01
+    @y_inc = 0.015
   end
-  end_shape
+
+  def draw
+    background(0, 50)
+    displace_x = (noise(xoff) + 1) * width / 2
+    displace_y = (noise(yoff) + 1) * height / 2
+    @xoff += x_inc
+    @yoff += y_inc
+    translate(width / 2, height / 1.7)
+    frequency = map1d(displace_x, (300..500), (3..200))
+    RCommand.set_segment_length(frequency)
+    my_points = my_font.to_group(TEXT[0]).get_points
+    begin_shape
+    my_points.each do |point|
+      vertex(point.x, point.y)
+      rotation = map1d(displace_y, (0..height), (0..TWO_PI))
+      push_matrix
+      translate(point.x, point.y)
+      rotate(rotation)
+      size = frequency / 6
+      rect(0, 0, size, size)
+      pop_matrix
+    end
+    end_shape
+    frequency2 = map1d(displace_x, (300..500), (200..3))
+    RCommand.set_segment_length(frequency2)
+    my_points = my_font.to_group(TEXT[1]).get_points
+    begin_shape
+    my_points.each do |point|
+      vertex(point.x, point.y)
+      size = frequency2 / 7
+      ellipse(point.x, point.y, size, size)
+    end
+    end_shape
+  end
+
+  def key_pressed
+    case key
+    when 'f', 'F'
+      @stop = !stop
+      stop ? no_loop : loop
+    when 's', 'S'
+      save_frame(data_path('000_###.png'))
+    end
+  end
 end
 
-def key_pressed
-  case key
-  when 'f', 'F'
-    @stop = !stop
-    stop ? no_loop : loop
-  when 's', 'S'
-    save_frame(data_path('000_###.png'))
-  end
-end
+RubyMerge.new

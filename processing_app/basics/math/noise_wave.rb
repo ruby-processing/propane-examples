@@ -47,8 +47,6 @@ def mouse_pressed
   @smth = !smth
 end
 
-
-
 def settings
   size(640, 360)
 end
