@@ -37,7 +37,7 @@ require 'toxiclibs'
 class GrayScottToneImage < Propane::App
   attr_reader :gs, :tone_map, :img
 
-  KEYS = %w(1 2 3 4 5 6 7 8 9).freeze
+  KEYS = (1..9).map { |i| i }
 
   def setup
     sketch_title 'Gray Scott Image'

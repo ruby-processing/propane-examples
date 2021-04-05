@@ -1,7 +1,6 @@
 #!/usr/bin/env jruby
 # frozen_string_literal: true
 require 'propane'
-require 'toxiclibs'
 # Test and SimplexNoise Karsten Schmidt
 # Better to use Built in OpenSimplex2 in propane
 class SimplexNoiseTest < Propane::App
@@ -14,7 +13,7 @@ class SimplexNoiseTest < Propane::App
   end
 
   def setup
-    sketch_title 'Simplex Noise Test'
+    sketch_title 'Open Simplex Noise Test'
     @noise_dimension = KEYS[0]
     @noise_offset = 100
     load_pixels
@@ -26,15 +25,15 @@ class SimplexNoiseTest < Propane::App
       noise_val = 0
       case(noise_dimension)
       when KEYS[0]
-        noise_val = Toxi::SimplexNoise.noise(i * NS + noise_offset, 0)
+        noise_val = noise(i * NS + noise_offset, 0)
       when KEYS[1]
-        noise_val = Toxi::SimplexNoise.noise(i * NS + noise_offset, j * NS + noise_offset)
+        noise_val = noise(i * NS + noise_offset, j * NS + noise_offset)
       when KEYS[2]
-        noise_val = Toxi::SimplexNoise.noise(i * NS + noise_offset, j * NS + noise_offset, frame_count * 0.01)
+        noise_val = noise(i * NS + noise_offset, j * NS + noise_offset, frame_count * 0.01)
       when KEYS[3]
-        noise_val = Toxi::SimplexNoise.noise(i * NS + noise_offset, j * NS + noise_offset, 0, frame_count * 0.01)
+        noise_val = noise(i * NS + noise_offset, j * NS + noise_offset, 0, frame_count * 0.01)
       else
-        noise_val = Toxi::SimplexNoise.noise(i * NS + noise_offset, 0)
+        noise_val = noise(i * NS + noise_offset, 0)
       end
       c = (noise_val * 127 + 128).to_i
       # Fix required to return a java signed int
