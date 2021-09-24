@@ -115,7 +115,7 @@ class FrameOfReference < Propane::App
   end
 
   def renderer
-    @renderer ||= GfxRender.new(self.g)
+    @renderer ||= Propane::GfxRender.new(self.g)
   end
 end
 

@@ -36,7 +36,7 @@ class CircumcircleSketch < Propane::App
     @font = create_font('Arial', 16, true)
     @points = TPoints.new
     ellipse_mode RADIUS
-    @renderer = GfxRender.new(self.g)
+    @renderer = Propane::GfxRender.new(self.g)
   end
 
   def draw

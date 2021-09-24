@@ -8,9 +8,9 @@ class Tree < Propane::App
   # http://processing.org/learning/topics/tree.html
   # by Joe Holt
 
-  def setup
-    size 200, 200
-  end
+  # def settings
+  #  size 200, 200
+  # end
 
   def setup
     sketch_title 'Tree'

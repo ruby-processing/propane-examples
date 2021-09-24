@@ -15,7 +15,7 @@
 require 'propane'
 
 module Renderer
-  java_import 'monkstone.vecmath.ShapeRender'
+  java_import 'monkstone.vecmath.Propane::ShapeRender'
 end
 
 class HeightMap < Propane::App
@@ -106,7 +106,7 @@ class HeightMap < Propane::App
     tex = images[0]
 
     mesh = create_shape # create the initial PShape
-    renderer = ShapeRender.new(mesh) # initialize the shape renderer
+    renderer = Propane::ShapeRender.new(mesh) # initialize the shape renderer
     mesh.begin_shape(QUADS) # define the PShape type: QUADS
     mesh.no_stroke
     mesh.texture(tex) # set a texture to make a textured PShape

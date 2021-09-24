@@ -36,7 +36,7 @@ class PeanoSketch < Propane::App
   end
 
   def renderer
-    @renderer ||= GfxRender.new(g)
+    @renderer ||= Propane::GfxRender.new(g)
   end
 
   def settings

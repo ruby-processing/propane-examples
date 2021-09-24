@@ -3,7 +3,7 @@
 require 'propane'
 # Drawolver: draw 2D & revolve 3D
 
-# Example shows how to use the vecmath library, including GfxRender utility.
+# Example shows how to use the vecmath library, including Propane::GfxRender utility.
 # On the ruby side features the use each_cons, a possibly a rare use for this
 # ruby Enumerable method?
 # 2010-03-22 - fjenett (somewhat revised by Martin Prout 2014-07-06)
@@ -47,7 +47,7 @@ class Drawolver < Propane::App
   end
 
   def renderer
-    @renderer ||= GfxRender.new(self.g)
+    @renderer ||= Propane::GfxRender.new(self.g)
   end
 
   def reset_scene

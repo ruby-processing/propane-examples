@@ -7,8 +7,8 @@ require 'propane'
 #
 # Features Vec3D.to_normal(renderer) and Vec3D.to_vertex_uv(renderer, u, v)
 # see line 62 for inititialization of renderer where obj is an instance of
-# PShape renderer = ShapeRender.new(obj)
-java_import 'monkstone.vecmath.ShapeRender'
+# PShape renderer = Propane::ShapeRender.new(obj)
+
 
 class Trefoil < Propane::App
   attr_reader :pg, :trefoil
@@ -44,7 +44,7 @@ class Trefoil < Propane::App
   end
 
   # Code to draw a trefoil knot surface, with normals and texture
-  # coordinates. Makes of the Vec3D Render interface (uses ShapeRender here).
+  # coordinates. Makes of the Vec3D Render interface (uses Propane::ShapeRender here).
   # Adapted from the parametric equations example by Philip Rideout:
   # See http://chimera.labs.oreilly.com/books/1234000001814/index.html
 
@@ -54,7 +54,7 @@ class Trefoil < Propane::App
     obj = create_shape
     obj.begin_shape(TRIANGLES)
     obj.texture(tex)
-    renderer = ShapeRender.new(obj)
+    renderer = Propane::ShapeRender.new(obj)
     (0...nx).each do |j|
       u0 = j.to_f / nx
       u1 = (j + 1).to_f / nx

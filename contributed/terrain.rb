@@ -66,7 +66,7 @@ class Terrain < Propane::App
   private
 
   def renderer
-    @renderer ||= GfxRender.new(self.g)
+    @renderer ||= Propane::GfxRender.new(self.g)
   end
 end
 

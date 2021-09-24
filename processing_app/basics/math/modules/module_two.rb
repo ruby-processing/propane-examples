@@ -12,7 +12,7 @@ class ModuleTwo < Propane::App
 
   def setup
     sketch_title 'Module Two'
-    @renderer = Java::MonkstoneVecmath::GfxRender.new(self.g)
+    @renderer = Java::MonkstoneVecmath::Propane::GfxRender.new(self.g)
     frame_rate 30
     reset_scene
   end

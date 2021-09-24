@@ -1,7 +1,7 @@
 require 'propane'
-java_import 'monkstone.vecmath.ShapeRender'
+java_import 'monkstone.vecmath.Propane::ShapeRender'
 #
-# WigglePShape. Demonstrates initialization and use of ShapeRender,
+# WigglePShape. Demonstrates initialization and use of Propane::ShapeRender,
 # that allows us to send Vec2D to PShape vertex
 #
 # How to move the individual vertices of a PShape
@@ -41,7 +41,7 @@ class Wiggler
 
     # Now make the PShape with those vertices
     @s = create_shape
-    renderer = ShapeRender.new(s) # Prefix with Sketch classname
+    renderer = Propane::ShapeRender.new(s) # Prefix with Sketch classname
     s.begin_shape
     s.fill(127)
     s.stroke(0)

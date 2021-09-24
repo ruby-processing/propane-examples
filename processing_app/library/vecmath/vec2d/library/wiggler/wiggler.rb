@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-java_import 'monkstone.vecmath.ShapeRender'
+java_import 'monkstone.vecmath.Propane::ShapeRender'
 # An object that wraps the PShape
 class Wiggler
   include Propane::Proxy
@@ -12,7 +12,7 @@ class Wiggler
     @original = (0...16).map{ |a| Vec2D.from_angle(PI * a / 8) * 100 }
     # Now make the PShape with those vertices
     @s = create_shape
-    renderer = ShapeRender.new(s) # Prefix with Sketch classname
+    renderer = Propane::ShapeRender.new(s) # Prefix with Sketch classname
     s.begin_shape
     s.fill(127)
     s.stroke(0)

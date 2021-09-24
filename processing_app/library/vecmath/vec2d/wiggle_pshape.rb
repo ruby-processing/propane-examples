@@ -1,5 +1,5 @@
 require 'propane'
-# WigglePShape. Demonstrates initialization and use of ShapeRender,
+# WigglePShape. Demonstrates initialization and use of Propane::ShapeRender,
 # that allows us to send Vec2D to PShape vertex see wiggler.rb
 #
 # How to move the individual vertices of a PShape
