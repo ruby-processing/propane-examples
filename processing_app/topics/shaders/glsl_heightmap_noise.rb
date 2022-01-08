@@ -14,12 +14,7 @@
 
 require 'propane'
 
-module Renderer
-  java_import 'monkstone.vecmath.Propane::ShapeRender'
-end
-
 class HeightMap < Propane::App
-  include Renderer
   SHADERS = %w(displaceFrag.glsl displaceVert.glsl).freeze
   SHADER_NAME = %i(frag vert).freeze
   DIM = 300 # the grid dimensions of the heightmap
@@ -106,13 +101,12 @@ class HeightMap < Propane::App
     tex = images[0]
 
     mesh = create_shape # create the initial PShape
-    renderer = Propane::ShapeRender.new(mesh) # initialize the shape renderer
     mesh.begin_shape(QUADS) # define the PShape type: QUADS
     mesh.no_stroke
     mesh.texture(tex) # set a texture to make a textured PShape
     # put all the vertices, uv texture coordinates and normals into the PShape
     positions.each_with_index do |p, i|
-      p.to_vertex_uv(renderer, tex_coords[i]) # NB: tex_coords as Vec2D
+      p.to_vertex_uv(renderer(mesh), tex_coords[i]) # NB: tex_coords as Vec2D
       # p.to_vertex_uv(renderer, u, v) # u, v as floats is the alternate form
     end
     mesh.end_shape
@@ -127,6 +121,11 @@ class HeightMap < Propane::App
     else
       puts format('key pressed: %s', key)
     end # cycle through colorMaps (set variable and set colorMap in PShader)
+  end
+
+    # An example of GfxRenderer usage for Vec3D => vertex conversion
+  def renderer(shape)
+    @renderer ||= Propane::ShapeRender.new(shape)
   end
 end
 
